@@ -1,28 +1,29 @@
 package dao.impl;
 
 import dao.UserDAO;
+import dao.exception.DAOException;
 import dao.impl.builder.UserBuilder;
 import entity.User;
 import main.ConnectorDB;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
+
+    private final UserBuilder userBuilder = new UserBuilder();
+
     @Override
     public Set<User> retrieveAllUsers() {
-        Set allUsers = new HashSet<User>();
+        Set<User> allUsers = new HashSet<>();
         try {
             User user;
             Connection connection = ConnectorDB.getConnection();
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM users");
 
-            while (rs.next()){
+            while (rs.next()) {
                 user = userBuilder.buildUser(rs);
                 allUsers.add(user);
             }
@@ -34,23 +35,25 @@ public class UserDAOImpl implements UserDAO {
         return allUsers;
     }
 
-    private final UserBuilder userBuilder = new UserBuilder();
 
     @Override
-    public User retrieveUserById(Integer id) throws SQLException {
+    public User retrieveUserById(Integer id) throws DAOException {
         User user;
         try {
             Connection connection = ConnectorDB.getConnection();
             Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM users WHERE id=" + id);
+            ResultSet resultSet = st.executeQuery("SELECT * FROM users WHERE id = " + id);
 
-            user = userBuilder.buildUser(rs);
+            resultSet.next();
+            user = userBuilder.buildUser(resultSet);
 
-        } catch (SQLException    e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.retrieveUserById()", e);
         }
+
         return user;
     }
+
 
     @Override
     public User retrieveUserByLogin(String login) {
@@ -63,7 +66,24 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void saveUser() {
+    public void saveUser(User user) throws DAOException {
+
+        try {
+            Connection connection = ConnectorDB.getConnection();
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getLogin());
+            ps.setString(3, user.getPassword());
+            ps.setString(4, user.getName());
+            ps.setString(5, user.getSurname());
+            ps.setString(6, user.getEMail());
+            ps.setString(7, user.getCountry());
+            ps.setString(8, user.getTelNumber());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.retrieveUserById()", e);
+        }
 
     }
 
