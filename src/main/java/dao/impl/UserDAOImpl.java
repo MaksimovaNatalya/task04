@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.UserDAO;
 import dao.exception.DAOException;
-import dao.impl.builder.UserBuilder;
+import dao.builder.UserBuilder;
 import entity.User;
 import main.ConnectorDB;
 
@@ -66,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void saveUser(User user) throws DAOException {
+    public void addUser(User user) throws DAOException {
 
         try {
             Connection connection = ConnectorDB.getConnection();

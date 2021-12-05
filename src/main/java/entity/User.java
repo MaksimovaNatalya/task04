@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String login;
     private String password;
@@ -11,12 +12,13 @@ public class User {
     private String eMail;
     private String country;
     private String telNumber;
+    private Role role;
 
 
     public User() {
     }
 
-    public User(Integer id, String login, String password, String name, String surname, String eMail, String country, String telNumber) {
+    public User(Integer id, String login, String password, String name, String surname, String eMail, String country, String telNumber, Role role) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -25,9 +27,10 @@ public class User {
         this.eMail = eMail;
         this.country = country;
         this.telNumber = telNumber;
+        this.role = role;
     }
 
-    public User(String login, String password, String name, String surname, String eMail, String country, String telNumber) {
+    public User(String login, String password, String name, String surname, String eMail, String country, String telNumber, Role role) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -35,6 +38,7 @@ public class User {
         this.eMail = eMail;
         this.country = country;
         this.telNumber = telNumber;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -101,17 +105,25 @@ public class User {
         this.telNumber = telNumber;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(eMail, user.eMail) && Objects.equals(country, user.country) && Objects.equals(telNumber, user.telNumber);
+        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(eMail, user.eMail) && Objects.equals(country, user.country) && Objects.equals(telNumber, user.telNumber) && role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, surname, eMail, country, telNumber);
+        return Objects.hash(id, login, password, name, surname, eMail, country, telNumber, role);
     }
 
     @Override
@@ -125,6 +137,7 @@ public class User {
                 ", eMail='" + eMail + '\'' +
                 ", country='" + country + '\'' +
                 ", telNumber='" + telNumber + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

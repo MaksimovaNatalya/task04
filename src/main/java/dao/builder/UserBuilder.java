@@ -1,5 +1,6 @@
-package dao.impl.builder;
+package dao.builder;
 
+import dao.column_name.Column;
 import entity.User;
 
 import java.sql.ResultSet;
@@ -17,18 +18,19 @@ public class UserBuilder {
 //        String eMail = rs.getString("e-mail");
 //        String country = rs.getString("country");
 //        String telNumber = rs.getString("telephone-number");
+//        return new User (id,login, password,name,surname, eMail, country, telNumber);
+
         User user = new User();
 
-        user.setId(rs.getInt("id"));
-        user.setLogin(rs.getString("login"));
-        user.setPassword(rs.getString("password"));
-        user.setName(rs.getString("name"));
-        user.setSurname(rs.getString("surname"));
-        user.setEMail(rs.getString("e-mail"));
-        user.setCountry(rs.getString("country"));
-        user.setTelNumber(rs.getString("telephone-number"));
+        user.setId(rs.getInt(Column.USERS_ID));
+        user.setLogin(rs.getString(Column.LOGIN));
+        user.setPassword(rs.getString(Column.PASSWORD));
+        user.setName(rs.getString(Column.NAME));
+        user.setSurname(rs.getString(Column.SURNAME));
+        user.setEMail(rs.getString(Column.E_MAIL));
+        user.setCountry(rs.getString(Column.COUNTRY));
+        user.setTelNumber(rs.getString(Column.TEL_NUMBER));
 
         return user;
-  //      return new User (id,login, password,name,surname, eMail, country, telNumber);
     }
 }
