@@ -10,15 +10,16 @@ import java.util.concurrent.Executor;
 public class ConnectionPool {
     private static ConnectionPool instance;
 
+    private BlockingQueue<Connection> connectionQueue;
+    private BlockingQueue<Connection> givenAwayConQueue;
+
     private final String driverName;
     private final String url;
     private final String user;
     private final String password;
-    private BlockingQueue<Connection> connectionQueue;
-    private BlockingQueue<Connection> givenAwayConQueue;
     private int poolSize;
 
-    private ConnectionPool() {
+     ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
         this.driverName = dbResourceManager.getValue(DBParameter.DB_DRIVER);
         this.url = dbResourceManager.getValue(DBParameter.DB_URL);
@@ -390,8 +391,8 @@ public class ConnectionPool {
         }
 
         @Override
-        public void abort(Executor arg0) throws SQLException {
-            connection.abort(arg0);
+        public void abort(Executor executor) throws SQLException {
+            connection.abort(executor);
         }
 
         @Override
@@ -410,18 +411,18 @@ public class ConnectionPool {
         }
 
         @Override
-        public void releaseSavepoint(Savepoint arg0) throws SQLException {
-            connection.releaseSavepoint(arg0);
+        public void releaseSavepoint(Savepoint savepoint) throws SQLException {
+            connection.releaseSavepoint(savepoint);
         }
 
         @Override
-        public void rollback(Savepoint arg0) throws SQLException {
-            connection.rollback(arg0);
+        public void rollback(Savepoint savepoint) throws SQLException {
+            connection.rollback(savepoint);
         }
 
         @Override
-        public void setNetworkTimeout(Executor arg0, int arg1) throws SQLException {
-            connection.setNetworkTimeout(arg0, arg1);
+        public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+            connection.setNetworkTimeout(executor, milliseconds);
         }
     }
 }

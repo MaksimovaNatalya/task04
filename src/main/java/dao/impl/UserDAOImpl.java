@@ -1,8 +1,10 @@
 package dao.impl;
 
 import dao.UserDAO;
-import dao.exception.DAOException;
 import dao.builder.UserBuilder;
+import dao.database.ConnectionPool;
+import dao.database.ConnectionPoolException;
+import dao.exception.DAOException;
 import entity.User;
 import main.ConnectorDB;
 
@@ -11,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
-
+    private ConnectionPool connectionPool;
     private final UserBuilder userBuilder = new UserBuilder();
 
     private final String RETRIEVE_ALL_USERS = "SELECT * FROM users";
@@ -19,15 +21,29 @@ public class UserDAOImpl implements UserDAO {
     private final String ADD_NEW_USER = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
 
+    public UserDAOImpl() throws DAOException {
+        try {
+            if (connectionPool == null) {
+                connectionPool = ConnectionPool.getInstance();
+            }
+        } catch (ConnectionPoolException e) {
+            throw new DAOException(e);
+        }
+    }
 
     @Override
     public Set<User> retrieveAllUsers() throws DAOException {
         Set<User> allUsers = new HashSet<>();
+
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
         try {
             User user;
-            Connection connection = ConnectorDB.getConnection();
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(RETRIEVE_ALL_USERS);
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            rs = st.executeQuery(RETRIEVE_ALL_USERS);
 
             while (rs.next()) {
                 user = userBuilder.buildUser(rs);
@@ -37,6 +53,17 @@ public class UserDAOImpl implements UserDAO {
 
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserDAOImpl.retrieveAllUsers()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+        } finally {
+            try{
+                if (st != null) {
+                    connectionPool.closeConnection(connection, st);
+                }
+            }
+            catch (ConnectionPoolException e){
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()",e);
+            }
         }
         return allUsers;
     }
