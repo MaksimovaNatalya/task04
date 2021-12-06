@@ -12,6 +12,6 @@ public interface UserDAO {
     User retrieveUserByLogin(String login) throws DAOException;
     User retrieveUserByNameAndSurname (String name, String surname) throws DAOException;
     void addUser (User user) throws DAOException;
-    void updateUser() throws DAOException;
-    void deleteUser() throws DAOException;
+    void updateUser(User user) throws DAOException;
+    void deleteUser(int id) throws DAOException;
 }
