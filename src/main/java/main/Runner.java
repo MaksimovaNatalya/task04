@@ -24,6 +24,7 @@ public class Runner {
 
             System.out.println("-----------------------------------");
 
+
 //            userDAO.addUser(new User(3, "mary", "123321", "mary", "fedorova",
 //                    "mary@tut.by", "Belarus", "+375296215487", Role.Guest));
 

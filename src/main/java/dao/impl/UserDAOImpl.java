@@ -9,7 +9,9 @@ import entity.User;
 import main.ConnectorDB;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
@@ -32,8 +34,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Set<User> retrieveAllUsers() throws DAOException {
-        Set<User> allUsers = new HashSet<>();
+    public List<User> retrieveAllUsers() throws DAOException {
+        List<User> allUsers = new ArrayList<>();
 
         Connection connection = null;
         Statement st = null;
@@ -48,6 +50,7 @@ public class UserDAOImpl implements UserDAO {
             while (rs.next()) {
                 user = userBuilder.buildUser(rs);
                 allUsers.add(user);
+
             }
 
 
@@ -57,9 +60,8 @@ public class UserDAOImpl implements UserDAO {
             throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
         } finally {
             try {
-                if (st != null) {
-                    connectionPool.closeConnection(connection, st);
-                }
+                connectionPool.closeConnection(connection, st, rs);
+
             } catch (ConnectionPoolException e) {
                 throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
             }
@@ -88,11 +90,10 @@ public class UserDAOImpl implements UserDAO {
             throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveUserById()", e);
         } finally {
             try {
-                if (st != null) {
-                    connectionPool.closeConnection(connection, st);
-                }
+                connectionPool.closeConnection(connection, st, rs);
+
             } catch (ConnectionPoolException e) {
-                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveUserById()", e);
             }
         }
 
@@ -112,10 +113,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) throws DAOException {
-
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            Connection connection = ConnectorDB.getConnection();
-            PreparedStatement ps = connection.prepareStatement(ADD_NEW_USER);
+            connection = connectionPool.takeConnection();
+            ps = connection.prepareStatement(ADD_NEW_USER);
             ps.setInt(1, user.getId());
             ps.setString(2, user.getLogin());
             ps.setString(3, user.getPassword());
@@ -130,14 +132,29 @@ public class UserDAOImpl implements UserDAO {
 
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserDAOImpl.addUser(User user)", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
+        } finally {
+            try {
+
+                connectionPool.closeConnection(connection, ps);
+
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
+            }
         }
 
     }
 
     @Override
     public void updateUser(User user) throws DAOException {
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
         try {
-            Connection connection = ConnectorDB.getConnection();
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
             PreparedStatement ps = connection.prepareStatement("UPDATE user SET  name=?, country=? WHERE id=?");
             ps.setString(1, user.getName());
             ps.setString(2, user.getCountry());
@@ -146,20 +163,34 @@ public class UserDAOImpl implements UserDAO {
 
 
         } catch (SQLException e) {
-            throw new DAOException("SQLException in UserDAOImpl.updateUser(User user)", e);
+            throw new DAOException("SQLException in UserDAOImpl.updateUserByLogin (String login)", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.updateUserByLogin (String login)", e);
         }
     }
 
     @Override
     public void deleteUser(int id) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            Connection connection = ConnectorDB.getConnection();
-            PreparedStatement ps = connection.prepareStatement(DELETE_USER_BY_ID);
+            connection = connectionPool.takeConnection();
+            ps = connection.prepareStatement(DELETE_USER_BY_ID);
             ps.setInt(1, id);
             ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserDAOImpl.deleteUser(int id)", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.deleteUser(int id)", e);
+        } finally {
+            try {
+
+                connectionPool.closeConnection(connection, ps);
+
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.deleteUser(int id)", e);
+            }
         }
     }
 }

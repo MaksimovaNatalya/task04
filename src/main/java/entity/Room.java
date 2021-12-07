@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Room implements Serializable {
     private Integer id;
-    private Integer max_persons;
+    private Integer maxPersons;
     private String category;
-    private Integer price_per_night;
-    private String has_sea_view;
-    private String breakfast_included;
+    private Integer pricePerNight;
+    private String hasSeaView;
+    private String breakfastIncluded;
     private String image;
 
     public Room () {
@@ -17,20 +17,20 @@ public class Room implements Serializable {
     }
     public Room(Integer id, Integer max_persons, String category, Integer price_per_night, String has_sea_view, String breakfast_included, String image) {
         this.id = id;
-        this.max_persons = max_persons;
+        this.maxPersons = max_persons;
         this.category = category;
-        this.price_per_night = price_per_night;
-        this.has_sea_view = has_sea_view;
-        this.breakfast_included = breakfast_included;
+        this.pricePerNight = price_per_night;
+        this.hasSeaView = has_sea_view;
+        this.breakfastIncluded = breakfast_included;
         this.image = image;
     }
 
     public Room(Integer max_persons, String category, Integer price_per_night, String has_sea_view, String breakfast_included, String image) {
-        this.max_persons = max_persons;
+        this.maxPersons = max_persons;
         this.category = category;
-        this.price_per_night = price_per_night;
-        this.has_sea_view = has_sea_view;
-        this.breakfast_included = breakfast_included;
+        this.pricePerNight = price_per_night;
+        this.hasSeaView = has_sea_view;
+        this.breakfastIncluded = breakfast_included;
         this.image = image;
     }
 
@@ -42,12 +42,12 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public Integer getMax_persons() {
-        return max_persons;
+    public Integer getMaxPersons() {
+        return maxPersons;
     }
 
-    public void setMax_persons(Integer max_persons) {
-        this.max_persons = max_persons;
+    public void setMaxPersons(Integer maxPersons) {
+        this.maxPersons = maxPersons;
     }
 
     public String getCategory() {
@@ -58,28 +58,28 @@ public class Room implements Serializable {
         this.category = category;
     }
 
-    public Integer getPrice_per_night() {
-        return price_per_night;
+    public Integer getPricePerNight() {
+        return pricePerNight;
     }
 
-    public void setPrice_per_night(Integer price_per_night) {
-        this.price_per_night = price_per_night;
+    public void setPricePerNight(Integer pricePerNight) {
+        this.pricePerNight = pricePerNight;
     }
 
-    public String getHas_sea_view() {
-        return has_sea_view;
+    public String getHasSeaView() {
+        return hasSeaView;
     }
 
-    public void setHas_sea_view(String has_sea_view) {
-        this.has_sea_view = has_sea_view;
+    public void setHasSeaView(String hasSeaView) {
+        this.hasSeaView = hasSeaView;
     }
 
-    public String getBreakfast_included() {
-        return breakfast_included;
+    public String getBreakfastIncluded() {
+        return breakfastIncluded;
     }
 
-    public void setBreakfast_included(String breakfast_included) {
-        this.breakfast_included = breakfast_included;
+    public void setBreakfastIncluded(String breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
     }
 
     public String getImage() {
@@ -95,23 +95,23 @@ public class Room implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return id.equals(room.id) && Objects.equals(max_persons, room.max_persons) && Objects.equals(category, room.category) && Objects.equals(price_per_night, room.price_per_night) && Objects.equals(has_sea_view, room.has_sea_view) && Objects.equals(breakfast_included, room.breakfast_included) && Objects.equals(image, room.image);
+        return id.equals(room.id) && Objects.equals(maxPersons, room.maxPersons) && Objects.equals(category, room.category) && Objects.equals(pricePerNight, room.pricePerNight) && Objects.equals(hasSeaView, room.hasSeaView) && Objects.equals(breakfastIncluded, room.breakfastIncluded) && Objects.equals(image, room.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, max_persons, category, price_per_night, has_sea_view, breakfast_included, image);
+        return Objects.hash(id, maxPersons, category, pricePerNight, hasSeaView, breakfastIncluded, image);
     }
 
     @Override
     public String toString() {
         return "Room{" +
                 "id=" + id +
-                ", max_persons=" + max_persons +
+                ", max_persons=" + maxPersons +
                 ", category='" + category + '\'' +
-                ", price_per_night=" + price_per_night +
-                ", has_sea_view='" + has_sea_view + '\'' +
-                ", breakfast_included='" + breakfast_included + '\'' +
+                ", price_per_night=" + pricePerNight +
+                ", has_sea_view='" + hasSeaView + '\'' +
+                ", breakfast_included='" + breakfastIncluded + '\'' +
                 ", image='" + image + '\'' +
                 '}';
     }
