@@ -56,13 +56,12 @@ public class UserDAOImpl implements UserDAO {
         } catch (ConnectionPoolException e) {
             throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
         } finally {
-            try{
+            try {
                 if (st != null) {
                     connectionPool.closeConnection(connection, st);
                 }
-            }
-            catch (ConnectionPoolException e){
-                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()",e);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
             }
         }
         return allUsers;
@@ -72,16 +71,29 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User retrieveUserById(Integer id) throws DAOException {
         User user;
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
         try {
-            Connection connection = ConnectorDB.getConnection();
-            Statement st = connection.createStatement();
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
             String sqlQuery = String.format(RETRIEVE_USER_BY_ID, id);
-            ResultSet resultSet = st.executeQuery(sqlQuery);
-            user = userBuilder.buildUser(resultSet);
-
-
+            rs = st.executeQuery(sqlQuery);
+            rs.next();
+            user = userBuilder.buildUser(rs);
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserDAOImpl.retrieveUserById()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveUserById()", e);
+        } finally {
+            try {
+                if (st != null) {
+                    connectionPool.closeConnection(connection, st);
+                }
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+            }
         }
 
         return user;
