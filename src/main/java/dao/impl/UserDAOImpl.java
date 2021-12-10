@@ -6,13 +6,10 @@ import dao.database.ConnectionPool;
 import dao.database.ConnectionPoolException;
 import dao.exception.DAOException;
 import entity.User;
-import main.ConnectorDB;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
     private ConnectionPool connectionPool;
