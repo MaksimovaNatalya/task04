@@ -18,7 +18,13 @@ public class UserDAOImpl implements UserDAO {
     private ConnectionPool connectionPool;
     private final UserBuilder userBuilder = new UserBuilder();
 
-    private final String RETRIEVE_ALL_USERS = "SELECT * FROM users";
+    private final String RETRIEVE_ALL_USERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id";
+    private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
+            "WHERE user_roles.role-name=admin";
+    private final String RETRIEVE_ALL_MANAGERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id" +
+            "WHERE user_roles.role-name=manager";
+    private final String RETRIEVE_ALL_GUESTS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id" +
+            "WHERE user_roles.role-name=guest";
     private final String RETRIEVE_USER_BY_ID = "SELECT * FROM users WHERE id = %d;";
     private final String ADD_NEW_USER = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
@@ -67,6 +73,114 @@ public class UserDAOImpl implements UserDAO {
             }
         }
         return allUsers;
+    }
+
+    @Override
+    public List<User> retrieveAllAdmins() throws DAOException {
+        List<User> allAdmins = new ArrayList<>();
+
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            User user;
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            rs = st.executeQuery(RETRIEVE_ALL_ADMINS);
+
+            while (rs.next()) {
+                user = userBuilder.buildUser(rs);
+                allAdmins.add(user);
+
+            }
+
+
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.retrieveAllUsers()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, st, rs);
+
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+            }
+        }
+        return allAdmins;
+    }
+
+    @Override
+    public List<User> retrieveAllManagers() throws DAOException {
+        List<User> allManagers = new ArrayList<>();
+
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            User user;
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            rs = st.executeQuery(RETRIEVE_ALL_MANAGERS);
+
+            while (rs.next()) {
+                user = userBuilder.buildUser(rs);
+                allManagers.add(user);
+
+            }
+
+
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.retrieveAllUsers()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, st, rs);
+
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+            }
+        }
+        return allManagers;
+    }
+
+    @Override
+    public List<User> retrieveAllGuests() throws DAOException {
+        List<User> allGuests = new ArrayList<>();
+
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            User user;
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            rs = st.executeQuery(RETRIEVE_ALL_GUESTS);
+
+            while (rs.next()) {
+                user = userBuilder.buildUser(rs);
+                allGuests.add(user);
+
+            }
+
+
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.retrieveAllUsers()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, st, rs);
+
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
+            }
+        }
+        return allGuests;
     }
 
 
@@ -126,7 +240,7 @@ public class UserDAOImpl implements UserDAO {
             ps.setString(6, user.getEMail());
             ps.setString(7, user.getCountry());
             ps.setString(8, user.getTelNumber());
-            ps.setInt(9, user.getRole().getRoleId());
+            //      ps.setInt(9, user.getRole().getRoleId());
             ps.executeUpdate();
 
 

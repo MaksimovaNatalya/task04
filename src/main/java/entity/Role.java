@@ -1,7 +1,7 @@
 package entity;
 
 public enum Role {
-    Admin (1), Manager (2), Guest (3);
+    ADMIN (1), MANAGER (2), GUEST (3);
 
     final int roleId;
 

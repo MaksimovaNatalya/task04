@@ -11,12 +11,15 @@ public class Column {
     public static final String TEL_NUMBER = "telephone-number";
     public static final String USERS_ROLE_ID = "user_roles_id";
 
+    public static final String USER_ROLES_ID = "id";
+    public static final String USER_ROLES_ROLE_NAME = "role-name";
+
     public static final String ROOM_ID = "id";
-    public static final String ROOM_MAX_PERSONS = "max_persons";
+    public static final String ROOM_MAX_PERSONS = "max-persons";
     public static final String ROOM_CATEGORY = "category";
-    public static final String ROOM_PRICE_PER_NIGHT = "price_per_night";
-    public static final String ROOM_HAS_SEA_VIEW = "has_sea_view";
-    public static final String ROOM_BREAKFAST_INCLUDED = "breakfast_included";
+    public static final String ROOM_PRICE_PER_NIGHT = "price-per-night";
+    public static final String ROOM_HAS_SEA_VIEW = "has-seaview";
+    public static final String ROOM_BREAKFAST_INCLUDED = "breakfast-included";
     public static final String ROOM_IMAGE = "image";
 
     public static final String REQUESTED_ROOM_ID = "id";

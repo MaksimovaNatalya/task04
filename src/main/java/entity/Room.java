@@ -105,14 +105,13 @@ public class Room implements Serializable {
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "Room: " +
                 "id=" + id +
                 ", max_persons=" + maxPersons +
                 ", category='" + category + '\'' +
                 ", price_per_night=" + pricePerNight +
                 ", has_sea_view='" + hasSeaView + '\'' +
                 ", breakfast_included='" + breakfastIncluded + '\'' +
-                ", image='" + image + '\'' +
-                '}';
+                ", image='" + image + '\'' +"\n";
     }
 }

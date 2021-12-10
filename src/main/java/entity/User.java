@@ -12,13 +12,13 @@ public class User implements Serializable {
     private String eMail;
     private String country;
     private String telNumber;
-    private Role role;
+    private Role roleId;
 
 
     public User() {
     }
 
-    public User(Integer id, String login, String password, String name, String surname, String eMail, String country, String telNumber, Role role) {
+    public User(Integer id, String login, String password, String name, String surname, String eMail, String country, String telNumber, Role roleId) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -27,10 +27,10 @@ public class User implements Serializable {
         this.eMail = eMail;
         this.country = country;
         this.telNumber = telNumber;
-        this.role = role;
+        this.roleId=roleId;
     }
 
-    public User(String login, String password, String name, String surname, String eMail, String country, String telNumber, Role role) {
+    public User(String login, String password, String name, String surname, String eMail, String country, String telNumber, Role roleId) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.eMail = eMail;
         this.country = country;
         this.telNumber = telNumber;
-        this.role = role;
+        this.roleId=roleId;
     }
 
     public Integer getId() {
@@ -105,12 +105,12 @@ public class User implements Serializable {
         this.telNumber = telNumber;
     }
 
-    public Role getRole() {
-        return role;
+    public Role getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleId(Role roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -118,17 +118,17 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(eMail, user.eMail) && Objects.equals(country, user.country) && Objects.equals(telNumber, user.telNumber) && role == user.role;
+        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(eMail, user.eMail) && Objects.equals(country, user.country) && Objects.equals(telNumber, user.telNumber) && roleId == user.roleId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, surname, eMail, country, telNumber, role);
+        return Objects.hash(id, login, password, name, surname, eMail, country, telNumber, roleId);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User: " +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
@@ -137,7 +137,6 @@ public class User implements Serializable {
                 ", eMail='" + eMail + '\'' +
                 ", country='" + country + '\'' +
                 ", telNumber='" + telNumber + '\'' +
-                ", role=" + role +
-                '}';
+                ", role=" + roleId +"\n";
     }
 }
