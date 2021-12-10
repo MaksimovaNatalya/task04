@@ -31,9 +31,7 @@ public class UserDAOImpl implements UserDAO {
 
     public UserDAOImpl() throws DAOException {
         try {
-            if (connectionPool == null) {
-                connectionPool = ConnectionPool.getInstance();
-            }
+            connectionPool = ConnectionPool.getInstance();
         } catch (ConnectionPoolException e) {
             throw new DAOException(e);
         }
