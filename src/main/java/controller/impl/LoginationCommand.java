@@ -18,6 +18,8 @@ public class LoginationCommand implements Command {
         login = request.getParameter("login");
         password = request.getParameter("password");
 
-        out.println( login + " - " + password );
+        out.println("Hello,");
+        out.println(login);
+        out.println(password);
     }
 }

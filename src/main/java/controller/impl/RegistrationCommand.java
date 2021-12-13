@@ -13,11 +13,14 @@ public class RegistrationCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
-        String name;
-        String surname;
-        name = request.getParameter("name");
-        surname = request.getParameter("surname");
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
 
-        out.println( name + " - " + surname );
+        out.println( name );
+        out.println( surname );
+        out.println( login );
+        out.println( password );
     }
 }
