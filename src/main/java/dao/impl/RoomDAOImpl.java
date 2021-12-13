@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomDAOImpl implements RoomDAO {
-    private ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool;
     RoomBuilder roomBuilder = new RoomBuilder();
 
     private final String RETRIEVE_ALL_ROOMS = "SELECT * FROM rooms";

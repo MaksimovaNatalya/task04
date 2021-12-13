@@ -8,11 +8,11 @@
     <display-name>hotel-app</display-name>
     <servlet>
         <servlet-name>Controller</servlet-name>
-        <servlet-class>com.epam.natalyamaksimova.controller.Controller</servlet-class>
+        <servlet-class>controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>controller.Controller</servlet-name>
+        <servlet-name>Controller</servlet-name>
         <url-pattern>/MyController</url-pattern>
     </servlet-mapping>
 </web-app>
