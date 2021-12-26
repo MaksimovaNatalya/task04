@@ -1,21 +1,33 @@
 <html>
 <body>
-<h1>Logination</h1>
 
-<br/>
+<style>
+fieldset{
+font-size: 14pt;
+}
+input {
+  position: absolute;
+left: 140px;
+  }
+</style>
+
 
 <form action="MyController" method="get">
- <input type="hidden" name ="command" value="logination" />
-    Login
-    <input type="text" name ="login" value="" />
-<br/>
-    Password
-    <input type="password" name ="password" value="" />
-<br/>
-    <input type="submit" value="Log in" />
-<br/>
-<a href="MyController?command=GO_TO_MAIN_PAGE">Main page</a>
-</form>
+<fieldset>
+    <legend>Logination Form</legend>
+  <input type="hidden" name ="command" value="logination" />
+      User name:
+      <input type="text" name ="login" value="" />
+  <br/><br/>
+      Password:
+      <input type="password" name ="password" value="" />
+    <br/><br/>
+      <input type="submit" value="Log in" />
+          <br/><br/>
+        Not registered yet? <a href="MyController?command=GO_TO_REGISTRATION_PAGE">Register</a>
+   </fieldset>
+
+
 </form>
 </body>
 </html>
