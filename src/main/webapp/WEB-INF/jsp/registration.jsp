@@ -1,5 +1,11 @@
 <html>
 <body>
+
+<%
+Greeting obj = request.getAttribute("myobj");
+%>
+
+
 <style>
 
 input[type=text], select {
@@ -45,7 +51,7 @@ div {
 </style>
 
 
-<form action="MyController" method="get">
+<form action="MyController" method="post">
 <div>
 <fieldset>
     <legend><h1>Registration Form</h1></legend>
