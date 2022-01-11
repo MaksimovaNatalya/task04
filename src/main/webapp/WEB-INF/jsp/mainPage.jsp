@@ -7,7 +7,7 @@
 </head>
 <body>
 <%
-    String regInfo = (String) request.getAttribute("registrationInfo");
+    String regInfo = request.getParameter("registrationInfo");
     if (regInfo != null) {
 %>
 <h2>
@@ -15,18 +15,21 @@
   out.println(regInfo);
         }
  %>
+</h2>
 
 <%
-    String name = (String) request.getAttribute("userName");
+    String name = (String) request.getParameter("userName");
     if (name!=null){
 %>
 <h2>
-<%
-        out.println(name);
-            }
- %>
+    <%
+            out.println(name);
+        }
+    %>
 
-    </h2>
+</h2>
+
+
     <h3>!!!!!!!!!!!!!!!!!</h3>
 </body>
 </html>

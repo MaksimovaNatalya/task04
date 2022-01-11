@@ -22,11 +22,12 @@ public class RegistrationCommand implements Command {
 
         // save data in DB
 
-        boolean flag = false; //stub (в будущем получает результат реального сохранения в БД)
+        boolean flag = true; //stub (в будущем получает результат реального сохранения в БД)
         if (flag){
-            request.setAttribute("registrationInfo", "Registration Completed");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainPage.jsp");
-            dispatcher.forward(request,response);
+         //   request.setAttribute("registrationInfo", "Registration Completed");
+            response.sendRedirect("MyController?command=GO_TO_MAIN_PAGE&registrationInfo=" +"Registration Completed");
+         //   RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainPage.jsp");
+         //   dispatcher.forward(request,response);
         } else {
             request.setAttribute("errorMessage", "Smth is wrong");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");

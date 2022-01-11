@@ -1,9 +1,6 @@
 package controller;
 
-import controller.impl.GoToLoginationPageCommand;
-import controller.impl.GoToIndexPageCommand;
-import controller.impl.GoToRegistrationPageCommand;
-import controller.impl.LoginationCommand;
+import controller.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +15,7 @@ public final class CommandProvider {
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_LOGINATION_PAGE", new GoToLoginationPageCommand());
         commands.put("GO_TO_INDEX_PAGE", new GoToIndexPageCommand());
+        commands.put("GO_TO_MAIN_PAGE", new GoToMainPageCommand());
     }
 
     public Command getCommand (String commandName) {
