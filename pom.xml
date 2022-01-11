@@ -45,11 +45,7 @@
             <version>2.14.0</version>
         </dependency>
 
-
     </dependencies>
-
-
-
 
 
     <build>
@@ -62,7 +58,6 @@
                     <version>2.2</version>
                     <configuration>
                         <url>http://localhost:8080/manager/text</url>
-                        <path>/hotel</path>
                         <server>tomcat-server</server>
                     </configuration>
                 </plugin>

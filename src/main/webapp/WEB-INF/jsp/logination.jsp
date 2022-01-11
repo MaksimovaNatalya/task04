@@ -45,7 +45,9 @@ div {
 }
 </style>
 
-<form action="MyController" method="post"><div>
+<form action="MyController" method="post">
+    <input type="hidden" name="command" value="logination">
+    <div>
  <fieldset>
 <legend><h1>Logination Form</h1></legend>
 <label for="username">User name</label>

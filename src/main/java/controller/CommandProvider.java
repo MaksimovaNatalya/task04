@@ -1,7 +1,7 @@
 package controller;
 
 import controller.impl.GoToLoginationPageCommand;
-import controller.impl.GoToMainPageCommand;
+import controller.impl.GoToIndexPageCommand;
 import controller.impl.GoToRegistrationPageCommand;
 import controller.impl.LoginationCommand;
 
@@ -17,7 +17,7 @@ public final class CommandProvider {
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_LOGINATION_PAGE", new GoToLoginationPageCommand());
-        commands.put("GO_TO_MAIN_PAGE", new GoToMainPageCommand());
+        commands.put("GO_TO_INDEX_PAGE", new GoToIndexPageCommand());
     }
 
     public Command getCommand (String commandName) {

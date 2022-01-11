@@ -1,10 +1,6 @@
+<%@ page import="controller.Greeting" %>
 <html>
 <body>
-
-<%
-Greeting obj = request.getAttribute("myobj");
-%>
-
 
 <style>
 
@@ -51,7 +47,10 @@ div {
 </style>
 
 
-<form action="MyController" method="post">
+<form action="MyController" method="get">
+
+   <input type="hidden" name="command" value="registration">
+
 <div>
 <fieldset>
     <legend><h1>Registration Form</h1></legend>
@@ -82,7 +81,7 @@ div {
     <br/>
     <label for="password">Confirm password</label>
          <br/>
-            <input type="password" id="password" name="password" placeholder="">
+            <input type="password" id="passwordconf" name="password" placeholder="">
         <br/>
     <br/><br/>
     <input type="submit" value="Register" />
@@ -92,5 +91,15 @@ div {
 </div>
 
 </form>
+<%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+    if (errorMessage != null) {
+%>
+<h2>
+        <%
+  out.println(errorMessage);
+        }
+ %>
+
 </body>
 </html>

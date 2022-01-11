@@ -2,6 +2,7 @@ package controller.impl;
 
 import controller.Command;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,18 @@ public class RegistrationCommand implements Command {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        out.println( name );
-        out.println( surname );
-        out.println( login );
-        out.println( password );
+
+        // save data in DB
+
+        boolean flag = false; //stub (в будущем получает результат реального сохранения в БД)
+        if (flag){
+            request.setAttribute("registrationInfo", "Registration Completed");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainPage.jsp");
+            dispatcher.forward(request,response);
+        } else {
+            request.setAttribute("errorMessage", "Smth is wrong");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
+            dispatcher.forward(request,response);
+        }
     }
 }
