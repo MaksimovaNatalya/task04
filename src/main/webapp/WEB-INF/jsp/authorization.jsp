@@ -1,13 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MaxMoff
-  Date: 11.01.2022
-  Time: 17:43
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<head>
+<body>
+
 <style>
     body {
         background: #B0E0E6;
@@ -46,6 +42,7 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
+
         font-size: 18pt;
     }
 
@@ -92,16 +89,55 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #6495ED;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #4682B4;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
 </style>
-</head>
-<body>
 
 
-<div class="header-logo">
+
     <a class="header-logo-link" href="Controller?command=GO_TO_INDEX_PAGE">
         <img class="header-logo-src" src="/hotel-logo.jpg"  alt="Logo" >
     </a>
-</div>
+
 <ul>
     <li class="log-in">
         <a href="Controller?command=GO_TO_LOGINATION_PAGE">Log in</a>
@@ -117,7 +153,26 @@
 
 </ul>
 
-<img src="/background.gif"  alt="Hotel" >
+<br>
+<form action="Controller" method="post">
+    <input type="hidden" name="command" value="logination">
+    <div>
+ <fieldset>
+<legend><h1>Authorization Form</h1></legend>
+<label for="username">User name</label>
+ <br/>
+    <input type="text" id="username" name="username" placeholder="Your user name..">
+ <br/>
+<label for="password">Password</label>
+ <br/>
+    <input type="password" id="password" name="password" placeholder="Your password..">
+ <br/>
+ <input type="submit" value="Log in" />
+ <br/><br/>
+Not registered yet? <a href="Controller?command=GO_TO_REGISTRATION_PAGE">Register</a>
+   </fieldset>
+</div>
 
+</form>
 </body>
 </html>
