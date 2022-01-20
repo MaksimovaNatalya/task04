@@ -140,7 +140,7 @@ div {
 
 <ul>
     <li class="log-in">
-        <a href="Controller?command=GO_TO_LOGINATION_PAGE">Log in</a>
+        <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Log in</a>
     </li>
     <li class="dropdown">
         <a  href="javascript:void(0)" class="dropbtn">About us</a>
@@ -154,11 +154,19 @@ div {
 </ul>
 
 <br>
+
+
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="logination">
     <div>
  <fieldset>
+     <font color="red" size="3"> <c:if test="${param.message!=null}">
+         <c:out value="${param.message}" />
+     </c:if>
+     </font>
 <legend><h1>Authorization Form</h1></legend>
+ <br/>
+     <br/>
 <label for="username">User name</label>
  <br/>
     <input type="text" id="username" name="username" placeholder="Your user name..">

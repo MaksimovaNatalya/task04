@@ -110,8 +110,8 @@ public final class Util {
     }
 
     public final class Message{
-        public final static String AUTHORIZATION_ERROR = "No such login or password. Please, check and try again";
-        public final static String WRONG_PASSWORD = "Wrong password. Please, check and try again";
-            public final static String AUTHORIZATION_SUCCESS = "You are successfully logged in";
+        public final static String AUTHORIZATION_ERROR = "No such login or password. Please, check and try again.";
+        public final static String WRONG_PASSWORD = "Wrong password. Please, check and try again.";
+            public final static String AUTHORIZATION_SUCCESS = "You are successfully logged in.";
     }
 }

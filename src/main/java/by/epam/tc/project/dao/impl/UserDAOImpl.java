@@ -17,6 +17,15 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAOImpl implements UserDAO {
     private ConnectionPool connectionPool;
+
+    {
+        try {
+            connectionPool = ConnectionPool.getInstance();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
+        }
+    }
+
     private final UserBuilder userBuilder = new UserBuilder();
 
 
@@ -25,6 +34,7 @@ public class UserDAOImpl implements UserDAO {
     private static final String PASSWORD = "password";
 
     private final String AUTHORIZATION = "SELECT * FROM users JOIN user_roles WHERE login=? AND password=?";
+
     private final String RETRIEVE_ALL_USERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id";
     private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
             "WHERE user_roles.role-name=admin";
@@ -62,9 +72,9 @@ public class UserDAOImpl implements UserDAO {
           throw new DAOException("SQLException in UserDAOImpl.authorization:", e);
         } finally {
             try {
-                connectionPool.closeConnection(connection,ps,rs);
+                ConnectionPool.getInstance().closeConnection(connection,ps,rs);
             } catch (ConnectionPoolException e) {
-                throw new DAOException("ConnectionPoolException in UserDAOImpl.authorization:", e);
+                e.printStackTrace();
             }
         }
         return userFromBD;

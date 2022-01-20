@@ -104,7 +104,7 @@
 </div>
 <ul>
     <li class="log-in">
-        <a href="Controller?command=GO_TO_LOGINATION_PAGE">Log in</a>
+        <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Log in</a>
     </li>
     <li class="dropdown">
         <a  href="javascript:void(0)" class="dropbtn">About us</a>
