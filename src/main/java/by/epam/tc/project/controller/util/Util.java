@@ -35,6 +35,14 @@ public final class Util {
     }
 
     public final class Utility{
+        public final static String LOGIN = "login";
+        public final static String PASSWORD = "password";
+        public final static String INITIAL_PASSWORD = "initialPassword";
+        public final static String NAME = "name";
+        public final static String SURNAME = "surname";
+        public final static String EMAIL = "e-mail";
+        public final static String COUNTRY = "country";
+        public final static String TELNUMBER = "telephone-number";
         public final static String EMPTY = "";
         public final static String CLIENTS = "clients";
         public final static String BOOKINGS = "bookings";
@@ -42,9 +50,6 @@ public final class Util {
         public final static String BOOKING = "booking";
         public final static String STAY = "stay";
         public final static String ROLE = "role";
-        public final static String LOGIN = "login";
-        public final static String PASSWORD = "password";
-        public final static String INITIAL_PASSWORD = "initialPassword";
         public final static String NEW_PASSWORD = "newPassword";
         public final static String ADMIN = "admin";
         public final static String CLIENT = "client";
@@ -82,13 +87,6 @@ public final class Util {
         public final static String EDITED_BOOKING_ID = "editedBookingId";
         public final static String CHECK_RESULT = "checkResult";
         public final static String EDIT_BOOKING = "editBooking";
-        public final static String NAME = "name";
-        public final static String SURNAME = "surname";
-        public final static String PASSPORT_ID = "passportId";
-        public final static String DATE_OF_BIRTH = "dateOfBith";
-        public final static String COUNTRY = "country";
-        public final static String PHONE = "phone";
-        public final static String EMAIL = "email";
         public final static String PHOTO = "photo";
         public final static String APPROVE = "approve";
         public final static String ROOM = "room";
@@ -110,8 +108,10 @@ public final class Util {
     }
 
     public final class Message{
+        public final static String PARAM_MESSAGE = "&message=";
         public final static String AUTHORIZATION_ERROR = "No such login or password. Please, check and try again.";
         public final static String WRONG_PASSWORD = "Wrong password. Please, check and try again.";
             public final static String AUTHORIZATION_SUCCESS = "You are successfully logged in.";
+            public final static String REGISTRATION_SUCCESS = "Registration is completed. Please, sign in.";
     }
 }

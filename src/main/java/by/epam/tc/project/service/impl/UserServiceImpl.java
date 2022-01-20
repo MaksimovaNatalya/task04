@@ -24,9 +24,14 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
-    public void registration(String firstName, String lastName, String email, String country, String password) throws ServiceException {
 
+    @Override
+    public void registration(User user) throws ServiceException {
+        try {
+            userDAO.addUser(user);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

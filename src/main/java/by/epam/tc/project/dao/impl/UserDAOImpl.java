@@ -34,6 +34,7 @@ public class UserDAOImpl implements UserDAO {
     private static final String PASSWORD = "password";
 
     private final String AUTHORIZATION = "SELECT * FROM users JOIN user_roles WHERE login=? AND password=?";
+    private final String ADD_NEW_USER = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final String RETRIEVE_ALL_USERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id";
     private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
@@ -43,7 +44,6 @@ public class UserDAOImpl implements UserDAO {
     private final String RETRIEVE_ALL_GUESTS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id" +
             "WHERE user_roles.role-name=guest";
     private final String RETRIEVE_USER_BY_ID = "SELECT * FROM users WHERE id = %d;";
-    private final String ADD_NEW_USER = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
 
     @Override
@@ -78,6 +78,44 @@ public class UserDAOImpl implements UserDAO {
             }
         }
         return userFromBD;
+    }
+
+    @Override
+    public void addUser(User user) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = connectionPool.takeConnection();
+            ps = connection.prepareStatement(ADD_NEW_USER);
+
+
+            ps.setString(1, user.getLogin());
+
+            String salt = BCrypt.gensalt();
+            String hashpw = BCrypt.hashpw(user.getPassword(), salt);
+
+            ps.setString(2, hashpw);
+            ps.setString(3, user.getName());
+            ps.setString(4, user.getSurname());
+            ps.setString(5, user.getEMail());
+            ps.setString(6, user.getCountry());
+            ps.setString(7, user.getTelNumber());
+                 ps.setInt(8, user.getRoleId());
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.addUser(User user)", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
+            }
+        }
+
     }
 
 
@@ -265,41 +303,6 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User retrieveUserByNameAndSurname(String name, String surname) {
         return null;
-    }
-
-    @Override
-    public void addUser(User user) throws DAOException {
-        Connection connection = null;
-        PreparedStatement ps = null;
-        try {
-            connection = connectionPool.takeConnection();
-            ps = connection.prepareStatement(ADD_NEW_USER);
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getLogin());
-            ps.setString(3, user.getPassword());
-            ps.setString(4, user.getName());
-            ps.setString(5, user.getSurname());
-            ps.setString(6, user.getEMail());
-            ps.setString(7, user.getCountry());
-            ps.setString(8, user.getTelNumber());
-            //      ps.setInt(9, user.getRole().getRoleId());
-            ps.executeUpdate();
-
-
-        } catch (SQLException e) {
-            throw new DAOException("SQLException in UserDAOImpl.addUser(User user)", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
-        } finally {
-            try {
-
-                connectionPool.closeConnection(connection, ps);
-
-            } catch (ConnectionPoolException e) {
-                throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
-            }
-        }
-
     }
 
     @Override

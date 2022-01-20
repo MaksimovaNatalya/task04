@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class AuthorizationCommand implements Command {
-    private static final String PARAM_MESSAGE = "&message=";
 
-    ServiceProvider provider = ServiceProvider.getInstance();
-    UserService userService = provider.getUserService();
+
+    private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
+    private static final UserService USER_SERVICE = PROVIDER.getUserService();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
@@ -28,25 +28,24 @@ public class AuthorizationCommand implements Command {
         String password = request.getParameter(TableAndColumnName.PASSWORD);
 
         try {
-           if (TableAndColumnName.LOGIN==null || TableAndColumnName.PASSWORD==null){
+            if (TableAndColumnName.LOGIN == null || TableAndColumnName.PASSWORD == null) {
 
-           }
-           User user = userService.authorization(login, password);
-           if(user!=null){
-               request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
-               request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.valueOf(user.getRoleId().toString()));
-               response.sendRedirect(Util.Redirect.TO_ACCOUNT_PAGE + PARAM_MESSAGE +Util.Message.AUTHORIZATION_SUCCESS);
-           } else {
-               response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + PARAM_MESSAGE +Util.Message.AUTHORIZATION_ERROR);
-           }
+            }
+            User user = USER_SERVICE.authorization(login, password);
+            if (user != null) {
+                request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
+                request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.valueOf(user.getRoleId().toString()));
+                response.sendRedirect(Util.Redirect.TO_ACCOUNT_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_SUCCESS);
+            } else {
+                response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_ERROR);
+            }
         } catch (ServiceException e) {
-           //log
+            //log
             response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
         }
 
 
-
-        }
-
     }
+
+}
 
