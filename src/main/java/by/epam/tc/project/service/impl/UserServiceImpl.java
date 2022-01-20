@@ -6,10 +6,17 @@ import by.epam.tc.project.dao.exception.DAOException;
 import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
+import by.epam.tc.project.service.validator.UserValidator;
+import by.epam.tc.project.service.validator.ValidatorException;
+import by.epam.tc.project.service.validator.ValidatorProvider;
 
 public class UserServiceImpl implements UserService {
-    DAOProvider provider = DAOProvider.getInstance();
-    UserDAO userDAO = provider.getUserDAO();
+    private static final DAOProvider provider = DAOProvider.getInstance();
+    private static final UserDAO userDAO = provider.getUserDAO();
+
+    private static final ValidatorProvider VALIDATOR_PROVIDER = ValidatorProvider.getInstance();
+    private static final UserValidator userValidator = VALIDATOR_PROVIDER.getUserValidator();
+
     @Override
     public User authorization(String login, String password) throws ServiceException {
         //1.. validation
@@ -28,19 +35,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registration(User user) throws ServiceException {
         try {
+            userValidator.checkRegistrationInfo(user);
             userDAO.addUser(user);
         } catch (DAOException e) {
+            e.printStackTrace();
+        } catch (ValidatorException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public User getUser(String login) throws ServiceException{
+    public User getUser(String login) throws ServiceException {
         return null;
     }
 
     @Override
-    public void delete(User user) throws ServiceException{
+    public void delete(User user) throws ServiceException {
 
     }
 }

@@ -8,12 +8,12 @@ import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class RegistrationCommand implements Command {
 
@@ -30,17 +30,22 @@ public class RegistrationCommand implements Command {
         String eMail = request.getParameter(Util.Utility.EMAIL);
         String country = request.getParameter(Util.Utility.COUNTRY);
         String telNumber = request.getParameter(Util.Utility.TELNUMBER);
-        int roleId = Role.MANAGER.getRoleId();
+        int roleId = Role.USER.getRoleId();
 
         try {
-            USER_SERVICE.registration(new User(login,password,name,surname,eMail,country,telNumber, roleId));
+            USER_SERVICE.registration(new User(login, password, name, surname, eMail, country, telNumber, roleId));
             response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.REGISTRATION_SUCCESS);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            String codeLogin = URLEncoder.encode(login, StandardCharsets.UTF_8);
+            String codeName = URLEncoder.encode(name, StandardCharsets.UTF_8);
+            String codeSurname = URLEncoder.encode(surname, StandardCharsets.UTF_8);
+            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + codeLogin + "&name=" + codeName
+                    + "&surname=" + codeSurname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
+                    + Util.Message.PARAM_MESSAGE + Util.Message.EXISTING_USER);
+
         }
 
 
-
-        }
     }
+}
 

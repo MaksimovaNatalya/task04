@@ -1,7 +1,7 @@
 package by.epam.tc.project.entity;
 
 public enum Role {
-    ADMIN (1), MANAGER (2), GUEST (3);
+    ADMIN (1), USER(2);
 
     final int roleId;
 
