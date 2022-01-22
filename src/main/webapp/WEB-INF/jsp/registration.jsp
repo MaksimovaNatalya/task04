@@ -1,5 +1,8 @@
 <%@ page import="by.epam.tc.project.controller.Greeting" %>
 <html>
+<head>
+    <meta charset="utf-8">
+</head>
 <body>
 
 <style>
@@ -181,17 +184,24 @@
         <fieldset>
             <legend><h1>Registration Form</h1></legend>
 
-            <label for="fname">First Name</label>
+
+            <label for="login">Login</label>
             <br/>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <input type="text" id="login" name="login" placeholder="Your login..">
+            <label for="name">Name</label>
             <br/>
-            <label for="lname">Last Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name..">
             <br/>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <label for="surname">Surname</label>
             <br/>
-            <label for="e-mail">E-mail</label>
+            <input type="text" id="surname" name="surname" placeholder="Your surname..">
             <br/>
-            <input type="text" id="e-mail" name="e-mail" placeholder="Your e-mail..">
+            <label for="email">E-mail</label>
+            <br/>
+            <input type="text" id="email" name="email" placeholder="Your e-mail..">
+            <label for="phone">Phone</label>
+            <br/>
+            <input type="text" id="phone" name="phone" placeholder="Your phone..">
             <br/>
             <label for="country">Country</label>
             <select id="country" name="country">

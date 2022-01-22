@@ -40,9 +40,9 @@ public final class Util {
         public final static String INITIAL_PASSWORD = "initialPassword";
         public final static String NAME = "name";
         public final static String SURNAME = "surname";
-        public final static String EMAIL = "e-mail";
+        public final static String EMAIL = "email";
         public final static String COUNTRY = "country";
-        public final static String TELNUMBER = "telephone-number";
+        public final static String TELNUMBER = "phone";
         public final static String EMPTY = "";
         public final static String CLIENTS = "clients";
         public final static String BOOKINGS = "bookings";

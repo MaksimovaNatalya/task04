@@ -21,22 +21,23 @@ public class UserDAOImpl implements UserDAO {
     private final UserBuilder userBuilder = new UserBuilder();
 
 
+    private static final String ID = "id";
     private static final String LOGIN = "login";
     private static final String ROLE = "role";
     private static final String PASSWORD = "password";
     private static final String PASSWORD_SALT = "$2a$10$7Xtwz2dUaNW2055I9dhhv.";
 
-    private final String AUTHORIZATION = "SELECT * FROM users JOIN user_roles WHERE login=? AND password=?";
+    private final String AUTHORIZATION = "SELECT id, password FROM users WHERE login=?";
     private final String ADD_NEW_USER = "INSERT INTO users (login, password, name, surname, email, country, " +
             "phone, user_roles_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final String RETRIEVE_ALL_USERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id";
     private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
-            "WHERE user_roles.role-name=admin";
+            "WHERE user_roles.role=admin";
     private final String RETRIEVE_ALL_MANAGERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
-            "WHERE user_roles.role-name=manager";
+            "WHERE user_roles.role=manager";
     private final String RETRIEVE_ALL_GUESTS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
-            "WHERE user_roles.role-name=guest";
+            "WHERE user_roles.role=guest";
     private final String RETRIEVE_USER_BY_ID = "SELECT * FROM users WHERE id = %d;";
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
 
@@ -51,13 +52,11 @@ public class UserDAOImpl implements UserDAO {
             connection = connectionPool.takeConnection();
             ps = connection.prepareStatement(AUTHORIZATION);
             ps.setString(1, LOGIN);
-            ps.setString(2, PASSWORD);
             rs = ps.executeQuery();
             while (rs.next()) {
-                if (BCrypt.checkpw(password, rs.getString(PASSWORD))) {
-                    String roleName = rs.getString(TableAndColumnName.USER_ROLES_ROLE_NAME);
-                    Role role = Role.valueOf(roleName.toUpperCase());
-                    userFromBD = new User(LOGIN, role);
+                String storedPassword = rs.getString(PASSWORD);
+                if (BCrypt.checkpw(password, storedPassword)) {
+                    userFromBD = retrieveUserById(rs.getInt(ID));
                 }
             }
             return userFromBD;

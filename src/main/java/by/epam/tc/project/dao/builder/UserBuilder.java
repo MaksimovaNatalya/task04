@@ -22,8 +22,7 @@ RoleBuilder roleBuilder = new RoleBuilder();
             user.setEMail(rs.getString(TableAndColumnName.E_MAIL));
             user.setCountry(rs.getString(TableAndColumnName.COUNTRY));
             user.setTelNumber(rs.getString(TableAndColumnName.TEL_NUMBER));
-      //      user.setRoleId(
-        //            roleBuilder.buildRole(rs));
+            user.setRoleId(rs.getInt(TableAndColumnName.USERSTABLE_ROLE_ID));
 
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserBuilder.buildUser(ResultSet rs)"+e);

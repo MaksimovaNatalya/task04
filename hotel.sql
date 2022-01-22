@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hotel`.`user_roles` (
   `id` INT NOT NULL,
-  `role-name` VARCHAR(15) NULL,
+  `role` VARCHAR(15) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `hotel`.`users` (
   `password` VARCHAR(15) NULL,
   `name` VARCHAR(45) NULL,
   `surname` VARCHAR(45) NULL,
-  `e-mail` VARCHAR(20) NULL,
+  `email` VARCHAR(20) NULL,
   `country` VARCHAR(15) NULL,
-  `telephone-number` VARCHAR(15) NULL,
+  `phone` VARCHAR(15) NULL,
   `user_roles_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_users_user_roles1_idx` (`user_roles_id` ASC) VISIBLE,

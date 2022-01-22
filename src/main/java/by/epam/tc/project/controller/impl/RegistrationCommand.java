@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class RegistrationCommand implements Command {
 
@@ -24,8 +25,8 @@ public class RegistrationCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String login = request.getParameter(Util.Utility.LOGIN);
-        String name = request.getParameter(Util.Utility.NAME);
-        String surname = request.getParameter(Util.Utility.SURNAME);
+        String name = StringEscapeUtils.unescapeHtml4(request.getParameter(Util.Utility.NAME));
+        String surname = StringEscapeUtils.unescapeHtml4(request.getParameter(Util.Utility.SURNAME));
         String password = request.getParameter(Util.Utility.PASSWORD);
         String eMail = request.getParameter(Util.Utility.EMAIL);
         String country = request.getParameter(Util.Utility.COUNTRY);
@@ -48,4 +49,5 @@ public class RegistrationCommand implements Command {
 
     }
 }
+
 

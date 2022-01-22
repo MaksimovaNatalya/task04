@@ -7,14 +7,14 @@ public class TableAndColumnName {
     public static final String PASSWORD = "password";
     public static final String NAME = "name";
     public static final String SURNAME = "surname";
-    public static final String E_MAIL = "e-mail";
+    public static final String E_MAIL = "email";
     public static final String COUNTRY = "country";
-    public static final String TEL_NUMBER = "telephone-number";
+    public static final String TEL_NUMBER = "phone";
     public static final String USERSTABLE_ROLE_ID = "user_roles_id";
 
     public static final String ROLE_TABLE = "user_roles";
     public static final String USER_ROLES_ID = "id";
-    public static final String USER_ROLES_ROLE_NAME = "role-name";
+    public static final String USER_ROLES_ROLE_NAME = "role";
 
     public static final String ROOM_TABLE = "rooms";
     public static final String ROOM_ID = "id";

@@ -39,7 +39,7 @@ public class UserValidator {
 
         if (!eMail.isEmpty()) {
             if (!eMail.matches(EMAIL_CHECK)) {
-                throw new ValidatorException("Invalid e-mail!");
+                throw new ValidatorException("Invalid email!");
             }
         }
 

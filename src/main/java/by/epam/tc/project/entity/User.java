@@ -40,9 +40,6 @@ public class User implements Serializable {
         this.roleId=roleId;
     }
 
-    public User(String login, Role role) {
-    }
-
     public Integer getId() {
         return id;
     }

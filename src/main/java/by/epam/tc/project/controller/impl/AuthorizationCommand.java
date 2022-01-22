@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Locale;
 
 public class AuthorizationCommand implements Command {
 
@@ -29,20 +28,22 @@ public class AuthorizationCommand implements Command {
         String password = request.getParameter(TableAndColumnName.PASSWORD);
 
         try {
-//            if (checkEmptyField(login) || checkEmptyField(password)) {
-//                response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE +Util.Message.PARAM_MESSAGE + Util.Message.LOGIN_OR_PASSWORD_EMPTY);
-//                return;
-//            }
+            if (checkEmptyField(login) || checkEmptyField(password)) {
+                response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.LOGIN_OR_PASSWORD_EMPTY);
+                return;
+            }
             User user = USER_SERVICE.authorization(login, password);
             if (user != null) {
                 request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
-             //   request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.valueOf(user.getRoleId().toString().toUpperCase(Locale.ROOT)));
+                request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.getById(user.getRoleId()));
                 response.sendRedirect(Util.Redirect.TO_ACCOUNT_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_SUCCESS);
             } else {
                 response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_ERROR);
             }
         } catch (ServiceException e) {
-            //log
+            if (true) {
+                throw new RuntimeException(e);
+            }
             response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
         }
     }
