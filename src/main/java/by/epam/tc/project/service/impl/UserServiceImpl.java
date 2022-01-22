@@ -25,23 +25,24 @@ public class UserServiceImpl implements UserService {
         User user;
         try {
             user = userDAO.authorization(login, password);
+            return user;
         } catch (DAOException e) {
             throw new ServiceException("Service exception in UserService.authorization", e);
         }
-        return user;
+
     }
 
 
     @Override
     public void registration(User user) throws ServiceException {
         try {
-            userValidator.checkRegistrationInfo(user);
+     //       userValidator.checkRegistrationInfo(user);
             userDAO.addUser(user);
         } catch (DAOException e) {
-            e.printStackTrace();
-        } catch (ValidatorException e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace();}
+//        } catch (ValidatorException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

@@ -8,23 +8,15 @@ import by.epam.tc.project.dao.db.TableAndColumnName;
 import by.epam.tc.project.dao.exception.DAOException;
 import by.epam.tc.project.entity.Role;
 import by.epam.tc.project.entity.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 public class UserDAOImpl implements UserDAO {
-    private ConnectionPool connectionPool;
 
-    {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (ConnectionPoolException e) {
-            e.printStackTrace();
-        }
-    }
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private final UserBuilder userBuilder = new UserBuilder();
 
@@ -34,20 +26,21 @@ public class UserDAOImpl implements UserDAO {
     private static final String PASSWORD = "password";
 
     private final String AUTHORIZATION = "SELECT * FROM users JOIN user_roles WHERE login=? AND password=?";
-    private final String ADD_NEW_USER = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String ADD_NEW_USER = "INSERT INTO users (login, password, name, surname, email, country, " +
+            "phone, user_roles_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final String RETRIEVE_ALL_USERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id";
     private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
             "WHERE user_roles.role-name=admin";
-    private final String RETRIEVE_ALL_MANAGERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id" +
+    private final String RETRIEVE_ALL_MANAGERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
             "WHERE user_roles.role-name=manager";
-    private final String RETRIEVE_ALL_GUESTS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id" +
+    private final String RETRIEVE_ALL_GUESTS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
             "WHERE user_roles.role-name=guest";
     private final String RETRIEVE_USER_BY_ID = "SELECT * FROM users WHERE id = %d;";
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
 
     @Override
-    public User authorization (String login, String password) throws DAOException {
+    public User authorization(String login, String password) throws DAOException {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -66,18 +59,20 @@ public class UserDAOImpl implements UserDAO {
                     userFromBD = new User(LOGIN, role);
                 }
             }
+            return userFromBD;
         } catch (ConnectionPoolException e) {
-          throw new DAOException("ConnectionPoolException in UserDAOImpl.authorization:", e);
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.authorization:", e);
         } catch (SQLException e) {
-          throw new DAOException("SQLException in UserDAOImpl.authorization:", e);
+            throw new DAOException("SQLException in UserDAOImpl.authorization:", e);
         } finally {
             try {
-                ConnectionPool.getInstance().closeConnection(connection,ps,rs);
+                connectionPool.closeConnection(connection, ps, rs);
             } catch (ConnectionPoolException e) {
                 e.printStackTrace();
             }
+
         }
-        return userFromBD;
+
     }
 
     @Override
@@ -92,15 +87,15 @@ public class UserDAOImpl implements UserDAO {
             ps.setString(1, user.getLogin());
 
             String salt = BCrypt.gensalt();
-            String hashpw = BCrypt.hashpw(user.getPassword(), salt);
+            String password_hash = BCrypt.hashpw(user.getPassword(), salt);
 
-            ps.setString(2, hashpw);
+            ps.setString(2, password_hash);
             ps.setString(3, user.getName());
             ps.setString(4, user.getSurname());
             ps.setString(5, user.getEMail());
             ps.setString(6, user.getCountry());
             ps.setString(7, user.getTelNumber());
-                 ps.setInt(8, user.getRoleId());
+            ps.setInt(8, user.getRoleId());
             ps.executeUpdate();
 
 

@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 
 public class ConnectionPool {
-    private static ConnectionPool instance;
+    private static ConnectionPool instance = new ConnectionPool();
 
     private BlockingQueue<Connection> connectionQueue;
     private BlockingQueue<Connection> givenAwayConQueue;
@@ -18,6 +18,10 @@ public class ConnectionPool {
     private final String user;
     private final String password;
     private int poolSize;
+
+    public static ConnectionPool getInstance() {
+        return instance;
+    }
 
      ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
@@ -29,16 +33,12 @@ public class ConnectionPool {
             this.poolSize = Integer.parseInt(dbResourceManager.getValue(DBParameter.DB_POOL_SIZE));
         } catch (NumberFormatException e) {
             poolSize = 5;
-        }
-    }
-
-    public static ConnectionPool getInstance() throws ConnectionPoolException{
-        if(instance == null){
-            instance = new ConnectionPool();
-            instance.initPoolData();
-        }
-        return instance;
-    }
+        } try {
+             initPoolData();
+         } catch (ConnectionPoolException e) {
+             e.printStackTrace();
+         }
+     }
 
     public void initPoolData() throws ConnectionPoolException {
         try {
@@ -67,16 +67,6 @@ public class ConnectionPool {
             closeConnectionsQueue(connectionQueue);
         } catch (SQLException e) {
             // logger.log(Level.ERROR, "Error closing the connection.", e);
-        }
-    }
-
-    private void closeConnectionsQueue(BlockingQueue<Connection> queue) throws SQLException {
-        Connection connection;
-        while ((connection = queue.poll()) != null) {
-            if (!connection.getAutoCommit()) {
-                connection.commit();
-            }
-            ((PooledConnection) connection).reallyClose();
         }
     }
 
@@ -112,15 +102,29 @@ public class ConnectionPool {
     }
 
     public void closeConnection(Connection con, Statement st) throws ConnectionPoolException {
+        SQLException closureException = null;
         try {
             st.close();
         } catch (SQLException e){
-            throw new ConnectionPoolException(e);
+            closureException = e;
         }
         try {
             con.close();
         } catch (SQLException e){
-            throw new ConnectionPoolException(e);
+            closureException = e;
+        }
+        if (closureException != null) {
+            throw new ConnectionPoolException(closureException);
+        }
+    }
+
+    private void closeConnectionsQueue(BlockingQueue<Connection> queue) throws SQLException {
+        Connection connection;
+        while ((connection = queue.poll()) != null) {
+            if (!connection.getAutoCommit()) {
+                connection.commit();
+            }
+            ((PooledConnection) connection).reallyClose();
         }
     }
 
@@ -159,11 +163,6 @@ public class ConnectionPool {
         }
 
         @Override
-        public void commit() throws SQLException {
-            connection.commit();
-        }
-
-        @Override
         public Array createArrayOf(String typeName, Object[] elements) throws SQLException {
             return connection.createArrayOf(typeName, elements);
         }
@@ -181,6 +180,11 @@ public class ConnectionPool {
         @Override
         public NClob createNClob() throws SQLException {
             return connection.createNClob();
+        }
+
+        @Override
+        public void commit() throws SQLException {
+            connection.commit();
         }
 
         @Override

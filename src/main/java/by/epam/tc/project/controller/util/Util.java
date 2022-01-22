@@ -110,6 +110,7 @@ public final class Util {
     public final class Message{
         public final static String PARAM_MESSAGE = "&message=";
         public final static String AUTHORIZATION_ERROR = "No such login or password. Please, check and try again.";
+        public final static String LOGIN_OR_PASSWORD_EMPTY = "Please fill your login and password in.";
         public final static String WRONG_PASSWORD = "Wrong password. Please, check and try again.";
             public final static String AUTHORIZATION_SUCCESS = "You are successfully logged in.";
             public final static String REGISTRATION_SUCCESS = "Registration is completed. Please, sign in.";

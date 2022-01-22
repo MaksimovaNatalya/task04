@@ -36,11 +36,11 @@ public class RegistrationCommand implements Command {
             USER_SERVICE.registration(new User(login, password, name, surname, eMail, country, telNumber, roleId));
             response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.REGISTRATION_SUCCESS);
         } catch (ServiceException e) {
-            String codeLogin = URLEncoder.encode(login, StandardCharsets.UTF_8);
-            String codeName = URLEncoder.encode(name, StandardCharsets.UTF_8);
-            String codeSurname = URLEncoder.encode(surname, StandardCharsets.UTF_8);
-            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + codeLogin + "&name=" + codeName
-                    + "&surname=" + codeSurname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
+//            String codeLogin = URLEncoder.encode(login, StandardCharsets.UTF_8);
+//            String codeName = URLEncoder.encode(name, StandardCharsets.UTF_8);
+//            String codeSurname = URLEncoder.encode(surname, StandardCharsets.UTF_8);
+            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + login + "&name=" + name
+                    + "&surname=" + surname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
                     + Util.Message.PARAM_MESSAGE + Util.Message.EXISTING_USER);
 
         }

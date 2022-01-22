@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
 
     private final CommandProvider provider = new CommandProvider();
-
+    private final static String COMMAND = "command";
     public Controller() {
         super();
     }
@@ -25,7 +25,7 @@ public class Controller extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String commandName = request.getParameter("command");
+        String commandName = request.getParameter(COMMAND);
         Command command = provider.getCommand(commandName);
         command.execute(request, response);
     }
