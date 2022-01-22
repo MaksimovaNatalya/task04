@@ -24,6 +24,7 @@ public class UserDAOImpl implements UserDAO {
     private static final String LOGIN = "login";
     private static final String ROLE = "role";
     private static final String PASSWORD = "password";
+    private static final String PASSWORD_SALT = "$2a$10$7Xtwz2dUaNW2055I9dhhv.";
 
     private final String AUTHORIZATION = "SELECT * FROM users JOIN user_roles WHERE login=? AND password=?";
     private final String ADD_NEW_USER = "INSERT INTO users (login, password, name, surname, email, country, " +
@@ -86,7 +87,7 @@ public class UserDAOImpl implements UserDAO {
 
             ps.setString(1, user.getLogin());
 
-            String salt = BCrypt.gensalt();
+            String salt = PASSWORD_SALT;
             String password_hash = BCrypt.hashpw(user.getPassword(), salt);
 
             ps.setString(2, password_hash);
