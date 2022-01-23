@@ -41,9 +41,6 @@ public class AuthorizationCommand implements Command {
                 response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_ERROR);
             }
         } catch (ServiceException e) {
-            if (true) {
-                throw new RuntimeException(e);
-            }
             response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
         }
     }

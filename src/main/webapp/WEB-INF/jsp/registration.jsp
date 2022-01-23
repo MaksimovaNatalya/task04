@@ -199,9 +199,9 @@
             <label for="email">E-mail</label>
             <br/>
             <input type="text" id="email" name="email" placeholder="Your e-mail..">
-            <label for="phone">Phone</label>
+            <label for="phone">Phone number</label>
             <br/>
-            <input type="text" id="phone" name="phone" placeholder="Your phone..">
+            <input type="text" id="phone" name="phone" placeholder="Your phone number..">
             <br/>
             <label for="country">Country</label>
             <select id="country" name="country">

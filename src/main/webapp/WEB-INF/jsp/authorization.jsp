@@ -167,9 +167,9 @@ div {
 <legend><h1>Authorization Form</h1></legend>
  <br/>
      <br/>
-<label for="login">User name</label>
+<label for="login">Login</label>
  <br/>
-    <input type="text" id="login" name="login" placeholder="Your user name..">
+    <input type="text" id="login" name="login" placeholder="Your login..">
  <br/>
 <label for="password">Password</label>
  <br/>

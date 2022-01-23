@@ -7,14 +7,12 @@ import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
+import org.apache.commons.text.StringEscapeUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import org.apache.commons.text.StringEscapeUtils;
 
 public class RegistrationCommand implements Command {
 
@@ -35,11 +33,9 @@ public class RegistrationCommand implements Command {
 
         try {
             USER_SERVICE.registration(new User(login, password, name, surname, eMail, country, telNumber, roleId));
-            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.REGISTRATION_SUCCESS);
+            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE +
+                    Util.Message.REGISTRATION_SUCCESS);
         } catch (ServiceException e) {
-//            String codeLogin = URLEncoder.encode(login, StandardCharsets.UTF_8);
-//            String codeName = URLEncoder.encode(name, StandardCharsets.UTF_8);
-//            String codeSurname = URLEncoder.encode(surname, StandardCharsets.UTF_8);
             response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + login + "&name=" + name
                     + "&surname=" + surname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
                     + Util.Message.PARAM_MESSAGE + Util.Message.EXISTING_USER);
