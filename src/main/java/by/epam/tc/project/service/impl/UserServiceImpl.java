@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private static final UserValidator userValidator = VALIDATOR_PROVIDER.getUserValidator();
 
     @Override
-    public User authorization(String login, String password) throws ServiceException {
+    public User authorize(String login, String password) throws ServiceException {
         //1.. validation
 
         //2. realizations
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void registration(User user) throws ServiceException {
+    public void register(User user) throws ServiceException {
         try {
      //       userValidator.checkRegistrationInfo(user);
             userDAO.addUser(user);

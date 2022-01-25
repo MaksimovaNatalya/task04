@@ -23,7 +23,7 @@ public class Runner {
 
             System.out.println("-----------------------------------");
 
-            System.out.println(roomDAO.retrieveAllURooms());
+            System.out.println(roomDAO.retrieveAllRooms());
 
 
             System.out.println("-----------------------------------");

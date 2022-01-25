@@ -5,9 +5,9 @@ import by.epam.tc.project.service.exception.ServiceException;
 
 public interface UserService {
 
-    User authorization(String login, String password) throws ServiceException;
+    User authorize(String login, String password) throws ServiceException;
 
-       void registration(User user) throws ServiceException;
+    void register(User user) throws ServiceException;
 
     User getUser(String login) throws ServiceException;
 

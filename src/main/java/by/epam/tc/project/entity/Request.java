@@ -1,21 +1,22 @@
 package by.epam.tc.project.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 public class Request implements Serializable {
     private Integer id;
     private String category;
     private Integer max_persons;
-    private String start_date;
-    private String end_date;
+    private Date start_date;
+    private Date end_date;
     private String status;
     private String users_id;
 
     public Request () {
 
     }
-    public Request(Integer id, String category, Integer max_persons, String start_date, String end_date, String status, String users_id) {
+    public Request(Integer id, String category, Integer max_persons, Date start_date, Date end_date, String status, String users_id) {
         this.id = id;
         this.category = category;
         this.max_persons = max_persons;
@@ -25,7 +26,7 @@ public class Request implements Serializable {
         this.users_id = users_id;
     }
 
-    public Request(String category, Integer max_persons, String start_date, String end_date, String status, String users_id) {
+    public Request(String category, Integer max_persons, Date start_date, Date end_date, String status, String users_id) {
         this.category = category;
         this.max_persons = max_persons;
         this.start_date = start_date;
@@ -58,19 +59,19 @@ public class Request implements Serializable {
         this.max_persons = max_persons;
     }
 
-    public String getStart_date() {
+    public Date getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(String start_date) {
+    public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public String getEnd_date() {
+    public Date getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(String end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 

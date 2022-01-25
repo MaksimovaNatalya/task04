@@ -1,7 +1,9 @@
 package by.epam.tc.project.controller;
 
 import by.epam.tc.project.controller.impl.AuthorizationCommand;
+import by.epam.tc.project.controller.impl.FindRoomCommand;
 import by.epam.tc.project.controller.impl.RegistrationCommand;
+import by.epam.tc.project.controller.impl.ShowRoomsCommand;
 import by.epam.tc.project.controller.impl.gotocommand.*;
 
 import java.util.HashMap;
@@ -13,13 +15,17 @@ public final class CommandProvider {
     public CommandProvider() {
         commands.put("logination", new AuthorizationCommand());
         commands.put("registration", new RegistrationCommand());
+        commands.put("showRooms", new ShowRoomsCommand());
+        commands.put("findRooms", new FindRoomCommand());
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());
         commands.put("GO_TO_INDEX_PAGE", new GoToIndexPageCommand());
         commands.put("GO_TO_MAIN_PAGE", new GoToMainPageCommand());
-        commands.put("GO_TO_BOOKING_PAGE", new GoToBookingPageCommand());
+        commands.put("GO_TO_BOOKING_PAGE", new GoToRequestPageCommand());
         commands.put("GO_TO_ACCOUNT_PAGE", new GoToAccoutPageCommand());
+        commands.put("GO_TO_ROOMS_PAGE", new GoToRoomsPageCommand());
+        commands.put("GO_TO_REQUEST_PAGE", new GoToRequestPageCommand());
     }
 
     public Command getCommand(String commandName) {

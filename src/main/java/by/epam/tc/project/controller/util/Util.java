@@ -18,8 +18,8 @@ public final class Util {
     public final class Redirect{
         public final static String TO_ERROR_PAGE = "Controller?command=GO_TO_ERROR_PAGE";
         public final static String TO_AUTHORIZATION_PAGE = "Controller?command=GO_TO_AUTHORIZATION_PAGE";
-        public final static String TO_BOOKINGS_PAGE = "Controller?command=GO_TO_BOOKINGS_PAGE";
-        public final static String TO_STAYS_PAGE = "Controller?command=GO_TO_STAYS_PAGE";
+        public final static String TO_ROOMS_PAGE = "Controller?command=GO_TO_ROOMS_PAGE";
+        public final static String TO_REQUEST_CONFIRMATION_PAGE = "Controller?command=GO_TO_REQUEST_CONFIRMATION_PAGE";
         public final static String TO_ACCOUNT_PAGE = "Controller?command=GO_TO_ACCOUNT_PAGE";
         public final static String LOG_OUT = "Controller?command=GO_TO_WELCOME_PAGE&logOut=true";
         public final static String TO_CLIENTS_PAGE = "Controller?command=GO_TO_CLIENTS_PAGE";
@@ -78,8 +78,8 @@ public final class Util {
         public final static String STAY_ID = "stayId";
         public final static String COMMAND = "command";
         public final static String POPUP_VIEW = "popUpView";
-        public final static String FROM_DATE = "fromDate";
-        public final static String TO_DATE = "toDate";
+        public final static String START_DATE = "startDate";
+        public final static String END_DATE = "endDate";
         public final static String GUESTS_NUMBER = "guestsNumber";
         public final static String ROOM_NUMBER = "roomNumber";
         public final static String NOTES = "notes";

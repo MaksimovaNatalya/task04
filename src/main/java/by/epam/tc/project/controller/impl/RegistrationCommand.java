@@ -32,7 +32,7 @@ public class RegistrationCommand implements Command {
         int roleId = Role.USER.getRoleId();
 
         try {
-            USER_SERVICE.registration(new User(login, password, name, surname, eMail, country, telNumber, roleId));
+            USER_SERVICE.register(new User(login, password, name, surname, eMail, country, telNumber, roleId));
             response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE +
                     Util.Message.REGISTRATION_SUCCESS);
         } catch (ServiceException e) {

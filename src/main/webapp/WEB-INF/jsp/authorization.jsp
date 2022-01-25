@@ -29,6 +29,9 @@
     .log-in {
         float:right;
     }
+    .local{
+        float:right;
+    }
 
     img{
         width:100%;
@@ -139,6 +142,16 @@ div {
     </a>
 
 <ul>
+
+    <li class="local">
+        <form>
+            <input type="hidden" name="command" value="ChangeLanguage" >
+            <select name="language" onchange="submit()">
+                <option value="ru" ${language == 'ru' ? 'selected' : ''}>RU</option>
+                <option value="en" ${language == 'en' ? 'selected' : ''}>ENG</option>
+            </select>
+        </form>
+    </li>
     <li class="log-in">
         <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Log in</a>
     </li>
@@ -180,7 +193,7 @@ div {
 Not registered yet? <a href="Controller?command=GO_TO_REGISTRATION_PAGE">Register</a>
    </fieldset>
 </div>
-
+    <p><c:out value="${requestScope.mas}"/></p>
 </form>
 </body>
 </html>

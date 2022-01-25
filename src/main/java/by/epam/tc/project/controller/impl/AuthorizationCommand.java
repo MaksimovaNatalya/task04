@@ -32,8 +32,10 @@ public class AuthorizationCommand implements Command {
                 response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.LOGIN_OR_PASSWORD_EMPTY);
                 return;
             }
-            User user = USER_SERVICE.authorization(login, password);
+            User user = USER_SERVICE.authorize(login, password);
             if (user != null) {
+                String mas = "1";
+                request.setAttribute("mas", mas);
                 request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
                 request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.getById(user.getRoleId()));
                 response.sendRedirect(Util.Redirect.TO_ACCOUNT_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_SUCCESS);
