@@ -92,9 +92,12 @@
             display: block;
         }
     </style>
+    <title></title>
 </head>
 <body>
 
+<form action="Controller" method="post">
+    <input type="hidden" name="command" value="showRooms">
 
 <div class="header-logo">
     <a class="header-logo-link" href="Controller?command=GO_TO_INDEX_PAGE">
@@ -126,10 +129,11 @@
 
 </ul>
 
-<form action="Controller" method="post">
-    <input type="hidden" name="command" value="showRooms">
-Our rooms: <br/>
-    <p><c:out value="${requestScope.mas}"/></p>
+
+        <c:forEach var="room" items="${allRooms}">
+            <c:out value="${room}"  /> <br/>
+        </c:forEach>
+
 
 </form>
 </body>

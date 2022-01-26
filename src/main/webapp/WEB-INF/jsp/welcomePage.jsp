@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MaxMoff
-  Date: 11.01.2022
-  Time: 17:43
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="by.epam.tc.project.controller.util.*" %>
 <html>
 <head>
 <style>
@@ -124,7 +119,7 @@
             <a href="Controller?command=GO_TO_INFO_PAGE">Info</a>
             <a href="Controller?command=GO_TO_CONTACTS_PAGE">Contacts</a>
         </div>
-    <li><a href="Controller?command=GO_TO_ROOMS_PAGE">Rooms</a></li>
+    <li><a href="Controller?command=showRooms">Rooms</a></li>
     <li><a href="Controller?command=GO_TO_BOOKING_PAGE">Book a room</a></li>
 
 </ul>

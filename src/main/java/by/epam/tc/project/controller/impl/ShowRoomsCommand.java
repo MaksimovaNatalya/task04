@@ -20,17 +20,16 @@ public class ShowRoomsCommand implements Command {
     private static final RoomService ROOM_SERVICE = PROVIDER.getRoomService();
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String mas = "1";
-        request.setAttribute("mas", mas);
-        response.sendRedirect(Util.Redirect.TO_ROOMS_PAGE);
-//        try {
-//
-//            List<Room> allRooms = ROOM_SERVICE.showAllRooms();
-//            request.setAttribute("allRooms", allRooms);
-//            response.sendRedirect(Util.Redirect.TO_ROOMS_PAGE);
-//        } catch (ServiceException e) {
-//            response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
-//        }
+
+        try {
+
+            List<Room> allRooms = ROOM_SERVICE.showAllRooms();
+            request.setAttribute("allRooms", allRooms);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/rooms.jsp");
+            dispatcher.forward(request,response);
+        } catch (ServiceException e) {
+            response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
+        }
 
     }
 }
