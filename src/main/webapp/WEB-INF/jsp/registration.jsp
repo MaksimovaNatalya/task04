@@ -157,35 +157,7 @@
 
 </style>
 
-
-<a class="header-logo-link" href="Controller?command=GO_TO_INDEX_PAGE">
-    <img class="header-logo-src" src="/hotel-logo.jpg" alt="Logo">
-</a>
-
-<ul>
-
-    <li class="local">
-        <form>
-            <input type="hidden" name="command" value="ChangeLanguage" >
-            <select name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>RU</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>ENG</option>
-            </select>
-        </form>
-    </li>
-    <li class="log-in">
-        <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Log in</a>
-    </li>
-    <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">About us</a>
-        <div class="dropdown-content">
-            <a href="Controller?command=GO_TO_INFO_PAGE">Info</a>
-            <a href="Controller?command=GO_TO_CONTACTS_PAGE">Contacts</a>
-        </div>
-    <li><a href="Controller?command=GO_TO_ROOMS_PAGE">Rooms</a></li>
-    <li><a href="Controller?command=GO_TO_BOOKING_PAGE">Book a room</a></li>
-
-</ul>
+<jsp:include page="header.jsp" />
 
 </br>
 
