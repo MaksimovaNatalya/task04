@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -108,8 +109,18 @@
             </select>
         </form>
     </li>
+
     <li class="log-in">
-        <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Sign in/Sign up</a>
+        <c:if test="${empty sessionScope.login}" >
+            <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Sign in/Sign up</a>
+        </c:if>
+        <c:if test="${not empty sessionScope.login}" >
+            <a href="Controller?command=GO_TO_ACCOUNT_PAGE">My account</a>
+            <form action="Controller" method="post">
+                <input type="hidden" name="command" value="logOut" />
+                <a href="Controller?command=GO_TO_INDEX_PAGE">Log out</a>
+            </form>
+        </c:if>
     </li>
 
     <li class="dropdown">

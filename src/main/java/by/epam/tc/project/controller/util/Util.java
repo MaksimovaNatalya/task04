@@ -21,7 +21,7 @@ public final class Util {
         public final static String SHOW_ROOMS_PAGE = "Controller?command=showRooms";
         public final static String TO_REQUEST_CONFIRMATION_PAGE = "Controller?command=GO_TO_REQUEST_CONFIRMATION_PAGE";
         public final static String TO_ACCOUNT_PAGE = "Controller?command=GO_TO_ACCOUNT_PAGE";
-        public final static String LOG_OUT = "Controller?command=GO_TO_WELCOME_PAGE&logOut=true";
+        public final static String LOG_OUT = "Controller?command=GO_TO_INDEX_PAGE&logOut=true";
         public final static String TO_CLIENTS_PAGE = "Controller?command=GO_TO_CLIENTS_PAGE";
     }
 

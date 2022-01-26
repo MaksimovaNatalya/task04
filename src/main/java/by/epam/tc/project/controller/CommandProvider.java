@@ -1,9 +1,6 @@
 package by.epam.tc.project.controller;
 
-import by.epam.tc.project.controller.impl.AuthorizationCommand;
-import by.epam.tc.project.controller.impl.FindRoomCommand;
-import by.epam.tc.project.controller.impl.RegistrationCommand;
-import by.epam.tc.project.controller.impl.ShowRoomsCommand;
+import by.epam.tc.project.controller.impl.*;
 import by.epam.tc.project.controller.impl.gotocommand.*;
 
 import java.util.HashMap;
@@ -17,6 +14,7 @@ public final class CommandProvider {
         commands.put("registration", new RegistrationCommand());
         commands.put("showRooms", new ShowRoomsCommand());
         commands.put("findRooms", new FindRoomCommand());
+        commands.put("logOut", new LogOutCommand());
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());

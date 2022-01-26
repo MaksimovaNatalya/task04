@@ -91,6 +91,11 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        table{
+            width:100%;
+            background-color: #f2f2f2;
+            border: 5px ;
+        }
     </style>
     <title></title>
 </head>
@@ -129,9 +134,21 @@
 
 </ul>
 
+    <c:forEach var="room" items="${allRooms}">
+    <table >
+        <tr>
+            <th>Category</th>
+            <th>Price per night</th>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <td><c:out value="${room.category}"  /></td>
+            <td><c:out value="${room.pricePerNight}" /></td>
+            <td><c:out value="${room.image}" /></td>
+        </tr>
+    </table>
 
-        <c:forEach var="room" items="${allRooms}">
-            <c:out value="${room}"  /> <br/>
+             <br/>
         </c:forEach>
 
 
