@@ -15,9 +15,9 @@ public class UserValidator {
         String password = user.getPassword();
         String name = user.getName();
         String surName = user.getSurname();
-        String eMail = user.getEMail();
+        String eMail = user.getEmail();
         String country = user.getCountry();
-        String telNumber = user.getTelNumber();
+        String telNumber = user.getPhone();
 
         if (!login.matches(LOGIN_CHECK)) {
             throw new ValidatorException("Invalid login!");

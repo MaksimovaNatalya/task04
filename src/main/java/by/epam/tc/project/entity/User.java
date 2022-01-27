@@ -9,34 +9,34 @@ public class User implements Serializable {
     private String password;
     private String name;
     private String surname;
-    private String eMail;
+    private String email;
     private String country;
-    private String telNumber;
+    private String phone;
     private Integer roleId;
 
     public User() {
     }
 
-    public User(Integer id, String login, String password, String name, String surname, String eMail, String country, String telNumber, Integer roleId) {
+    public User(Integer id, String login, String password, String name, String surname, String email, String country, String telNumber, Integer roleId) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.eMail = eMail;
+        this.email = email;
         this.country = country;
-        this.telNumber = telNumber;
+        this.phone = telNumber;
         this.roleId=roleId;
     }
 
-    public User(String login, String password, String name, String surname, String eMail, String country, String telNumber, Integer roleId) {
+    public User(String login, String password, String name, String surname, String email, String country, String telNumber, Integer roleId) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.eMail = eMail;
+        this.email = email;
         this.country = country;
-        this.telNumber = telNumber;
+        this.phone = telNumber;
         this.roleId=roleId;
     }
 
@@ -80,12 +80,12 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    public String getEMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCountry() {
@@ -96,12 +96,12 @@ public class User implements Serializable {
         this.country = country;
     }
 
-    public String getTelNumber() {
-        return telNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelNumber(String telNumber) {
-        this.telNumber = telNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getRoleId() {
@@ -117,12 +117,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(eMail, user.eMail) && Objects.equals(country, user.country) && Objects.equals(telNumber, user.telNumber) && roleId == user.roleId;
+        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(country, user.country) && Objects.equals(phone, user.phone) && roleId == user.roleId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, surname, eMail, country, telNumber, roleId);
+        return Objects.hash(id, login, password, name, surname, email, country, phone, roleId);
     }
 
     @Override
@@ -133,9 +133,9 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", email='" + email + '\'' +
                 ", country='" + country + '\'' +
-                ", telNumber='" + telNumber + '\'' +
+                ", telNumber='" + phone + '\'' +
                 ", role=" + roleId +"\n";
     }
 }

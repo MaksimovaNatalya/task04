@@ -14,8 +14,8 @@ public class LogOutCommand implements by.epam.tc.project.controller.Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-
-        session.removeAttribute(TableAndColumnName.LOGIN);
+        session.invalidate();
+       // session.removeAttribute(TableAndColumnName.LOGIN);
 
         response.sendRedirect(Util.Redirect.LOG_OUT);
     }

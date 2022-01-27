@@ -102,10 +102,10 @@
 <ul>
     <li class="local">
         <form>
-            <input type="hidden" name="command" value="ChangeLanguage" >
+            <input type="hidden" name="command" value="changeLanguage" >
             <select name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>RU</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>ENG</option>
+                <option value="ru" ${requestScope.language == 'ru' ? 'selected' : ''}>RU</option>
+                <option value="en" ${requestScope.language == 'en' ? 'selected' : ''}>ENG</option>
             </select>
         </form>
     </li>
@@ -116,9 +116,8 @@
         </c:if>
         <c:if test="${not empty sessionScope.login}" >
             <a href="Controller?command=GO_TO_ACCOUNT_PAGE">My account</a>
-            <form action="Controller" method="post">
+                <a href="Controller?command=logOut">Log out</a>
                 <input type="hidden" name="command" value="logOut" />
-                <a href="Controller?command=GO_TO_INDEX_PAGE">Log out</a>
             </form>
         </c:if>
     </li>

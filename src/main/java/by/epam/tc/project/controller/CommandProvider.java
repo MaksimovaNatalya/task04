@@ -15,15 +15,19 @@ public final class CommandProvider {
         commands.put("showRooms", new ShowRoomsCommand());
         commands.put("findRooms", new FindRoomCommand());
         commands.put("logOut", new LogOutCommand());
+        commands.put("changeLanguage", new ChangeLanguageCommand());
+        commands.put("changeAccountInfo", new ChangeAccountInfoCommand());
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());
         commands.put("GO_TO_INDEX_PAGE", new GoToIndexPageCommand());
         commands.put("GO_TO_MAIN_PAGE", new GoToMainPageCommand());
         commands.put("GO_TO_BOOKING_PAGE", new GoToRequestPageCommand());
-        commands.put("GO_TO_ACCOUNT_PAGE", new GoToAccoutPageCommand());
+        commands.put("GO_TO_ACCOUNT_PAGE", new GoToAccountPageCommand());
         commands.put("GO_TO_ROOMS_PAGE", new GoToRoomsPageCommand());
         commands.put("GO_TO_REQUEST_PAGE", new GoToRequestPageCommand());
+        commands.put("GO_TO_AVAILABLE_ROOMS_PAGE", new GoToAvailableRoomsPageCommand());
+        commands.put("GO_TO_MY_BOOKINGS_PAGE", new GoToMyBookingsPageCommand());
     }
 
     public Command getCommand(String commandName) {

@@ -1,4 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: MaxMoff
+  Date: 27.01.2022
+  Time: 16:37
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -152,10 +158,10 @@
             width: 33.3333333333%;
             float: right;
         }
-table{
-    border: 3px solid grey;
+        table{
+            border: 3px solid grey;
 
-}
+        }
         .doNotShow{display:none;}
 
         th, td{
@@ -171,30 +177,6 @@ table{
 <br/>
 <a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> - <a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
 <br/>
-<c:if test="${not empty sessionScope.login}" >
-
-<form action="Controller" method="post">
-    <input type="hidden" name="command" value="GO_TO_ACCOUNT_PAGE">
-    <br>
-    <table>
-
-        <tr class="doNotShow"><th>Id</th><td>${requestScope.user.id}</td></tr>
-        <tr><th>Login:</th><td> <c:out value="${requestScope.user.login}"  /></td></tr>
-        <tr><th>Name:</th><td> <c:out value="${requestScope.user.name}"  /></td></tr>
-        <tr><th>Surname:</th><td> <c:out value="${requestScope.user.surname}"  /></td></tr>
-        <tr><th>E-mail:</th><td> <c:out value="${requestScope.user.email}"  /></td></tr>
-        <tr><th>Country:</th><td> <c:out value="${requestScope.user.country}"  /></td></tr>
-        <tr><th>Phone number:</th><td> <c:out value="${requestScope.user.phone}"  /></td></tr>
-    </table>
-
-<br>
-
-    <a href="Controller?command=GO_TO_CHANGE_ACCOUNT_INFO_PAGE">
-        <input type="button" value="Change info"/>
-    </a>
-
-    </c:if>
-</form>
 
 </body>
 </html>

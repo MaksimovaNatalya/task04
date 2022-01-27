@@ -18,9 +18,9 @@ public class UserBuilder {
             user.setPassword(rs.getString(TableAndColumnName.PASSWORD));
             user.setName(rs.getString(TableAndColumnName.NAME));
             user.setSurname(rs.getString(TableAndColumnName.SURNAME));
-            user.setEMail(rs.getString(TableAndColumnName.E_MAIL));
+            user.setEmail(rs.getString(TableAndColumnName.E_MAIL));
             user.setCountry(rs.getString(TableAndColumnName.COUNTRY));
-            user.setTelNumber(rs.getString(TableAndColumnName.TEL_NUMBER));
+            user.setPhone(rs.getString(TableAndColumnName.TEL_NUMBER));
             user.setRoleId(rs.getInt(TableAndColumnName.USERSTABLE_ROLE_ID));
 
         } catch (SQLException e) {

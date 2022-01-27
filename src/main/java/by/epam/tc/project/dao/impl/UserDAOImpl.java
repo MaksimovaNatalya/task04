@@ -4,9 +4,7 @@ import by.epam.tc.project.dao.UserDAO;
 import by.epam.tc.project.dao.builder.UserBuilder;
 import by.epam.tc.project.dao.connectionpool.ConnectionPool;
 import by.epam.tc.project.dao.connectionpool.ConnectionPoolException;
-import by.epam.tc.project.dao.db.TableAndColumnName;
 import by.epam.tc.project.dao.exception.DAOException;
-import by.epam.tc.project.entity.Role;
 import by.epam.tc.project.entity.User;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -35,6 +33,7 @@ public class UserDAOImpl implements UserDAO {
     private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
             "WHERE user_roles.role=admin";
     private final String RETRIEVE_USER_BY_ID = "SELECT * FROM users WHERE id = %d;";
+    private final String RETRIEVE_USER_BY_LOGIN = "SELECT * FROM users WHERE login= ?";
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
 
     @Override
@@ -88,9 +87,9 @@ public class UserDAOImpl implements UserDAO {
             ps.setString(2, password_hash);
             ps.setString(3, user.getName());
             ps.setString(4, user.getSurname());
-            ps.setString(5, user.getEMail());
+            ps.setString(5, user.getEmail());
             ps.setString(6, user.getCountry());
-            ps.setString(7, user.getTelNumber());
+            ps.setString(7, user.getPhone());
             ps.setInt(8, user.getRoleId());
             ps.executeUpdate();
 
@@ -215,7 +214,38 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User retrieveUserByLogin(String login) throws DAOException {
-        return null;
+        User user;
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            ps = connection.prepareStatement(RETRIEVE_USER_BY_LOGIN);
+            ps.setString(1, login);
+
+            rs = ps.executeQuery();
+
+
+            rs.next();
+            user = userBuilder.buildUser(rs);
+
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.retrieveUserByLogin()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveUserByLogin()", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    connectionPool.closeConnection(connection, ps, rs);
+                }
+
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveUserByLogin()", e);
+            }
+        }
+
+        return user;
     }
 
 
