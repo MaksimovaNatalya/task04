@@ -22,10 +22,9 @@ public final class CommandProvider {
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());
         commands.put("GO_TO_INDEX_PAGE", new GoToIndexPageCommand());
         commands.put("GO_TO_MAIN_PAGE", new GoToMainPageCommand());
-        commands.put("GO_TO_BOOKING_PAGE", new GoToRequestPageCommand());
+        commands.put("GO_TO_REQUEST_PAGE", new GoToRequestPageCommand());
         commands.put("GO_TO_ACCOUNT_PAGE", new GoToAccountPageCommand());
         commands.put("GO_TO_ROOMS_PAGE", new GoToRoomsPageCommand());
-        commands.put("GO_TO_REQUEST_PAGE", new GoToRequestPageCommand());
         commands.put("GO_TO_AVAILABLE_ROOMS_PAGE", new GoToAvailableRoomsPageCommand());
         commands.put("GO_TO_MY_BOOKINGS_PAGE", new GoToMyBookingsPageCommand());
     }

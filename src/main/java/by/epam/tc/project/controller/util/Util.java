@@ -24,7 +24,7 @@ public final class Util {
         public final static String TO_CHANGE_ACCOUNT_INFO_PAGE = "Controller?command=GO_TO_CHANGE_ACCOUNT_INFO_PAGE";
         public final static String CHANGE_ACCOUNT_INFO = "Controller?command=changeAccountInfo";
         public final static String LOG_OUT = "Controller?command=GO_TO_INDEX_PAGE&logOut=true";
-        public final static String TO_CLIENTS_PAGE = "Controller?command=GO_TO_CLIENTS_PAGE";
+        public final static String TO_REQUEST_PAGE = "Controller?command=GO_TO_REQUEST_PAGE";
     }
 
     public final class Command {
@@ -117,5 +117,6 @@ public final class Util {
         public static final String REGISTRATION_SUCCESS = "Registration is completed. Please, sign in.";
         public static final String EXISTING_USER = "User with such credentials already exists.";
         public static final String NO_REQUESTS = "You have no requests yet";
+        public static final String NO_AVAILABLE_ROOMS = "No available rooms for these dates. Choose another date.";
     }
 }

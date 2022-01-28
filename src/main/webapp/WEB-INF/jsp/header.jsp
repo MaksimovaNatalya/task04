@@ -129,7 +129,7 @@
             <a href="Controller?command=GO_TO_CONTACTS_PAGE">Contacts</a>
         </div>
     <li><a href="Controller?command=showRooms">Rooms</a></li>
-    <li><a href="Controller?command=GO_TO_BOOKING_PAGE">Book a room</a></li>
+    <li><a href="Controller?command=GO_TO_REQUEST_PAGE">Book a room</a></li>
 </ul>
 </body>
 </html>

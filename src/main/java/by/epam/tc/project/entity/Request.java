@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Request implements Serializable {
     private Integer id;
     private String category;
-    private Integer max_persons;
+    private Integer maxPersons;
     private Date start_date;
     private Date end_date;
     private String status;
@@ -16,19 +16,19 @@ public class Request implements Serializable {
     public Request () {
 
     }
-    public Request(Integer id, String category, Integer max_persons, Date start_date, Date end_date, String status, String users_id) {
+    public Request(Integer id, String category, Integer maxPersons, Date startDate, Date end_date, String status, String users_id) {
         this.id = id;
         this.category = category;
-        this.max_persons = max_persons;
-        this.start_date = start_date;
+        this.maxPersons = maxPersons;
+        this.start_date = startDate;
         this.end_date = end_date;
         this.status = status;
         this.users_id = users_id;
     }
 
-    public Request(String category, Integer max_persons, Date start_date, Date end_date, String status, String users_id) {
+    public Request(String category, Integer maxPersons, Date start_date, Date end_date, String status, String users_id) {
         this.category = category;
-        this.max_persons = max_persons;
+        this.maxPersons = maxPersons;
         this.start_date = start_date;
         this.end_date = end_date;
         this.status = status;
@@ -51,12 +51,12 @@ public class Request implements Serializable {
         this.category = category;
     }
 
-    public Integer getMax_persons() {
-        return max_persons;
+    public Integer getMaxPersons() {
+        return maxPersons;
     }
 
-    public void setMax_persons(Integer max_persons) {
-        this.max_persons = max_persons;
+    public void setMaxPersons(Integer maxPersons) {
+        this.maxPersons = maxPersons;
     }
 
     public Date getStart_date() {
@@ -96,12 +96,12 @@ public class Request implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return id.equals(request.id) && Objects.equals(category, request.category) && Objects.equals(max_persons, request.max_persons) && Objects.equals(start_date, request.start_date) && Objects.equals(end_date, request.end_date) && Objects.equals(status, request.status) && users_id.equals(request.users_id);
+        return id.equals(request.id) && Objects.equals(category, request.category) && Objects.equals(maxPersons, request.maxPersons) && Objects.equals(start_date, request.start_date) && Objects.equals(end_date, request.end_date) && Objects.equals(status, request.status) && users_id.equals(request.users_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, max_persons, start_date, end_date, status, users_id);
+        return Objects.hash(id, category, maxPersons, start_date, end_date, status, users_id);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Request implements Serializable {
         return "Request{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
-                ", max_persons=" + max_persons +
+                ", max_persons=" + maxPersons +
                 ", start_date='" + start_date + '\'' +
                 ", end_date='" + end_date + '\'' +
                 ", status='" + status + '\'' +

@@ -22,24 +22,24 @@ public class FindRoomCommand implements Command {
     private static final RoomService ROOM_SERVICE = PROVIDER.getRoomService();
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("message", "<script>alert('Hello gold')</script>");
-        response.sendRedirect(Util.Redirect.TO_REQUEST_CONFIRMATION_PAGE);
-//        Date startDate = Date.valueOf(request.getParameter(Util.Utility.START_DATE));
-//        Date endDate = Date.valueOf(request.getParameter(Util.Utility.END_DATE));
-//        int guestsNumber = Integer.parseInt(request.getParameter(Util.Utility.GUESTS_NUMBER));
-//
-//        List<Room> availableRooms;
-//        try {
-//            availableRooms=ROOM_SERVICE.findAvailableRooms(startDate,endDate,guestsNumber);
-//
-//            if(availableRooms.size()>0) {
-//                request.setAttribute(Util.Utility.AVAILABLE_ROOMS, availableRooms);
-//                response.sendRedirect(Util.Redirect.TO_REQUEST_CONFIRMATION_PAGE);
-//            }else{
-//                response.sendRedirect(Util.Redirect.TO_REQUEST_CONFIRMATION_PAGE);
-//            }
-//            } catch (ServiceException e) {
-//            response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
-//        }
+
+        Date startDate = Date.valueOf(request.getParameter(Util.Utility.START_DATE));
+        Date endDate = Date.valueOf(request.getParameter(Util.Utility.END_DATE));
+        int guestsNumber = Integer.parseInt(request.getParameter(Util.Utility.GUESTS_NUMBER));
+
+        List<Room> availableRooms;
+        try {
+            availableRooms=ROOM_SERVICE.findAvailableRooms(startDate,endDate,guestsNumber);
+
+            if(availableRooms.size()>0) {
+                request.setAttribute(Util.Utility.AVAILABLE_ROOMS, availableRooms);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/availableRooms.jsp");
+                dispatcher.forward(request,response);
+            }else{
+                response.sendRedirect(Util.Redirect.TO_REQUEST_PAGE+Util.Message.PARAM_MESSAGE+Util.Message.NO_AVAILABLE_ROOMS);
+            }
+            } catch (ServiceException e) {
+            response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
+        }
     }
 }
