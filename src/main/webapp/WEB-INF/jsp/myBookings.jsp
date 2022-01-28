@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MaxMoff
-  Date: 27.01.2022
-  Time: 16:37
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -37,8 +32,9 @@
         .log-in {
             float: right;
         }
-        .local{
-            float:right;
+
+        .local {
+            float: right;
         }
 
         img {
@@ -158,13 +154,17 @@
             width: 33.3333333333%;
             float: right;
         }
-        table{
+
+        table {
             border: 3px solid grey;
 
         }
-        .doNotShow{display:none;}
 
-        th, td{
+        .doNotShow {
+            display: none;
+        }
+
+        th, td {
             text-align: left;
             border: 1px solid grey;
             padding: 10px 15px;
@@ -173,10 +173,42 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <br/>
-<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> - <a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
+<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
+<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
+<input type="hidden" name="command" value="GO_TO_MY_BOOKINGS_PAGE">
 <br/>
+
+<c:if test="${not empty sessionScope.login}">
+
+    <br>
+    <table>
+
+        <tr>
+            <th>№</th>
+            <th>Category</th>
+            <th>Max_persons</th>
+            <th>Start_date</th>
+            <th>End_date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <c:forEach var="request" items="${requestScope.allRequests}">
+            <td><c:out value="${request.id}"/></td>
+            <td><c:out value="${request.category}"/></td>
+            <td><c:out value="${request.max_persons}"/></td>
+            <td><c:out value="${request.start_date}"/></td>
+            <td><c:out value="${request.end_date}"/></td>
+            <td><c:out value="${request.status}"/></td>
+            <td>Cancel booking button</td>
+        </tr>
+        </c:forEach>
+    </table>
+
+
+</c:if>
 
 </body>
 </html>

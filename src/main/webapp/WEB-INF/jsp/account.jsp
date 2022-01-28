@@ -169,7 +169,9 @@ table{
 <body>
 <jsp:include page="header.jsp" />
 <br/>
-<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> - <a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
+<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
+<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
+<input type="hidden" name="command" value="GO_TO_MY_BOOKINGS_PAGE">
 <br/>
 <c:if test="${not empty sessionScope.login}" >
 

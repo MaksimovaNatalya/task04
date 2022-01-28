@@ -1,6 +1,7 @@
 package by.epam.tc.project.service;
 
 import by.epam.tc.project.service.impl.BookingServiceImpl;
+import by.epam.tc.project.service.impl.RequestServiceImpl;
 import by.epam.tc.project.service.impl.RoomServiceImpl;
 import by.epam.tc.project.service.impl.UserServiceImpl;
 
@@ -12,6 +13,11 @@ public final class ServiceProvider {
     private final UserService userService = new UserServiceImpl();
     private final RoomService roomService = new RoomServiceImpl();
     private final BookingService bookingService = new BookingServiceImpl();
+    private final RequestService requestService = new RequestServiceImpl();
+
+    public RequestService getRequestService() {
+        return requestService;
+    }
 
     public UserService getUserService() {
         return userService;

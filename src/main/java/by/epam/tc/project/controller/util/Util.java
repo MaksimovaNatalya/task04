@@ -1,7 +1,7 @@
 package by.epam.tc.project.controller.util;
 
 public final class Util {
-    public final class Forward{
+    public final class Forward {
         public final static String TO_ERROR_PAGE = "error.jsp";
         public final static String TO_BOOKINGS_PAGE = "/WEB-INF/jsp/bookings.jsp";
         public final static String TO_BOOK_ROOM_PAGE = "/WEB-INF/jsp/bookRoom.jsp";
@@ -15,7 +15,7 @@ public final class Util {
         public final static String TO_CLIENTS_PAGE = "/WEB-INF/jsp/clients.jsp";
     }
 
-    public final class Redirect{
+    public final class Redirect {
         public final static String TO_ERROR_PAGE = "Controller?command=GO_TO_ERROR_PAGE";
         public final static String TO_AUTHORIZATION_PAGE = "Controller?command=GO_TO_AUTHORIZATION_PAGE";
         public final static String SHOW_ROOMS_PAGE = "Controller?command=showRooms";
@@ -27,7 +27,7 @@ public final class Util {
         public final static String TO_CLIENTS_PAGE = "Controller?command=GO_TO_CLIENTS_PAGE";
     }
 
-    public final class Command{
+    public final class Command {
         public final static String EDIT_STAY = "EditStay";
         public final static String EDIT_STAY_CHECK = "EditStayCheck";
         public final static String ADD_BOOKING = "AddBooking";
@@ -36,7 +36,7 @@ public final class Util {
         public final static String CHANGE_LANGUAGE = "ChangeLanguage";
     }
 
-    public final class Utility{
+    public final class Utility {
         public final static String LOGIN = "login";
         public final static String PASSWORD = "password";
         public final static String INITIAL_PASSWORD = "initialPassword";
@@ -109,12 +109,13 @@ public final class Util {
         public final static String CHOSEN_CLIENT_ID = "chosenClientId";
     }
 
-    public final class Message{
-        public final static String PARAM_MESSAGE = "&message=";
-        public final static String AUTHORIZATION_ERROR = "No such login or password. Please, check and try again.";
-        public final static String LOGIN_OR_PASSWORD_EMPTY = "Please fill your login and password in.";
-            public final static String AUTHORIZATION_SUCCESS = "You are successfully logged in.";
-            public final static String REGISTRATION_SUCCESS = "Registration is completed. Please, sign in.";
-            public final static String EXISTING_USER = "User with such credentials already exists.";
+    public final class Message {
+        public static final String PARAM_MESSAGE = "&message=";
+        public static final String AUTHORIZATION_ERROR = "No such login or password. Please, check and try again.";
+        public static final String LOGIN_OR_PASSWORD_EMPTY = "Please fill your login and password in.";
+        public static final String AUTHORIZATION_SUCCESS = "You are successfully logged in.";
+        public static final String REGISTRATION_SUCCESS = "Registration is completed. Please, sign in.";
+        public static final String EXISTING_USER = "User with such credentials already exists.";
+        public static final String NO_REQUESTS = "You have no requests yet";
     }
 }

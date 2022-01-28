@@ -9,10 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 public class BookingServiceImpl implements BookingService {
-    @Override
-    public List<Request> getAllRequests() {
-        return null;
-    }
 
     @Override
     public List<Room> getAvailableRoomsForDate(Date startDate, Date endDate, int numberOfGuests) {
@@ -24,8 +20,5 @@ public class BookingServiceImpl implements BookingService {
         return null;
     }
 
-    @Override
-    public Booking getStayByUserId(int id) {
-        return null;
-    }
+
 }

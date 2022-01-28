@@ -8,8 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface BookingService {
-    List<Request> getAllRequests();
+
     List<Room> getAvailableRoomsForDate(Date startDate, Date endDate, int numberOfGuests);
     List<Booking> getAllStays();
-    Booking getStayByUserId (int id);
 }

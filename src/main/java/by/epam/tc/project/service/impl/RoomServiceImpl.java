@@ -8,14 +8,14 @@ import by.epam.tc.project.entity.Room;
 import by.epam.tc.project.service.RoomService;
 import by.epam.tc.project.service.exception.ServiceException;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class RoomServiceImpl implements RoomService {
     private static final DAOProvider provider = DAOProvider.getInstance();
     private static final RoomDAO roomDAO = provider.getRoomDAO();
     @Override
-    public List<Room> findAvailableRooms(Date startDate, Date endDate, int maxPersons) throws ServiceException {
+    public List<Room> findAvailableRooms(java.sql.Date startDate, Date endDate, int maxPersons) throws ServiceException {
         try {
             roomDAO.retrieveAvailableRoomsForDate(startDate,endDate, maxPersons);
         } catch (DAOException e) {
