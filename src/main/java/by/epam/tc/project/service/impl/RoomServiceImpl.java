@@ -18,6 +18,7 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> findAvailableRooms(java.sql.Date startDate, Date endDate, int maxPersons) throws ServiceException {
         try {
             roomDAO.retrieveAvailableRoomsForDate(startDate,endDate, maxPersons);
+
         } catch (DAOException e) {
             throw new ServiceException();
         }

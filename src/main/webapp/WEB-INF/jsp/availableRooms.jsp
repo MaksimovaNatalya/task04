@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MaxMoff
-  Date: 27.01.2022
-  Time: 15:55
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -102,6 +96,25 @@
 <br/>
 
 AVAILABLE ROOMS
+<form action="Controller" method="post">
+    <input type="hidden" name="command" value="findRooms">
+
+<c:forEach var="room" items="${availableRooms}">
+    <table >
+        <tr>
+            <th>Category</th>
+            <th>Price per night</th>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <td><c:out value="${room.category}"  /></td>
+            <td><c:out value="${room.pricePerNight}" /></td>
+            <td><c:out value="${room.image}" /></td>
+        </tr>
+    </table>
+
+    <br/>
+</c:forEach>
 
 </body>
 </html>

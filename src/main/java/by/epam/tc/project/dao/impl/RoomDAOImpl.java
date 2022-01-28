@@ -142,17 +142,20 @@ public class RoomDAOImpl implements RoomDAO {
         ResultSet rs = null;
 
         try {
+
             Room room;
             connection = connectionPool.takeConnection();
             ps = connection.prepareStatement(RETRIEVE_AVAILABLE_ROOMS_FOR_DATE);
           ps.setDate(1,  startDate);
           ps.setDate(2,  endDate);
           ps.setInt(3,  maxPersons);
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 room = roomBuilder.buildRoom(rs);
                 availableRooms.add(room);
             }
+
         } catch (SQLException e) {
             throw new DAOException("SQLException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
         } catch (ConnectionPoolException e) {

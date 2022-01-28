@@ -8,31 +8,31 @@ public class Request implements Serializable {
     private Integer id;
     private String category;
     private Integer maxPersons;
-    private Date start_date;
-    private Date end_date;
+    private Date startDate;
+    private Date endDate;
     private String status;
-    private String users_id;
+    private String usersId;
 
     public Request () {
 
     }
-    public Request(Integer id, String category, Integer maxPersons, Date startDate, Date end_date, String status, String users_id) {
+    public Request(Integer id, String category, Integer maxPersons, Date startDate, Date endDate, String status, String usersId) {
         this.id = id;
         this.category = category;
         this.maxPersons = maxPersons;
-        this.start_date = startDate;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = status;
-        this.users_id = users_id;
+        this.usersId = usersId;
     }
 
-    public Request(String category, Integer maxPersons, Date start_date, Date end_date, String status, String users_id) {
+    public Request(String category, Integer maxPersons, Date startDate, Date endDate, String status, String usersId) {
         this.category = category;
         this.maxPersons = maxPersons;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = status;
-        this.users_id = users_id;
+        this.usersId = usersId;
     }
 
     public Integer getId() {
@@ -59,20 +59,20 @@ public class Request implements Serializable {
         this.maxPersons = maxPersons;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public String getStatus() {
@@ -83,12 +83,12 @@ public class Request implements Serializable {
         this.status = status;
     }
 
-    public String getUsers_id() {
-        return users_id;
+    public String getUsersId() {
+        return usersId;
     }
 
-    public void setUsers_id(String users_id) {
-        this.users_id = users_id;
+    public void setUsersId(String usersId) {
+        this.usersId = usersId;
     }
 
     @Override
@@ -96,12 +96,12 @@ public class Request implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return id.equals(request.id) && Objects.equals(category, request.category) && Objects.equals(maxPersons, request.maxPersons) && Objects.equals(start_date, request.start_date) && Objects.equals(end_date, request.end_date) && Objects.equals(status, request.status) && users_id.equals(request.users_id);
+        return id.equals(request.id) && Objects.equals(category, request.category) && Objects.equals(maxPersons, request.maxPersons) && Objects.equals(startDate, request.startDate) && Objects.equals(endDate, request.endDate) && Objects.equals(status, request.status) && usersId.equals(request.usersId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, maxPersons, start_date, end_date, status, users_id);
+        return Objects.hash(id, category, maxPersons, startDate, endDate, status, usersId);
     }
 
     @Override
@@ -110,10 +110,10 @@ public class Request implements Serializable {
                 "id=" + id +
                 ", category='" + category + '\'' +
                 ", max_persons=" + maxPersons +
-                ", start_date='" + start_date + '\'' +
-                ", end_date='" + end_date + '\'' +
+                ", start_date='" + startDate + '\'' +
+                ", end_date='" + endDate + '\'' +
                 ", status='" + status + '\'' +
-                ", users_id='" + users_id + '\'' +
+                ", users_id='" + usersId + '\'' +
                 '}';
     }
 }

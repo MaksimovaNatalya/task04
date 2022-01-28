@@ -5,18 +5,18 @@ import java.util.Objects;
 
 public class Bill implements Serializable {
     private Integer id;
-    private Integer total_amount;
+    private Integer totalAmount;
     private String status;
-    private Integer bookings_id;
+    private Integer bookingsId;
 
     public Bill() {
     }
 
-    public Bill(Integer id, Integer total_amount, String status, Integer bookings_id) {
+    public Bill(Integer id, Integer totalAmount, String status, Integer bookingsId) {
         this.id = id;
-        this.total_amount = total_amount;
+        this.totalAmount = totalAmount;
         this.status = status;
-        this.bookings_id = bookings_id;
+        this.bookingsId = bookingsId;
     }
 
     public Integer getId() {
@@ -27,12 +27,12 @@ public class Bill implements Serializable {
         this.id = id;
     }
 
-    public Integer getTotal_amount() {
-        return total_amount;
+    public Integer getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotal_amount(Integer total_amount) {
-        this.total_amount = total_amount;
+    public void setTotalAmount(Integer totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public String getStatus() {
@@ -43,12 +43,12 @@ public class Bill implements Serializable {
         this.status = status;
     }
 
-    public Integer getBookings_id() {
-        return bookings_id;
+    public Integer getBookingsId() {
+        return bookingsId;
     }
 
-    public void setBookings_id(Integer bookings_id) {
-        this.bookings_id = bookings_id;
+    public void setBookingsId(Integer bookingsId) {
+        this.bookingsId = bookingsId;
     }
 
     @Override
@@ -56,21 +56,21 @@ public class Bill implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bill bill = (Bill) o;
-        return id.equals(bill.id) && Objects.equals(total_amount, bill.total_amount) && Objects.equals(status, bill.status) && bookings_id.equals(bill.bookings_id);
+        return id.equals(bill.id) && Objects.equals(totalAmount, bill.totalAmount) && Objects.equals(status, bill.status) && bookingsId.equals(bill.bookingsId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, total_amount, status, bookings_id);
+        return Objects.hash(id, totalAmount, status, bookingsId);
     }
 
     @Override
     public String toString() {
         return "Bill{" +
                 "id=" + id +
-                ", total_amount=" + total_amount +
+                ", total_amount=" + totalAmount +
                 ", status='" + status + '\'' +
-                ", bookings_id=" + bookings_id +
+                ", bookings_id=" + bookingsId +
                 '}';
     }
 }

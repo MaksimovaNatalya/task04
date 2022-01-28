@@ -6,17 +6,17 @@ import java.util.Objects;
 public class RequestedRoom implements Serializable {
     private Integer id;
     private String status;
-    private Integer rooms_id;
-    private Integer requests_id;
+    private Integer roomsId;
+    private Integer requestsId;
 
     public RequestedRoom() {
 
     }
-    public RequestedRoom(Integer id, String status, Integer rooms_id, Integer requests_id) {
+    public RequestedRoom(Integer id, String status, Integer roomsId, Integer requestsId) {
         this.id = id;
         this.status = status;
-        this.rooms_id = rooms_id;
-        this.requests_id = requests_id;
+        this.roomsId = roomsId;
+        this.requestsId = requestsId;
     }
 
     public Integer getId() {
@@ -35,20 +35,20 @@ public class RequestedRoom implements Serializable {
         this.status = status;
     }
 
-    public Integer getRooms_id() {
-        return rooms_id;
+    public Integer getRoomsId() {
+        return roomsId;
     }
 
-    public void setRooms_id(Integer rooms_id) {
-        this.rooms_id = rooms_id;
+    public void setRoomsId(Integer roomsId) {
+        this.roomsId = roomsId;
     }
 
-    public Integer getRequests_id() {
-        return requests_id;
+    public Integer getRequestsId() {
+        return requestsId;
     }
 
-    public void setRequests_id(Integer requests_id) {
-        this.requests_id = requests_id;
+    public void setRequestsId(Integer requestsId) {
+        this.requestsId = requestsId;
     }
 
     @Override
@@ -56,12 +56,12 @@ public class RequestedRoom implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RequestedRoom that = (RequestedRoom) o;
-        return id.equals(that.id) && Objects.equals(status, that.status) && rooms_id.equals(that.rooms_id) && requests_id.equals(that.requests_id);
+        return id.equals(that.id) && Objects.equals(status, that.status) && roomsId.equals(that.roomsId) && requestsId.equals(that.requestsId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, rooms_id, requests_id);
+        return Objects.hash(id, status, roomsId, requestsId);
     }
 
     @Override
@@ -69,8 +69,8 @@ public class RequestedRoom implements Serializable {
         return "RequestedRoom{" +
                 "id=" + id +
                 ", status='" + status + '\'' +
-                ", rooms_id=" + rooms_id +
-                ", requests_id=" + requests_id +
+                ", rooms_id=" + roomsId +
+                ", requests_id=" + requestsId +
                 '}';
     }
 }

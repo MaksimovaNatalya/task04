@@ -5,18 +5,18 @@ import java.util.Objects;
 
 public class Booking implements Serializable {
     private Integer id;
-    private String real_start_date;
-    private String real_end_date;
-    private Integer requested_rooms_id;
+    private String realStartDate;
+    private String realEndDate;
+    private Integer requestedRoomsId;
 
     public Booking() {
     }
 
-    public Booking(Integer id, String real_start_date, String real_end_date, Integer requested_rooms_id) {
+    public Booking(Integer id, String realStartDate, String realEndDate, Integer requestedRoomsId) {
         this.id = id;
-        this.real_start_date = real_start_date;
-        this.real_end_date = real_end_date;
-        this.requested_rooms_id = requested_rooms_id;
+        this.realStartDate = realStartDate;
+        this.realEndDate = realEndDate;
+        this.requestedRoomsId = requestedRoomsId;
     }
 
     public Integer getId() {
@@ -27,28 +27,28 @@ public class Booking implements Serializable {
         this.id = id;
     }
 
-    public String getReal_start_date() {
-        return real_start_date;
+    public String getRealStartDate() {
+        return realStartDate;
     }
 
-    public void setReal_start_date(String real_start_date) {
-        this.real_start_date = real_start_date;
+    public void setRealStartDate(String realStartDate) {
+        this.realStartDate = realStartDate;
     }
 
-    public String getReal_end_date() {
-        return real_end_date;
+    public String getRealEndDate() {
+        return realEndDate;
     }
 
-    public void setReal_end_date(String real_end_date) {
-        this.real_end_date = real_end_date;
+    public void setRealEndDate(String realEndDate) {
+        this.realEndDate = realEndDate;
     }
 
-    public Integer getRequested_rooms_id() {
-        return requested_rooms_id;
+    public Integer getRequestedRoomsId() {
+        return requestedRoomsId;
     }
 
-    public void setRequested_rooms_id(Integer requested_rooms_id) {
-        this.requested_rooms_id = requested_rooms_id;
+    public void setRequestedRoomsId(Integer requestedRoomsId) {
+        this.requestedRoomsId = requestedRoomsId;
     }
 
     @Override
@@ -56,21 +56,21 @@ public class Booking implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return id.equals(booking.id) && Objects.equals(real_start_date, booking.real_start_date) && Objects.equals(real_end_date, booking.real_end_date) && requested_rooms_id.equals(booking.requested_rooms_id);
+        return id.equals(booking.id) && Objects.equals(realStartDate, booking.realStartDate) && Objects.equals(realEndDate, booking.realEndDate) && requestedRoomsId.equals(booking.requestedRoomsId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, real_start_date, real_end_date, requested_rooms_id);
+        return Objects.hash(id, realStartDate, realEndDate, requestedRoomsId);
     }
 
     @Override
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", real_start_date='" + real_start_date + '\'' +
-                ", real_end_date='" + real_end_date + '\'' +
-                ", requested_rooms_id=" + requested_rooms_id +
+                ", real_start_date='" + realStartDate + '\'' +
+                ", real_end_date='" + realEndDate + '\'' +
+                ", requested_rooms_id=" + requestedRoomsId +
                 '}';
     }
 }
