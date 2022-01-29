@@ -173,7 +173,8 @@ table{
 <a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
 <input type="hidden" name="command" value="GO_TO_MY_BOOKINGS_PAGE">
 <br/>
-<c:if test="${not empty sessionScope.login}" >
+
+<c:if test="${requestScope.user.roleId eq 2}" >
 
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="GO_TO_ACCOUNT_PAGE">
@@ -195,8 +196,16 @@ table{
         <input type="button" value="Change info"/>
     </a>
 
-    </c:if>
 </form>
+</c:if>
+
+<c:if test="${requestScope.user.roleId eq 1}" >
+
+    <form action="Controller" method="post">
+    <input type="hidden" name="command" value="GO_TO_ACCOUNT_PAGE">
+    ADMIN IS HERE
+    </form>
+</c:if>
 
 </body>
 </html>

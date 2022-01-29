@@ -16,13 +16,14 @@ public class RoomServiceImpl implements RoomService {
     private static final RoomDAO roomDAO = provider.getRoomDAO();
     @Override
     public List<Room> findAvailableRooms(java.sql.Date startDate, Date endDate, int maxPersons) throws ServiceException {
+        List<Room> availableRooms;
         try {
-            roomDAO.retrieveAvailableRoomsForDate(startDate,endDate, maxPersons);
+            availableRooms = roomDAO.retrieveAvailableRoomsForDate(startDate, endDate, maxPersons);
 
         } catch (DAOException e) {
             throw new ServiceException();
         }
-        return null;
+        return availableRooms;
     }
 
     @Override

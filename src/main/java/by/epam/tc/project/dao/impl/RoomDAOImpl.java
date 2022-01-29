@@ -23,10 +23,10 @@ public class RoomDAOImpl implements RoomDAO {
     private final String RETRIEVE_ROOM_BY_MAXPERSONS_WITH_SEAVIEW_AND_BREAKFAST = "SELECT * FROM rooms WHERE has-sea-view = %s AND breakfast-included = %s AND max-persons = %s";
     private final String RETRIEVE_ROOMS_THAT_HAVE_REQUESTS = "SELECT * FROM rooms JOIN rooms_has_requests ON rooms.id=rooms_has_requests.rooms_id JOIN requests ON rooms_has_requests.requests_id=requests.id";
 
-    private final String RETRIEVE_AVAILABLE_ROOMS_FOR_DATE = "SELECT * FROM rooms WHERE rooms_id NOT IN " +
+    private final String RETRIEVE_AVAILABLE_ROOMS_FOR_DATE = "SELECT * FROM rooms WHERE max_persons>=? AND rooms_id NOT IN " +
             "(SELECT rooms.id FROM requests R JOIN rooms_has_requests RR ON R.id = RR.requests_id " +
             "WHERE (start_date <= ? AND end_date >= ?) OR (start_date < ? AND end_date >= ?) " +
-            "OR (? <= start_date AND ? >= start_date)) AND max_persons>=?";
+            "OR (? <= start_date AND ? >= start_date)) ";
 
     private final String RETRIEVE_AVAILABLE_ROOMS= "SELECT * "
             + "FROM rooms R JOIN rooms_has_requests RR ON RR.rooms_id = R.id "
@@ -153,18 +153,25 @@ public class RoomDAOImpl implements RoomDAO {
 
             Room room;
             connection = connectionPool.takeConnection();
-            ps = connection.prepareStatement(RETRIEVE_AVAILABLE_ROOMS);
-          ps.setDate(1,  startDate);
-          ps.setDate(2,  endDate);
-          ps.setDate(3,  startDate);
-          ps.setDate(4,  endDate);
-          ps.setInt(5,  maxPersons);
+            ps = connection.prepareStatement(RETRIEVE_AVAILABLE_ROOMS_FOR_DATE);
 
+            ps.setInt(1,  maxPersons);
+            ps.setDate(2,  startDate);
+            ps.setDate(3,  startDate);
+            ps.setDate(4,  endDate);
+            ps.setDate(5,  endDate);
+            ps.setDate(6,  startDate);
+            ps.setDate(7,  endDate);
+            if(true){
+                throw new RuntimeException(String.valueOf(ps));
+            }
             rs = ps.executeQuery();
 
             while (rs.next()) {
+
                 room = roomBuilder.buildRoom(rs);
                 availableRooms.add(room);
+
             }
 
         } catch (SQLException e) {

@@ -187,22 +187,29 @@
 
         <tr>
             <th>№</th>
-            <th>Category</th>
-            <th>Max_persons</th>
-            <th>Start_date</th>
-            <th>End_date</th>
-            <th>Status</th>
+            <th>Room category</th>
+            <th>Maximum persons</th>
+            <th>Arrival date</th>
+            <th>Departure date</th>
+            <th>Status of the booking</th>
             <th>Action</th>
         </tr>
         <tr>
             <c:forEach var="request" items="${requestScope.allRequests}">
             <td><c:out value="${request.id}"/></td>
             <td><c:out value="${request.category}"/></td>
-            <td><c:out value="${request.max_persons}"/></td>
-            <td><c:out value="${request.start_date}"/></td>
-            <td><c:out value="${request.end_date}"/></td>
+            <td><c:out value="${request.maxPersons}"/></td>
+            <td><c:out value="${request.startDate}"/></td>
+            <td><c:out value="${request.endDate}"/></td>
             <td><c:out value="${request.status}"/></td>
-            <td>Cancel booking button</td>
+            <td>
+
+                <form>
+                    <input type="button" value="Cancel booking"/>
+                    <input type="hidden" name="command" value="cancelBooking">
+                </form>
+
+            </td>
         </tr>
         </c:forEach>
     </table>

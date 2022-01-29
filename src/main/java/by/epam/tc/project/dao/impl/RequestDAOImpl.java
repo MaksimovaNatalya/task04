@@ -23,6 +23,7 @@ public class RequestDAOImpl implements RequestDAO {
     private final RequestBuilder requestBuilder = new RequestBuilder();
 
     private final String RETRIEVE_REQUESTS_BY_LOGIN = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
+    private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
 
     @Override
     public List<Request> retrieveRequestsByUserId(String login) throws DAOException {

@@ -17,6 +17,7 @@ public final class CommandProvider {
         commands.put("logOut", new LogOutCommand());
         commands.put("changeLanguage", new ChangeLanguageCommand());
         commands.put("changeAccountInfo", new ChangeAccountInfoCommand());
+        commands.put("cancelBooking", new CancelBookingCommand());
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());
