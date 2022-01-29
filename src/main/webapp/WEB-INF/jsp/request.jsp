@@ -97,6 +97,9 @@
 <h1><font color="#191970">Choose arrival date, departure date and number of guests </font></h1>
 
 
+
+<c:if test="${not empty sessionScope.login}" >
+
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="findRooms">
 <div><fieldset>
@@ -121,6 +124,7 @@
 </fieldset>
 </div>
 </form>
+</c:if>
 </body>
 </html>
 

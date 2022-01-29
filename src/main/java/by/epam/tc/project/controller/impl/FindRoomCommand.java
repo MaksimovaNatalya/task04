@@ -31,7 +31,6 @@ public class FindRoomCommand implements Command {
 
 
             availableRooms=ROOM_SERVICE.findAvailableRooms(startDate,endDate,guestsNumber);
-
             if(availableRooms.size()>0) {
                 request.setAttribute(Util.Utility.AVAILABLE_ROOMS, availableRooms);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/availableRooms.jsp");

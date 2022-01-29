@@ -36,7 +36,7 @@ public class AuthorizationCommand implements Command {
             if (user != null) {
                 request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
                 request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.getById(user.getRoleId()));
-                response.sendRedirect(Util.Redirect.TO_ACCOUNT_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_SUCCESS);
+                response.sendRedirect(Util.Redirect.TO_INDEX_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_SUCCESS);
             } else {
                 response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_ERROR);
             }
