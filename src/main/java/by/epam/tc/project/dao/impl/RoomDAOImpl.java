@@ -22,8 +22,11 @@ public class RoomDAOImpl implements RoomDAO {
     private final String RETRIEVE_ROOM_BY_MAXPERSONS_WITH_SEAVIEW = "SELECT * FROM rooms WHERE has-sea-view = %s AND max-persons = %s";
     private final String RETRIEVE_ROOM_BY_MAXPERSONS_WITH_SEAVIEW_AND_BREAKFAST = "SELECT * FROM rooms WHERE has-sea-view = %s AND breakfast-included = %s AND max-persons = %s";
     private final String RETRIEVE_ROOMS_THAT_HAVE_REQUESTS = "SELECT * FROM rooms JOIN rooms_has_requests ON rooms.id=rooms_has_requests.rooms_id JOIN requests ON rooms_has_requests.requests_id=requests.id";
-    private final String RETRIEVE_AVAILABLE_ROOMS_FOR_DATE = "SELECT rooms.* FROM rooms JOIN (SELECT * FROM requests WHERE " +
-            "?<=requests.end_date AND ?>=requests.start_date) z ON rooms.id=z.room_id WHERE z.room_id IS NULL AND max_persons=?";
+
+    private final String RETRIEVE_AVAILABLE_ROOMS_FOR_DATE = "SELECT * FROM rooms WHERE rooms_id NOT IN " +
+            "(SELECT rooms.id FROM requests R JOIN rooms_has_requests RR ON R.id = RR.requests_id " +
+            "WHERE (start_date <= ? AND end_date >= ?) OR (start_date < ? AND end_date >= ?) " +
+            "OR (? <= start_date AND ? >= start_date)) AND max_persons>=?";
 
     @Override
     public List<Room> retrieveAllRooms() throws DAOException {
@@ -147,8 +150,12 @@ public class RoomDAOImpl implements RoomDAO {
             connection = connectionPool.takeConnection();
             ps = connection.prepareStatement(RETRIEVE_AVAILABLE_ROOMS_FOR_DATE);
           ps.setDate(1,  startDate);
-          ps.setDate(2,  endDate);
-          ps.setInt(3,  maxPersons);
+          ps.setDate(2,  startDate);
+          ps.setDate(3,  endDate);
+          ps.setDate(4,  endDate);
+          ps.setDate(5,  startDate);
+          ps.setDate(6,  endDate);
+          ps.setInt(7,  maxPersons);
 
             rs = ps.executeQuery();
             while (rs.next()) {
