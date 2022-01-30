@@ -20,9 +20,9 @@ public class TableAndColumnName {
     public static final String ROOM_ID = "id";
     public static final String ROOM_MAX_PERSONS = "max_persons";
     public static final String ROOM_CATEGORY = "category";
-    public static final String ROOM_PRICE_PER_NIGHT = "price-per-night";
-    public static final String ROOM_HAS_SEA_VIEW = "has-seaview";
-    public static final String ROOM_BREAKFAST_INCLUDED = "breakfast-included";
+    public static final String ROOM_PRICE_PER_NIGHT = "price_per_night";
+    public static final String ROOM_HAS_SEA_VIEW = "seaview";
+    public static final String ROOM_BREAKFAST_INCLUDED = "breakfast";
     public static final String ROOM_IMAGE = "image";
 
     public static final String BOOKING_TABLE = "bookings";
@@ -39,13 +39,13 @@ public class TableAndColumnName {
     public static final String REQUEST_END_DATE = "end_date";
     public static final String REQUEST_STATUS = "status";
     public static final String REQUEST_USER_ID = "users_id";
+    public static final String REQUEST_ROOM_ID = "rooms_id";
 
     public static final String BILL_TABLE = "bills";
     public static final String BILL_ID = "id";
     public static final String BILL_TOTAL_AMOUNT = "total_amount";
     public static final String BILL_STATUS = "status";
     public static final String BILL_BOOKINGS_ID = "bookings_id";
-
 
 
 }

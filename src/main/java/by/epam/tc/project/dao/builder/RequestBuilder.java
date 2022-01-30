@@ -19,7 +19,8 @@ public class RequestBuilder {
             request.setStartDate(rs.getDate(TableAndColumnName.REQUEST_START_DATE));
             request.setEndDate(rs.getDate(TableAndColumnName.REQUEST_END_DATE));
             request.setStatus(rs.getString(TableAndColumnName.REQUEST_STATUS));
-            request.setUsersId(rs.getString(TableAndColumnName.REQUEST_USER_ID));
+            request.setUsersId(rs.getInt(TableAndColumnName.REQUEST_USER_ID));
+            request.setRoomsId(rs.getInt(TableAndColumnName.REQUEST_ROOM_ID));
 
         } catch (SQLException e) {
             throw new DAOException("SQLException in RequestBuilder.buildRequest (ResultSet rs)"+e);

@@ -1,22 +1,23 @@
 package by.epam.tc.project.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Request implements Serializable {
     private Integer id;
     private String category;
     private Integer maxPersons;
-    private Date startDate;
-    private Date endDate;
+    private java.sql.Date startDate;
+    private java.sql.Date endDate;
     private String status;
-    private String usersId;
+    private Integer usersId;
+    private Integer roomsId;
 
-    public Request () {
+    public  Request (){}
 
-    }
-    public Request(Integer id, String category, Integer maxPersons, Date startDate, Date endDate, String status, String usersId) {
+    public Request(Integer id, String category, Integer maxPersons, java.sql.Date startDate, java.sql.Date endDate, String status,
+                   Integer usersId, Integer roomsId) {
         this.id = id;
         this.category = category;
         this.maxPersons = maxPersons;
@@ -24,17 +25,18 @@ public class Request implements Serializable {
         this.endDate = endDate;
         this.status = status;
         this.usersId = usersId;
+        this.roomsId = roomsId;
     }
-
-    public Request(String category, Integer maxPersons, Date startDate, Date endDate, String status, String usersId) {
+    public Request(String category, Integer maxPersons, java.sql.Date startDate, java.sql.Date endDate, String status,
+                   Integer usersId, Integer roomsId) {
         this.category = category;
         this.maxPersons = maxPersons;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
         this.usersId = usersId;
+        this.roomsId = roomsId;
     }
-
     public Integer getId() {
         return id;
     }
@@ -59,15 +61,15 @@ public class Request implements Serializable {
         this.maxPersons = maxPersons;
     }
 
-    public Date getStartDate() {
+    public java.sql.Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(java.sql.Date startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public java.sql.Date getEndDate() {
         return endDate;
     }
 
@@ -83,12 +85,20 @@ public class Request implements Serializable {
         this.status = status;
     }
 
-    public String getUsersId() {
+    public Integer getUsersId() {
         return usersId;
     }
 
-    public void setUsersId(String usersId) {
+    public void setUsersId(Integer usersId) {
         this.usersId = usersId;
+    }
+
+    public Integer getRoomsId() {
+        return roomsId;
+    }
+
+    public void setRoomsId(Integer roomsId) {
+        this.roomsId = roomsId;
     }
 
     @Override
@@ -96,12 +106,12 @@ public class Request implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return id.equals(request.id) && Objects.equals(category, request.category) && Objects.equals(maxPersons, request.maxPersons) && Objects.equals(startDate, request.startDate) && Objects.equals(endDate, request.endDate) && Objects.equals(status, request.status) && usersId.equals(request.usersId);
+        return id.equals(request.id) && Objects.equals(category, request.category) && Objects.equals(maxPersons, request.maxPersons) && Objects.equals(startDate, request.startDate) && Objects.equals(endDate, request.endDate) && Objects.equals(status, request.status) && usersId.equals(request.usersId) && roomsId.equals(request.roomsId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, maxPersons, startDate, endDate, status, usersId);
+        return Objects.hash(id, category, maxPersons, startDate, endDate, status, usersId, roomsId);
     }
 
     @Override
@@ -109,11 +119,12 @@ public class Request implements Serializable {
         return "Request{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
-                ", max_persons=" + maxPersons +
-                ", start_date='" + startDate + '\'' +
-                ", end_date='" + endDate + '\'' +
+                ", maxPersons=" + maxPersons +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", status='" + status + '\'' +
-                ", users_id='" + usersId + '\'' +
+                ", usersId=" + usersId +
+                ", roomsId=" + roomsId +
                 '}';
     }
 }

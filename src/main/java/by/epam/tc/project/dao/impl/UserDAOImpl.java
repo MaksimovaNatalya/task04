@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
     private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
 
     @Override
-    public User authorization(String login, String password) throws DAOException {
+    public User authorize(String login, String password) throws DAOException {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -46,14 +46,17 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = connectionPool.takeConnection();
             ps = connection.prepareStatement(AUTHORIZATION);
-            ps.setString(1, LOGIN);
+            ps.setString(1, login);
             rs = ps.executeQuery();
+
+
             while (rs.next()) {
                 String storedPassword = rs.getString(PASSWORD);
                 if (BCrypt.checkpw(password, storedPassword)) {
                     userFromBD = retrieveUserById(rs.getInt(ID));
                 }
             }
+
             return userFromBD;
         } catch (ConnectionPoolException e) {
             throw new DAOException("ConnectionPoolException in UserDAOImpl.authorization:", e);

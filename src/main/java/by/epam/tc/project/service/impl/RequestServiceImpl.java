@@ -30,4 +30,13 @@ public class RequestServiceImpl implements RequestService {
         }
         return allRequests;
     }
+
+    @Override
+    public void addRequest(Request request) throws ServiceException{
+        try {
+            requestDAO.addRequest(request);
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+    }
 }

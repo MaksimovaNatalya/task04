@@ -6,7 +6,7 @@ import by.epam.tc.project.entity.User;
 import java.util.List;
 
 public interface UserDAO {
-    User authorization(String login, String password) throws DAOException;
+    User authorize(String login, String password) throws DAOException;
 
     List<User> retrieveAllUsers() throws DAOException;
 

@@ -7,7 +7,6 @@ import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
 import by.epam.tc.project.service.validator.UserValidator;
-import by.epam.tc.project.service.validator.ValidatorException;
 import by.epam.tc.project.service.validator.ValidatorProvider;
 
 public class UserServiceImpl implements UserService {
@@ -24,7 +23,9 @@ public class UserServiceImpl implements UserService {
         //2. realizations
         User user;
         try {
-            user = userDAO.authorization(login, password);
+
+            user = userDAO.authorize(login, password);
+
             return user;
         } catch (DAOException e) {
             throw new ServiceException("Service exception in UserService.authorization", e);

@@ -28,11 +28,13 @@ public class AuthorizationCommand implements Command {
         String password = request.getParameter(TableAndColumnName.PASSWORD);
 
         try {
+
             if (checkEmptyField(login) || checkEmptyField(password)) {
                 response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.LOGIN_OR_PASSWORD_EMPTY);
                 return;
             }
             User user = USER_SERVICE.authorize(login, password);
+
             if (user != null) {
                 request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
                 request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.getById(user.getRoleId()));

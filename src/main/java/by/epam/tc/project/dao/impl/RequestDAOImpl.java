@@ -5,6 +5,7 @@ import by.epam.tc.project.dao.builder.RequestBuilder;
 import by.epam.tc.project.dao.builder.UserBuilder;
 import by.epam.tc.project.dao.connectionpool.ConnectionPool;
 import by.epam.tc.project.dao.connectionpool.ConnectionPoolException;
+import by.epam.tc.project.dao.db.TableAndColumnName;
 import by.epam.tc.project.dao.exception.DAOException;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.entity.Room;
@@ -24,6 +25,8 @@ public class RequestDAOImpl implements RequestDAO {
 
     private final String RETRIEVE_REQUESTS_BY_LOGIN = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
+    private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_is, " +
+            "rooms_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     @Override
     public List<Request> retrieveRequestsByUserId(String login) throws DAOException {
@@ -85,4 +88,39 @@ public class RequestDAOImpl implements RequestDAO {
     public List<Room> retrieveFreeRoomsByCategoryAndMaxPersons() throws DAOException {
         return null;
     }
+
+    @Override
+    public void addRequest(Request request) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+
+            ps = connection.prepareStatement(ADD_REQUEST);
+            ps.setString(1, request.getCategory());
+            ps.setInt(2, request.getMaxPersons());
+            ps.setDate(3, request.getStartDate());
+            ps.setDate(4, request.getEndDate());
+            ps.setString(5, request.getStatus());
+            ps.setInt(6, request.getUsersId());
+            ps.setInt(7, request.getRoomsId());
+            ps.executeUpdate();
+
+
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RequestDAOImpl.addRequest:", e);
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RequestDAOImpl.addRequest:", e);
+        } finally {
+            try {
+                    connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }
+

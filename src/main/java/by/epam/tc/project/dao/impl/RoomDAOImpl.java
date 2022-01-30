@@ -28,11 +28,11 @@ public class RoomDAOImpl implements RoomDAO {
             "WHERE (start_date <= ? AND end_date >= ?) OR (start_date < ? AND end_date >= ?) " +
             "OR (? <= start_date AND ? >= start_date)) ";
 
-    private final String RETRIEVE_AVAILABLE_ROOMS= "SELECT * FROM rooms R JOIN rooms_has_requests RR ON RR.rooms_id = R.id " +
-            "JOIN requests ON requests.id = RR.requests_id " +
-            "WHERE R.max_persons>=? " +
-            "AND (requests.start_date NOT between ? AND ?) " +
-            "AND (requests.end_date NOT between ? AND ?)";
+    private final String RETRIEVE_AVAILABLE_ROOMS= "SELECT * FROM rooms RO " +
+            "JOIN requests RE ON RE.rooms_id = RO.id " +
+            "WHERE RO.max_persons>=? " +
+            "AND (RE.start_date NOT between ? AND ?) " +
+            "AND (RE.end_date NOT between ? AND ?)";
 
 
     @Override

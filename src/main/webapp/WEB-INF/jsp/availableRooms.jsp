@@ -111,6 +111,7 @@ AVAILABLE ROOMS
 
 <c:forEach var="room" items="${availableRooms}">
     <table >
+        <tr class="doNotShow"><th>Id</th><td>${requestScope.room.id}</td></tr>
         <tr>
             <th>Image</th>
             <th>Category</th>
@@ -125,9 +126,10 @@ AVAILABLE ROOMS
             <td><c:out value="${room.pricePerNight}" /></td>
             <td><c:out value="${room.maxPersons}" /></td>
             <td>
-                <form>
-                <input type="button" value="Book"/>
-                <input type="hidden" name="command" value="bookRoom">
+                <form action="Controller" method="post">
+                    <input type="hidden" name="command" value="bookRoom">
+                <input type="submit" value="Book"/>
+
             </form>
             </td>
         </tr>

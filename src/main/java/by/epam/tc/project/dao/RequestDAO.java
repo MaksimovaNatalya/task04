@@ -16,4 +16,7 @@ public interface RequestDAO {
 
     List<Room> retrieveFreeRoomsByMaxPersons () throws DAOException;
     List<Room> retrieveFreeRoomsByCategoryAndMaxPersons () throws DAOException;
+
+    void addRequest(Request request) throws DAOException;
+
 }
