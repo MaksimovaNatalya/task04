@@ -18,7 +18,7 @@ public class TableAndColumnName {
 
     public static final String ROOM_TABLE = "rooms";
     public static final String ROOM_ID = "id";
-    public static final String ROOM_MAX_PERSONS = "max-persons";
+    public static final String ROOM_MAX_PERSONS = "max_persons";
     public static final String ROOM_CATEGORY = "category";
     public static final String ROOM_PRICE_PER_NIGHT = "price-per-night";
     public static final String ROOM_HAS_SEA_VIEW = "has-seaview";

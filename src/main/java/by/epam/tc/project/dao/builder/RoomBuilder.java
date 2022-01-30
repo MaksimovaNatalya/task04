@@ -13,6 +13,7 @@ public class RoomBuilder {
         Room room = new Room();
 
         try {
+
             room.setId(rs.getInt(TableAndColumnName.ROOM_ID));
             room.setMaxPersons(rs.getInt(TableAndColumnName.ROOM_MAX_PERSONS));
             room.setCategory(rs.getString(TableAndColumnName.ROOM_CATEGORY));

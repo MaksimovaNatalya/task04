@@ -89,6 +89,16 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        table {
+            border: 3px solid grey;
+
+        }
+
+        th, td {
+            text-align: left;
+            border: 1px solid grey;
+            padding: 10px 15px;
+        }
     </style>
 </head>
 <body>
@@ -104,12 +114,20 @@ AVAILABLE ROOMS
         <tr>
             <th>Category</th>
             <th>Price per night</th>
-            <th>Image</th>
+            <th>Maximum persons</th>
+            <th></th>
+
         </tr>
         <tr>
             <td><c:out value="${room.category}"  /></td>
             <td><c:out value="${room.pricePerNight}" /></td>
-            <td><c:out value="${room.image}" /></td>
+            <td><c:out value="${room.maxPersons}" /></td>
+            <td>
+                <form>
+                <input type="button" value="Book"/>
+                <input type="hidden" name="command" value="bookRoom">
+            </form>
+            </td>
         </tr>
     </table>
 

@@ -28,10 +28,12 @@ public class RoomDAOImpl implements RoomDAO {
             "WHERE (start_date <= ? AND end_date >= ?) OR (start_date < ? AND end_date >= ?) " +
             "OR (? <= start_date AND ? >= start_date)) ";
 
-    private final String RETRIEVE_AVAILABLE_ROOMS= "SELECT * "
-            + "FROM rooms R JOIN rooms_has_requests RR ON RR.rooms_id = R.id "
-            + "JOIN requests ON requests.id = RR.requests_id "
-            + "WHERE NOT(start_date > ? OR end_date < ?) OR NOT (start_date < ? AND end_date > ?) AND max_persons >=?";
+    private final String RETRIEVE_AVAILABLE_ROOMS= "SELECT * FROM rooms R JOIN rooms_has_requests RR ON RR.rooms_id = R.id " +
+            "JOIN requests ON requests.id = RR.requests_id " +
+            "WHERE R.max_persons>=? " +
+            "AND (requests.start_date NOT between ? AND ?) " +
+            "AND (requests.end_date NOT between ? AND ?)";
+
 
     @Override
     public List<Room> retrieveAllRooms() throws DAOException {
@@ -153,25 +155,21 @@ public class RoomDAOImpl implements RoomDAO {
 
             Room room;
             connection = connectionPool.takeConnection();
-            ps = connection.prepareStatement(RETRIEVE_AVAILABLE_ROOMS_FOR_DATE);
+            ps = connection.prepareStatement(RETRIEVE_AVAILABLE_ROOMS);
 
             ps.setInt(1,  maxPersons);
             ps.setDate(2,  startDate);
-            ps.setDate(3,  startDate);
-            ps.setDate(4,  endDate);
+            ps.setDate(3,  endDate);
+            ps.setDate(4,  startDate);
             ps.setDate(5,  endDate);
-            ps.setDate(6,  startDate);
-            ps.setDate(7,  endDate);
-            if(true){
-                throw new RuntimeException(String.valueOf(ps));
-            }
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 room = roomBuilder.buildRoom(rs);
-                availableRooms.add(room);
 
+                availableRooms.add(room);
             }
 
         } catch (SQLException e) {
