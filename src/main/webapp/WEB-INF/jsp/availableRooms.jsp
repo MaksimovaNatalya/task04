@@ -112,6 +112,7 @@ AVAILABLE ROOMS
 <c:forEach var="room" items="${availableRooms}">
     <table >
         <tr>
+            <th>Image</th>
             <th>Category</th>
             <th>Price per night</th>
             <th>Maximum persons</th>
@@ -119,6 +120,7 @@ AVAILABLE ROOMS
 
         </tr>
         <tr>
+            <td><c:out value="${room.image}"  /></td>
             <td><c:out value="${room.category}"  /></td>
             <td><c:out value="${room.pricePerNight}" /></td>
             <td><c:out value="${room.maxPersons}" /></td>
