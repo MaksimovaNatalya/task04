@@ -19,6 +19,7 @@ public final class CommandProvider {
         commands.put("changeAccountInfo", new ChangeAccountInfoCommand());
     //    commands.put("cancelBooking", new CancelBookingCommand());
         commands.put("bookRoom", new BookRoomCommand());
+        commands.put("showAllRequests", new ShowAllRequestsCommand());
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());
@@ -29,6 +30,7 @@ public final class CommandProvider {
         commands.put("GO_TO_ROOMS_PAGE", new GoToRoomsPageCommand());
         commands.put("GO_TO_AVAILABLE_ROOMS_PAGE", new GoToAvailableRoomsPageCommand());
         commands.put("GO_TO_MY_BOOKINGS_PAGE", new GoToMyBookingsPageCommand());
+        commands.put("GO_TO_ALL_REQUESTS_PAGE", new GoToAllRequestsPageCommand());
     }
 
     public Command getCommand(String commandName) {

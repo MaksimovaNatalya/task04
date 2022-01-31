@@ -8,7 +8,7 @@ import by.epam.tc.project.service.exception.ServiceException;
 import java.util.List;
 
 public interface RequestService {
-    List<Request> getAllRequests();
+    List<Request> getAllRequests() throws ServiceException;
     List<Request> getRequestsByLogin(String login) throws ServiceException;
     void addRequest (Request request) throws ServiceException;
 }

@@ -12,10 +12,7 @@ import by.epam.tc.project.entity.Room;
 import by.epam.tc.project.entity.User;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +20,7 @@ public class RequestDAOImpl implements RequestDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final RequestBuilder requestBuilder = new RequestBuilder();
 
+    private final String RETRIEVE_ALL_REQUESTS = "SELECT * FROM requests";
     private final String RETRIEVE_REQUESTS_BY_LOGIN = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_id, " +
@@ -66,7 +64,34 @@ public class RequestDAOImpl implements RequestDAO {
 
     @Override
     public List<Request> retrieveAllRequests() throws DAOException {
-        return null;
+        List<Request> allRequests = new ArrayList<>();
+
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            Request request;
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            rs = st.executeQuery(RETRIEVE_ALL_REQUESTS);
+
+            while (rs.next()) {
+                request = requestBuilder.buildRequest(rs);
+                allRequests.add(request);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RequestDAOImpl.retrieveAllRequests()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RequestDAOImpl.retrieveAllRequests()", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, st, rs);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RequestDAOImpl.retrieveAllRequests()", e);
+            }
+        }
+        return allRequests;
     }
 
     @Override

@@ -2,8 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-
+    <title>All Requests</title>
     <style>
         body {
             background: #B0E0E6;
@@ -31,8 +30,9 @@
         .log-in {
             float: right;
         }
-        .local{
-            float:right;
+
+        .local {
+            float: right;
         }
 
         img {
@@ -152,13 +152,17 @@
             width: 33.3333333333%;
             float: right;
         }
-table{
-    border: 3px solid grey;
 
-}
-        .doNotShow{display:none;}
+        table {
+            border: 3px solid grey;
 
-        th, td{
+        }
+
+        .doNotShow {
+            display: none;
+        }
+
+        th, td {
             text-align: left;
             border: 1px solid grey;
             padding: 10px 15px;
@@ -167,50 +171,52 @@ table{
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <br/>
-<c:if test="${requestScope.user.roleId eq 2}" >
 <a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
-<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
-<input type="hidden" name="command" value="GO_TO_MY_BOOKINGS_PAGE">
+<a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">All requests</a>
+<input type="hidden" name="command" value="showAllRequests">
 <br/>
 
+<c:if test="${not empty sessionScope.login}">
 
-
-<form action="Controller" method="post">
-    <input type="hidden" name="command" value="GO_TO_ACCOUNT_PAGE">
     <br>
     <table>
 
-        <tr class="doNotShow"><th>Id</th><td>${requestScope.user.id}</td></tr>
-        <tr><th>Login:</th><td> <c:out value="${requestScope.user.login}"  /></td></tr>
-        <tr><th>Name:</th><td> <c:out value="${requestScope.user.name}"  /></td></tr>
-        <tr><th>Surname:</th><td> <c:out value="${requestScope.user.surname}"  /></td></tr>
-        <tr><th>E-mail:</th><td> <c:out value="${requestScope.user.email}"  /></td></tr>
-        <tr><th>Country:</th><td> <c:out value="${requestScope.user.country}"  /></td></tr>
-        <tr><th>Phone number:</th><td> <c:out value="${requestScope.user.phone}"  /></td></tr>
+        <tr>
+            <th>№</th>
+            <th>Room category</th>
+            <th>Room number</th>
+            <th>Maximum persons</th>
+            <th>Arrival date</th>
+            <th>Departure date</th>
+            <th>Guest</th>
+            <th>Status of the booking</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <c:forEach var="request" items="${requestScope.allRequests}">
+            <td><c:out value="${request.id}"/></td>
+            <td><c:out value="${request.category}"/></td>
+            <td><c:out value="${request.roomsId}"/></td>
+            <td><c:out value="${request.maxPersons}"/></td>
+            <td><c:out value="${request.startDate}"/></td>
+            <td><c:out value="${request.endDate}"/></td>
+            <td><c:out value="${request.usersId}"/></td>
+            <td><c:out value="${request.status}"/></td>
+            <td>
+                <c:if test="${request.status eq 'in progress'}">
+                <form>
+                    <input type="button" value="Approve"/>
+                    <input type="hidden" name="command" value="approveRequest">
+                </form>
+                </c:if>
+            </td>
+        </tr>
+        </c:forEach>
     </table>
-
-<br>
-
-    <a href="Controller?command=GO_TO_CHANGE_ACCOUNT_INFO_PAGE">
-        <input type="button" value="Change info"/>
-    </a>
 
 </form>
 </c:if>
-
-<c:if test="${requestScope.user.roleId eq 1}" >
-    <a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
-    <a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">All requests</a>
-
-
-
-    <form action="Controller" method="post">
-    <input type="hidden" name="command" value="GO_TO_ACCOUNT_PAGE">
-    ADMIN IS HERE
-    </form>
-</c:if>
-
 </body>
 </html>

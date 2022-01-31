@@ -15,8 +15,15 @@ public class RequestServiceImpl implements RequestService {
     private static final DAOProvider provider = DAOProvider.getInstance();
     private static final RequestDAO requestDAO = provider.getRequestDAO();
     @Override
-    public List<Request> getAllRequests() {
-        return null;
+    public List<Request> getAllRequests() throws ServiceException {
+        List<Request> allRequests;
+        try {
+            allRequests = requestDAO.retrieveAllRequests();
+
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+        return allRequests;
     }
 
     @Override
