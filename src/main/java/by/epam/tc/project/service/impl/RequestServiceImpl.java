@@ -34,6 +34,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void addRequest(Request request) throws ServiceException{
         try {
+
             requestDAO.addRequest(request);
         } catch (DAOException e) {
             throw new ServiceException();

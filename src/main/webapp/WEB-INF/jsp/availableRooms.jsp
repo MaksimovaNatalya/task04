@@ -107,11 +107,14 @@
 
 AVAILABLE ROOMS
 <form action="Controller" method="post">
-    <input type="hidden" name="command" value="findRooms">
-
+    <input type="hidden" name="command" value="bookRoom">
 <c:forEach var="room" items="${availableRooms}">
+
     <table >
-        <tr class="doNotShow"><th>Id</th><td>${requestScope.room.id}</td></tr>
+        <c:set var="room.id" value="${room.id}" scope="session" />
+        <c:set var="room.category" value="${room.category}" scope="session" />
+        <c:set var="room.maxPersons" value="${room.maxPersons}" scope="session" />
+        <tr class="doNotShow"><th>Id</th><td>${room.id}</td></tr>
         <tr>
             <th>Image</th>
             <th>Category</th>
@@ -123,11 +126,11 @@ AVAILABLE ROOMS
         <tr>
             <td><c:out value="${room.image}"  /></td>
             <td><c:out value="${room.category}"  /></td>
-            <td><c:out value="${room.pricePerNight}" /></td>
             <td><c:out value="${room.maxPersons}" /></td>
+            <td><c:out value="${room.pricePerNight}" /></td>
+
             <td>
-                <form action="Controller" method="post">
-                    <input type="hidden" name="command" value="bookRoom">
+
                 <input type="submit" value="Book"/>
 
             </form>

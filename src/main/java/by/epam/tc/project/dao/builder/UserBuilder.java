@@ -13,6 +13,9 @@ public class UserBuilder {
 
         User user = new User();
         try {
+//            if (true) {
+//                throw new RuntimeException(String.valueOf(rs.getInt(TableAndColumnName.USERS_ID)));
+//            }
             user.setId(rs.getInt(TableAndColumnName.USERS_ID));
             user.setLogin(rs.getString(TableAndColumnName.LOGIN));
             user.setPassword(rs.getString(TableAndColumnName.PASSWORD));

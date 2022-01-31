@@ -226,11 +226,11 @@ public class UserDAOImpl implements UserDAO {
             connection = connectionPool.takeConnection();
             ps = connection.prepareStatement(RETRIEVE_USER_BY_LOGIN);
             ps.setString(1, login);
-
             rs = ps.executeQuery();
 
 
             rs.next();
+
             user = userBuilder.buildUser(rs);
 
         } catch (SQLException e) {

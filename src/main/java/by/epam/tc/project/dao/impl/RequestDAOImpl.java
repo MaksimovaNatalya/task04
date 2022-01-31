@@ -96,7 +96,9 @@ public class RequestDAOImpl implements RequestDAO {
 
         try {
             connection = connectionPool.takeConnection();
-
+            if(true){
+                throw new RuntimeException("IN DAO REQUEST");
+            }
             ps = connection.prepareStatement(ADD_REQUEST);
             ps.setString(1, request.getCategory());
             ps.setInt(2, request.getMaxPersons());
