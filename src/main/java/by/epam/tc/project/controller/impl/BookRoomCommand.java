@@ -1,13 +1,11 @@
 package by.epam.tc.project.controller.impl;
 
 import by.epam.tc.project.controller.Command;
-import by.epam.tc.project.controller.util.Util;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.dao.db.TableAndColumnName;
-import by.epam.tc.project.dao.exception.DAOException;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.RequestService;
-import by.epam.tc.project.service.RoomService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Date;
 
 public class BookRoomCommand implements Command {
     private final String IN_PROGRESS = "in progress";
@@ -31,7 +28,6 @@ public class BookRoomCommand implements Command {
         HttpSession session = request.getSession(true);
         String login = (String) session.getAttribute(TableAndColumnName.LOGIN);
         try {
-
             String category = (String) session.getAttribute("room.category");
             int maxPersons = (int) session.getAttribute("room.maxPersons");
             java.sql.Date startDate = (java.sql.Date) session.getAttribute("startDate");
@@ -43,7 +39,7 @@ public class BookRoomCommand implements Command {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/requestConfirmation.jsp");
             dispatcher.forward(request, response);
         } catch (ServiceException e) {
-            response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
+            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
 }

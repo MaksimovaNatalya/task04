@@ -1,6 +1,7 @@
 package by.epam.tc.project.controller.impl;
 
 import by.epam.tc.project.controller.Command;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
@@ -21,7 +22,6 @@ public class ApproveRequestCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("approve"));
-
         try {
             REQUEST_SERVICE.approveRequest(id);
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
@@ -30,10 +30,9 @@ public class ApproveRequestCommand implements Command {
                 request.setAttribute("allRequests", allRequests);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allRequests.jsp");
                 dispatcher.forward(request, response);
-
             }
         } catch (ServiceException e) {
-            e.printStackTrace();
+            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
 }

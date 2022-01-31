@@ -1,7 +1,7 @@
 package by.epam.tc.project.controller.impl;
 
 import by.epam.tc.project.controller.Command;
-import by.epam.tc.project.controller.util.Util;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.entity.Role;
 import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.ServiceProvider;
@@ -22,23 +22,23 @@ public class RegistrationCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String login = request.getParameter(Util.Utility.LOGIN);
-        String name = StringEscapeUtils.unescapeHtml4(request.getParameter(Util.Utility.NAME));
-        String surname = StringEscapeUtils.unescapeHtml4(request.getParameter(Util.Utility.SURNAME));
-        String password = request.getParameter(Util.Utility.PASSWORD);
-        String eMail = request.getParameter(Util.Utility.EMAIL);
-        String country = request.getParameter(Util.Utility.COUNTRY);
-        String telNumber = request.getParameter(Util.Utility.TELNUMBER);
+        String login = request.getParameter(Constant.Utility.LOGIN);
+        String name = StringEscapeUtils.unescapeHtml4(request.getParameter(Constant.Utility.NAME));
+        String surname = StringEscapeUtils.unescapeHtml4(request.getParameter(Constant.Utility.SURNAME));
+        String password = request.getParameter(Constant.Utility.PASSWORD);
+        String eMail = request.getParameter(Constant.Utility.EMAIL);
+        String country = request.getParameter(Constant.Utility.COUNTRY);
+        String telNumber = request.getParameter(Constant.Utility.TELNUMBER);
         int roleId = Role.USER.getRoleId();
 
         try {
             USER_SERVICE.register(new User(login, password, name, surname, eMail, country, telNumber, roleId));
-            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE +
-                    Util.Message.REGISTRATION_SUCCESS);
+            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + Constant.Message.PARAM_MESSAGE +
+                    Constant.Message.REGISTRATION_SUCCESS);
         } catch (ServiceException e) {
-            response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + login + "&name=" + name
+            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + login + "&name=" + name
                     + "&surname=" + surname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
-                    + Util.Message.PARAM_MESSAGE + Util.Message.EXISTING_USER);
+                    + Constant.Message.PARAM_MESSAGE + Constant.Message.EXISTING_USER);
 
         }
 

@@ -1,7 +1,7 @@
 package by.epam.tc.project.controller.impl;
 
 import by.epam.tc.project.controller.Command;
-import by.epam.tc.project.controller.util.Util;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.dao.db.TableAndColumnName;
 import by.epam.tc.project.entity.Role;
 import by.epam.tc.project.entity.User;
@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class AuthorizationCommand implements Command {
 
-
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
 
@@ -30,7 +29,7 @@ public class AuthorizationCommand implements Command {
         try {
 
             if (checkEmptyField(login) || checkEmptyField(password)) {
-                response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.LOGIN_OR_PASSWORD_EMPTY);
+                response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.LOGIN_OR_PASSWORD_EMPTY);
                 return;
             }
             User user = USER_SERVICE.authorize(login, password);
@@ -38,12 +37,12 @@ public class AuthorizationCommand implements Command {
             if (user != null) {
                 request.getSession().setAttribute(TableAndColumnName.LOGIN, login);
                 request.getSession().setAttribute(TableAndColumnName.USER_ROLES_ROLE_NAME, Role.getById(user.getRoleId()));
-                response.sendRedirect(Util.Redirect.TO_INDEX_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_SUCCESS);
+                response.sendRedirect(Constant.Redirect.TO_INDEX_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.AUTHORIZATION_SUCCESS);
             } else {
-                response.sendRedirect(Util.Redirect.TO_AUTHORIZATION_PAGE + Util.Message.PARAM_MESSAGE + Util.Message.AUTHORIZATION_ERROR);
+                response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.AUTHORIZATION_ERROR);
             }
         } catch (ServiceException e) {
-            response.sendRedirect(Util.Redirect.TO_ERROR_PAGE);
+            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
 

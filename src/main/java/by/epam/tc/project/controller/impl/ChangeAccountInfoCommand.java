@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class ChangeAccountInfoCommand implements Command {
-    private final static String CHANGE_ACCOUNT_INFO ="/WEB-INF/jsp/account.jsp";
+    private final static String CHANGE_ACCOUNT_INFO = "/WEB-INF/jsp/account.jsp";
 
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
@@ -22,7 +22,7 @@ public class ChangeAccountInfoCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String login = (String)session.getAttribute("login");
+        String login = (String) session.getAttribute("login");
         User user;
         try {
             user = USER_SERVICE.getUser(login);

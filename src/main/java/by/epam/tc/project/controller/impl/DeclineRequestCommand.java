@@ -1,6 +1,7 @@
 package by.epam.tc.project.controller.impl;
 
 import by.epam.tc.project.controller.Command;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
@@ -33,7 +34,7 @@ public class DeclineRequestCommand implements Command {
 
             }
         } catch (ServiceException e) {
-            e.printStackTrace();
+            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
 }

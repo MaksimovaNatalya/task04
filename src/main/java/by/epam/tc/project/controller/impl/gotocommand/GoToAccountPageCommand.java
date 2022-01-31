@@ -1,6 +1,7 @@
 package by.epam.tc.project.controller.impl.gotocommand;
 
 import by.epam.tc.project.controller.Command;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
@@ -17,26 +18,27 @@ public class GoToAccountPageCommand implements Command {
 
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
+    private final String LOGIN = "login";
+    private final String USER = "user";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String login = (String)session.getAttribute("login");
+        String login = (String) session.getAttribute(LOGIN);
         User user;
         try {
             user = USER_SERVICE.getUser(login);
 
-            request.setAttribute("user", user);
+            request.setAttribute(USER, user);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/account.jsp");
-            dispatcher.forward(request,response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ACCOUNT_PAGE);
+            dispatcher.forward(request, response);
 
         } catch (ServiceException e) {
             //log
             e.printStackTrace();
         }
-
-
     }
 }
 

@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="by.epam.tc.project.controller.util.*" %>
+<%@page import="by.epam.tc.project.controller.constant.*" %>
 <html>
 <head>
 <style>

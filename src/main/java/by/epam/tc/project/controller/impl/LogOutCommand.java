@@ -1,7 +1,6 @@
 package by.epam.tc.project.controller.impl;
 
-import by.epam.tc.project.controller.util.Util;
-import by.epam.tc.project.dao.db.TableAndColumnName;
+import by.epam.tc.project.controller.constant.Constant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,6 @@ public class LogOutCommand implements by.epam.tc.project.controller.Command {
 
         HttpSession session = request.getSession(false);
         session.invalidate();
-       // session.removeAttribute(TableAndColumnName.LOGIN);
-
-        response.sendRedirect(Util.Redirect.LOG_OUT);
+        response.sendRedirect(Constant.Redirect.LOG_OUT);
     }
 }
