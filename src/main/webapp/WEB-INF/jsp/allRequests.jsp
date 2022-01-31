@@ -196,6 +196,7 @@
         </tr>
         <tr>
             <c:forEach var="request" items="${requestScope.allRequests}">
+            <c:set var="request.id" value="${request.id}" scope="request" />
             <td><c:out value="${request.id}"/></td>
             <td><c:out value="${request.category}"/></td>
             <td><c:out value="${request.roomsId}"/></td>
@@ -206,9 +207,9 @@
             <td><c:out value="${request.status}"/></td>
             <td>
                 <c:if test="${request.status eq 'in progress'}">
-                <form>
-                    <input type="button" value="Approve"/>
-                    <input type="hidden" name="command" value="approveRequest">
+                    <form>
+                        <input type="hidden" name="command" value="approveRequest">
+                        <button type="submit" id="Approve" name="Approve" value="${request.id}">Approve</button>
                 </form>
                 </c:if>
             </td>

@@ -1,5 +1,6 @@
-package by.epam.tc.project.controller;
+package by.epam.tc.project.controller.impl;
 
+import by.epam.tc.project.controller.Command;
 import by.epam.tc.project.controller.util.Util;
 import by.epam.tc.project.dao.db.TableAndColumnName;
 import by.epam.tc.project.dao.exception.DAOException;

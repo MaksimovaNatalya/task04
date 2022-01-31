@@ -19,4 +19,6 @@ public interface RequestDAO {
 
     void addRequest(Request request) throws DAOException;
 
+    void approveRequest(int requestId) throws DAOException;
+
 }

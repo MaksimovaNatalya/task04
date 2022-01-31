@@ -1,5 +1,6 @@
-package by.epam.tc.project.controller;
+package by.epam.tc.project.controller.impl;
 
+import by.epam.tc.project.controller.Command;
 import by.epam.tc.project.controller.util.Util;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
@@ -13,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GoToAllRequestsPageCommand implements Command {
-
+public class ShowAllRequestsCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
     @Override

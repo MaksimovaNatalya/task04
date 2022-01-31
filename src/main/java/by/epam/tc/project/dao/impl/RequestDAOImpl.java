@@ -25,6 +25,7 @@ public class RequestDAOImpl implements RequestDAO {
     private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_id, " +
             "rooms_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private final String APPROVE_REQUEST = "UPDATE requests SET status = ? WHERE id = ?";
 
     @Override
     public List<Request> retrieveRequestsByUserId(String login) throws DAOException {
@@ -144,6 +145,30 @@ public class RequestDAOImpl implements RequestDAO {
             }
         }
 
+    }
+
+    @Override
+    public void approveRequest(int requestId) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            ps=connection.prepareStatement(APPROVE_REQUEST);
+            ps.setString(1, "approved");
+            ps.setInt(2, requestId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RequestDAOImpl.approveRequest:", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RequestDAOImpl.approveRequest:", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RequestDAOImpl.addRequest:", e);
+            }
+        }
     }
 
 }

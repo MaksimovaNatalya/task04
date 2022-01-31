@@ -1,7 +1,6 @@
 package by.epam.tc.project.controller.impl.gotocommand;
 
 import by.epam.tc.project.controller.Command;
-import by.epam.tc.project.controller.Greeting;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
