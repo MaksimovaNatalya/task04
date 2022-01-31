@@ -201,15 +201,14 @@ table{
 </c:if>
 
 <c:if test="${requestScope.user.roleId eq 1}" >
-    <a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
-    <a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">All requests</a>
+    <h1> Welcome, ADMIN! </h1>
+    <br/>
+    <h2> Here you can look up
+    <a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">all the requests</a>
+    </h2>
 
 
 
-    <form action="Controller" method="post">
-    <input type="hidden" name="command" value="GO_TO_ACCOUNT_PAGE">
-    ADMIN IS HERE
-    </form>
 </c:if>
 
 </body>

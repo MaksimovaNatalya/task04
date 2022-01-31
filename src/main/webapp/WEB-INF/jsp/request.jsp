@@ -88,6 +88,29 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        input[type=date], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #6495ED;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        h1{
+            text-align: center;
+        }
     </style></head>
 <body>
 
@@ -121,6 +144,7 @@
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
+        <option value="5">5</option>
     </select>
     <br/>
     <br/>
