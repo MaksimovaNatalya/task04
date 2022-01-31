@@ -19,6 +19,11 @@ import java.io.IOException;
 
 public class BookRoomCommand implements Command {
     private final String IN_PROGRESS = "in progress";
+    private final String CATEGORY = "room.category";
+    private final String MAX_PERSONS = "room.maxPersons";
+    private final String START_DATE = "startDate";
+    private final String END_DATE = "endDate";
+    private final String ROOM_ID = "room.id";
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
@@ -28,15 +33,15 @@ public class BookRoomCommand implements Command {
         HttpSession session = request.getSession(true);
         String login = (String) session.getAttribute(TableAndColumnName.LOGIN);
         try {
-            String category = (String) session.getAttribute("room.category");
-            int maxPersons = (int) session.getAttribute("room.maxPersons");
-            java.sql.Date startDate = (java.sql.Date) session.getAttribute("startDate");
-            java.sql.Date endDate = (java.sql.Date) session.getAttribute("endDate");
+            String category = (String) session.getAttribute(CATEGORY);
+            int maxPersons = (int) session.getAttribute(MAX_PERSONS);
+            java.sql.Date startDate = (java.sql.Date) session.getAttribute(START_DATE);
+            java.sql.Date endDate = (java.sql.Date) session.getAttribute(END_DATE);
             String status = IN_PROGRESS;
             User user = USER_SERVICE.getUser(login);
-            int roomId = (int) session.getAttribute("room.id");
+            int roomId = (int) session.getAttribute(ROOM_ID);
             REQUEST_SERVICE.addRequest(new Request(category, maxPersons, startDate, endDate, status, user.getId(), roomId));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/requestConfirmation.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_REQUEST_CONFIRMATION_PAGE);
             dispatcher.forward(request, response);
         } catch (ServiceException e) {
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);

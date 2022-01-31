@@ -12,9 +12,10 @@ public class Room implements Serializable {
     private String breakfast;
     private String image;
 
-    public Room () {
+    public Room() {
 
     }
+
     public Room(Integer id, Integer max_persons, String category, Integer price_per_night, String has_sea_view, String breakfast_included, String image) {
         this.id = id;
         this.maxPersons = max_persons;
@@ -112,6 +113,6 @@ public class Room implements Serializable {
                 ", price_per_night=" + pricePerNight +
                 ", has_sea_view='" + seaview + '\'' +
                 ", breakfast_included='" + breakfast + '\'' +
-                ", image='" + image + '\'' +"\n";
+                ", image='" + image + '\'' + "\n";
     }
 }

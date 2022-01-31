@@ -14,7 +14,8 @@ public class Request implements Serializable {
     private Integer usersId;
     private Integer roomsId;
 
-    public  Request (){}
+    public Request() {
+    }
 
     public Request(Integer id, String category, Integer maxPersons, java.sql.Date startDate, java.sql.Date endDate, String status,
                    Integer usersId, Integer roomsId) {
@@ -27,6 +28,7 @@ public class Request implements Serializable {
         this.usersId = usersId;
         this.roomsId = roomsId;
     }
+
     public Request(String category, Integer maxPersons, java.sql.Date startDate, java.sql.Date endDate, String status,
                    Integer usersId, Integer roomsId) {
         this.category = category;
@@ -37,6 +39,7 @@ public class Request implements Serializable {
         this.usersId = usersId;
         this.roomsId = roomsId;
     }
+
     public Integer getId() {
         return id;
     }

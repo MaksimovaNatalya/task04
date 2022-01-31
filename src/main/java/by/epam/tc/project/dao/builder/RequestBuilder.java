@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RequestBuilder {
-    public Request buildRequest (ResultSet rs) throws DAOException {
+    public Request buildRequest(ResultSet rs) throws DAOException {
 
         Request request = new Request();
 
@@ -23,7 +23,7 @@ public class RequestBuilder {
             request.setRoomsId(rs.getInt(TableAndColumnName.REQUEST_ROOM_ID));
 
         } catch (SQLException e) {
-            throw new DAOException("SQLException in RequestBuilder.buildRequest (ResultSet rs)"+e);
+            throw new DAOException("SQLException in RequestBuilder.buildRequest (ResultSet rs)" + e);
         }
 
         return request;

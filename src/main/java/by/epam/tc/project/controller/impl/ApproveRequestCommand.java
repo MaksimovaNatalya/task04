@@ -17,18 +17,20 @@ import java.util.List;
 public class ApproveRequestCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private static final String APPROVE = "approve";
+    private static final String ALL_REQUESTS = "allRequests";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("approve"));
+        int id = Integer.parseInt(request.getParameter(APPROVE));
         try {
             REQUEST_SERVICE.approveRequest(id);
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
 
             if (allRequests != null) {
-                request.setAttribute("allRequests", allRequests);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allRequests.jsp");
+                request.setAttribute(ALL_REQUESTS, allRequests);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ALL_REQUESTS_PAGE);
                 dispatcher.forward(request, response);
             }
         } catch (ServiceException e) {

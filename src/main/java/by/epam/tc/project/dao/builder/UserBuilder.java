@@ -13,9 +13,6 @@ public class UserBuilder {
 
         User user = new User();
         try {
-//            if (true) {
-//                throw new RuntimeException(String.valueOf(rs.getInt(TableAndColumnName.USERS_ID)));
-//            }
             user.setId(rs.getInt(TableAndColumnName.USERS_ID));
             user.setLogin(rs.getString(TableAndColumnName.LOGIN));
             user.setPassword(rs.getString(TableAndColumnName.PASSWORD));
@@ -27,7 +24,7 @@ public class UserBuilder {
             user.setRoleId(rs.getInt(TableAndColumnName.USERSTABLE_ROLE_ID));
 
         } catch (SQLException e) {
-            throw new DAOException("SQLException in UserBuilder.buildUser(ResultSet rs)"+e);
+            throw new DAOException("SQLException in UserBuilder.buildUser(ResultSet rs)" + e);
         }
 
         return user;

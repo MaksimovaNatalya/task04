@@ -18,18 +18,20 @@ import java.util.List;
 public class GoToMyBookingsPageCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private static String LOGIN = "login";
+    private static String ALL_REQUESTS = "allRequests";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String login = (String) session.getAttribute("login");
+        String login = (String) session.getAttribute(LOGIN);
 
         try {
             List<Request> allRequests = REQUEST_SERVICE.getRequestsByLogin(login);
 
             if (allRequests != null) {
-                request.setAttribute("allRequests", allRequests);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/myBookings.jsp");
+                request.setAttribute(ALL_REQUESTS, allRequests);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_MY_BOOKINGS_PAGE);
                 dispatcher.forward(request, response);
             } else {
                 response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_REQUESTS);

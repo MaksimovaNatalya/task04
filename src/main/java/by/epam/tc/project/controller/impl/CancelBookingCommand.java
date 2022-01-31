@@ -1,5 +1,7 @@
-package by.epam.tc.project.controller;
+package by.epam.tc.project.controller.impl;
 
+import by.epam.tc.project.controller.Command;
+import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
@@ -16,19 +18,23 @@ import java.util.List;
 public class CancelBookingCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private final String LOGIN = "login";
+    private final String CANCEL_BOOKING = "cancelBooking";
+    private final String ALL_REQUESTS = "allRequests";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String login = (String) session.getAttribute("login");
-        int id = Integer.parseInt(request.getParameter("cancelBooking"));
+        String login = (String) session.getAttribute(LOGIN);
+        int id = Integer.parseInt(request.getParameter(CANCEL_BOOKING));
 
         try {
             REQUEST_SERVICE.cancelBooking(id);
             List<Request> allRequests = REQUEST_SERVICE.getRequestsByLogin(login);
 
             if (allRequests != null) {
-                request.setAttribute("allRequests", allRequests);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/myBookings.jsp");
+                request.setAttribute(ALL_REQUESTS, allRequests);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_MY_BOOKINGS_PAGE);
                 dispatcher.forward(request, response);
 
             }

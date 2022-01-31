@@ -1,6 +1,7 @@
 package by.epam.tc.project.controller.impl.gotocommand;
 
 import by.epam.tc.project.controller.Command;
+import by.epam.tc.project.controller.constant.Constant;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ public class GoToRegistrationPageCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_REGISTRATION_PAGE);
         dispatcher.forward(request, response);
     }
 }

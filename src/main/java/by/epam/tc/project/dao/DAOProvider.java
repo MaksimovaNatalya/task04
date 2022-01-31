@@ -11,7 +11,6 @@ public final class DAOProvider {
     private final RoomDAO roomDAO = new RoomDAOImpl();
     private final RequestDAO requestDAO = new RequestDAOImpl();
 
-    //TODO all other DAO
 
     public DAOProvider() {
     }

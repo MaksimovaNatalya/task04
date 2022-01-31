@@ -29,7 +29,6 @@ public class GoToAccountPageCommand implements Command {
         User user;
         try {
             user = USER_SERVICE.getUser(login);
-
             request.setAttribute(USER, user);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ACCOUNT_PAGE);

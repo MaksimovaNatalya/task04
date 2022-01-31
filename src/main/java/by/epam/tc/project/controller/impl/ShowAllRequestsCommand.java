@@ -17,7 +17,7 @@ import java.util.List;
 public class ShowAllRequestsCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
-
+private final String ALL_REQUESTS = "allRequests";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -25,8 +25,8 @@ public class ShowAllRequestsCommand implements Command {
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
 
             if (allRequests != null) {
-                request.setAttribute("allRequests", allRequests);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allRequests.jsp");
+                request.setAttribute(ALL_REQUESTS, allRequests);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ALL_REQUESTS_PAGE);
                 dispatcher.forward(request, response);
             } else {
                 response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_REQUESTS);

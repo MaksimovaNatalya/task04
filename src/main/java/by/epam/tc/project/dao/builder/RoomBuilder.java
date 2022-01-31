@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RoomBuilder {
-    public Room buildRoom (ResultSet rs) throws DAOException {
+    public Room buildRoom(ResultSet rs) throws DAOException {
 
         Room room = new Room();
 
@@ -23,7 +23,7 @@ public class RoomBuilder {
             room.setImage(rs.getString(TableAndColumnName.ROOM_IMAGE));
 
         } catch (SQLException e) {
-            throw new DAOException("SQLException in RoomBuilder.buildRoom (ResultSet rs)"+e);
+            throw new DAOException("SQLException in RoomBuilder.buildRoom (ResultSet rs)" + e);
         }
 
         return room;

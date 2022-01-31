@@ -15,18 +15,19 @@ import java.io.IOException;
 
 public class ChangeAccountInfoCommand implements Command {
     private final static String CHANGE_ACCOUNT_INFO = "/WEB-INF/jsp/account.jsp";
-
+    private final String LOGIN = "login";
+    private final String USER = "user";
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String login = (String) session.getAttribute("login");
+        String login = (String) session.getAttribute(LOGIN);
         User user;
         try {
             user = USER_SERVICE.getUser(login);
-            request.setAttribute("user", user);
+            request.setAttribute(USER, user);
             RequestDispatcher dispatcher = request.getRequestDispatcher(CHANGE_ACCOUNT_INFO);
             dispatcher.forward(request, response);
         } catch (ServiceException e) {

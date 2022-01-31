@@ -9,19 +9,7 @@ import java.util.List;
 public interface RoomDAO {
     List<Room> retrieveAllRooms() throws DAOException;
 
-    Room retrieveRoomById(Integer id) throws DAOException;
-
-    List<Room> retrieveRoomByCategoryAndMaxPersons(String category, Integer maxPersons) throws DAOException;
-
-    List<Room> retrieveRoomByMaxPersonsWithBreakfast(Integer maxPersons, String breakfastIncluded) throws DAOException;
-
-    List<Room> retrieveRoomByMaxPersonsWithSeaView(Integer maxPersons, String hasSeaView) throws DAOException;
-    List<Room> retrieveRoomByMaxPersonsWithSeaViewAndBreakfast(Integer maxPersons, String hasSeaView, String breakfastIncluded)
-            throws DAOException;
-
     List<Room> retrieveAvailableRoomsForDate(java.sql.Date startDate, Date endDate, int maxPersons) throws DAOException;
-
-    void updateRoomById(Integer id) throws DAOException;
 
     List<Room> retrieveAllRoomsThatHaveRequests () throws DAOException;
 }

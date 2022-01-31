@@ -17,21 +17,22 @@ import java.util.List;
 public class DeclineRequestCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private static final String DECLINE = "decline";
+    private static final String ALL_REQUESTS = "allRequests";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("decline"));
+        int id = Integer.parseInt(request.getParameter(DECLINE));
 
         try {
             REQUEST_SERVICE.declineRequest(id);
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
 
             if (allRequests != null) {
-                request.setAttribute("allRequests", allRequests);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allRequests.jsp");
+                request.setAttribute(ALL_REQUESTS, allRequests);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ALL_REQUESTS_PAGE);
                 dispatcher.forward(request, response);
-
             }
         } catch (ServiceException e) {
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);

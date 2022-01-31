@@ -1,7 +1,5 @@
 package by.epam.tc.project.entity;
 
-import java.util.HashMap;
-
 public enum Role {
     ADMIN(1), USER(2);
 
@@ -15,7 +13,7 @@ public enum Role {
         return roleId;
     }
 
-    public static Role getById (int roleId) {
+    public static Role getById(int roleId) {
         for (Role role : Role.values()) {
             if (role.roleId == roleId) {
                 return role;

@@ -6,6 +6,7 @@ import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.exception.ServiceException;
+import com.sun.org.apache.bcel.internal.Const;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ public class GoToAllRequestsPageCommand implements Command {
 
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private static String ALL_REQUESTS = "allRequests";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,8 +27,8 @@ public class GoToAllRequestsPageCommand implements Command {
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
 
             if (allRequests != null) {
-                request.setAttribute("allRequests", allRequests);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allRequests.jsp");
+                request.setAttribute(ALL_REQUESTS, allRequests);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ALL_REQUESTS_PAGE);
                 dispatcher.forward(request, response);
             } else {
                 response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_REQUESTS);

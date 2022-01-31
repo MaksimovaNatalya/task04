@@ -1,6 +1,5 @@
 package by.epam.tc.project.service;
 
-import by.epam.tc.project.service.impl.BookingServiceImpl;
 import by.epam.tc.project.service.impl.RequestServiceImpl;
 import by.epam.tc.project.service.impl.RoomServiceImpl;
 import by.epam.tc.project.service.impl.UserServiceImpl;

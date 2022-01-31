@@ -2,15 +2,10 @@ package by.epam.tc.project.dao.impl;
 
 import by.epam.tc.project.dao.RequestDAO;
 import by.epam.tc.project.dao.builder.RequestBuilder;
-import by.epam.tc.project.dao.builder.UserBuilder;
 import by.epam.tc.project.dao.connectionpool.ConnectionPool;
 import by.epam.tc.project.dao.connectionpool.ConnectionPoolException;
-import by.epam.tc.project.dao.db.TableAndColumnName;
 import by.epam.tc.project.dao.exception.DAOException;
 import by.epam.tc.project.entity.Request;
-import by.epam.tc.project.entity.Room;
-import by.epam.tc.project.entity.User;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,11 +38,11 @@ public class RequestDAOImpl implements RequestDAO {
 
             ps = connection.prepareStatement(RETRIEVE_REQUESTS_BY_LOGIN);
             ps.setString(1, login);
-            rs=ps.executeQuery();
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 request = requestBuilder.buildRequest(rs);
-               allRequests.add(request);
+                allRequests.add(request);
             }
         } catch (ConnectionPoolException e) {
             throw new DAOException("ConnectionPoolException in RequestDAOImpl.retrieveRequestsByUserId:", e);
@@ -96,25 +91,6 @@ public class RequestDAOImpl implements RequestDAO {
         return allRequests;
     }
 
-    @Override
-    public void deleteRequest(Integer id) throws DAOException {
-
-    }
-
-    @Override
-    public List<Room> retrieveAllFreeRooms() throws DAOException {
-        return null;
-    }
-
-    @Override
-    public List<Room> retrieveFreeRoomsByMaxPersons() throws DAOException {
-        return null;
-    }
-
-    @Override
-    public List<Room> retrieveFreeRoomsByCategoryAndMaxPersons() throws DAOException {
-        return null;
-    }
 
     @Override
     public void addRequest(Request request) throws DAOException {
@@ -140,7 +116,7 @@ public class RequestDAOImpl implements RequestDAO {
             throw new DAOException("SQLException in RequestDAOImpl.addRequest:", e);
         } finally {
             try {
-                    connectionPool.closeConnection(connection, ps);
+                connectionPool.closeConnection(connection, ps);
             } catch (ConnectionPoolException e) {
                 throw new DAOException("ConnectionPoolException in RequestDAOImpl.addRequest:", e);
             }
@@ -155,7 +131,7 @@ public class RequestDAOImpl implements RequestDAO {
 
         try {
             connection = connectionPool.takeConnection();
-            ps=connection.prepareStatement(APPROVE_REQUEST);
+            ps = connection.prepareStatement(APPROVE_REQUEST);
             ps.setString(1, "approved");
             ps.setInt(2, requestId);
             ps.executeUpdate();
@@ -180,7 +156,7 @@ public class RequestDAOImpl implements RequestDAO {
 
         try {
             connection = connectionPool.takeConnection();
-            ps=connection.prepareStatement(APPROVE_REQUEST);
+            ps = connection.prepareStatement(DECLINE_REQUEST);
             ps.setString(1, "declined");
             ps.setInt(2, id);
             ps.executeUpdate();
@@ -204,7 +180,7 @@ public class RequestDAOImpl implements RequestDAO {
 
         try {
             connection = connectionPool.takeConnection();
-            ps=connection.prepareStatement(DELETE_REQUEST_BY_ID);
+            ps = connection.prepareStatement(DELETE_REQUEST_BY_ID);
             ps.setString(1, "cancelled");
             ps.setInt(2, id);
             ps.executeUpdate();

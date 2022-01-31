@@ -26,7 +26,7 @@ public class User implements Serializable {
         this.email = email;
         this.country = country;
         this.phone = telNumber;
-        this.roleId=roleId;
+        this.roleId = roleId;
     }
 
     public User(String login, String password, String name, String surname, String email, String country, String telNumber, Integer roleId) {
@@ -37,7 +37,7 @@ public class User implements Serializable {
         this.email = email;
         this.country = country;
         this.phone = telNumber;
-        this.roleId=roleId;
+        this.roleId = roleId;
     }
 
     public Integer getId() {
@@ -136,6 +136,6 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", country='" + country + '\'' +
                 ", telNumber='" + phone + '\'' +
-                ", role=" + roleId +"\n";
+                ", role=" + roleId + "\n";
     }
 }
