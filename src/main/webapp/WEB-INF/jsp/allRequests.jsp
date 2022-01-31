@@ -167,6 +167,26 @@
             border: 1px solid grey;
             padding: 10px 15px;
         }
+        button[type=submit].approve {
+            width: 100%;
+            background-color: darkgreen;
+            color: white;
+            padding: 5px 5px;
+            margin: 2px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type=submit].decline {
+            width: 100%;
+            background-color: darkred;
+            color: white;
+            padding: 5px 5px;
+            margin: 2px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -208,11 +228,11 @@
                 <c:if test="${request.status eq 'in progress'}">
                     <form>
                         <input type="hidden" name="command" value="approveRequest">
-                        <button type="submit" id="approve" name="approve" value="${request.id}">approve</button>
+                        <button type="submit" class="approve" id="approve" name="approve" value="${request.id}">approve</button>
                 </form>
                     <form>
                         <input type="hidden" name="command" value="declineRequest">
-                        <button type="submit" id="decline" name="decline" value="${request.id}">decline</button>
+                        <button type="submit" class="decline" id="decline" name="decline" value="${request.id}">decline</button>
                     </form>
                 </c:if>
             </td>

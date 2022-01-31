@@ -169,6 +169,16 @@
             border: 1px solid grey;
             padding: 10px 15px;
         }
+        button[type=submit] {
+            width: 100%;
+            background-color: #4682B4;
+            color: white;
+            padding: 5px 5px;
+            margin: 2px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
     </style>
 </head>
@@ -184,9 +194,8 @@
 
     <br>
     <table>
-
+        <tr class="doNotShow"><th>Id</th><td>${request.id}</td></tr>
         <tr>
-            <th>№</th>
             <th>Room category</th>
             <th>Maximum persons</th>
             <th>Arrival date</th>
@@ -196,19 +205,19 @@
         </tr>
         <tr>
             <c:forEach var="request" items="${requestScope.allRequests}">
-            <td><c:out value="${request.id}"/></td>
             <td><c:out value="${request.category}"/></td>
             <td><c:out value="${request.maxPersons}"/></td>
             <td><c:out value="${request.startDate}"/></td>
             <td><c:out value="${request.endDate}"/></td>
             <td><c:out value="${request.status}"/></td>
             <td>
-
+                <c:if test="${request.status eq 'in progress'}" >
                 <form>
-                    <input type="button" value="Cancel booking"/>
                     <input type="hidden" name="command" value="cancelBooking">
+                    <button type="submit" id="cancelBooking" name="cancelBooking" value="${request.id}">
+                        cancel booking</button>
                 </form>
-
+                </c:if>
             </td>
         </tr>
         </c:forEach>

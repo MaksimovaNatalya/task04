@@ -100,6 +100,18 @@
             padding: 10px 15px;
         }
         .doNotShow{display:none;}
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #6495ED;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -119,16 +131,20 @@ AVAILABLE ROOMS
         <tr>
             <th>Image</th>
             <th>Category</th>
-            <th>Price per night</th>
             <th>Maximum persons</th>
+            <th>Seaview</th>
+            <th>Breakfast</th>
+            <th>Price per night</th>
             <th></th>
 
         </tr>
         <tr>
             <td><c:out value="${room.image}"  /></td>
             <td><c:out value="${room.category}"  /></td>
-            <td><c:out value="${room.pricePerNight}" /></td>
             <td><c:out value="${room.maxPersons}" /></td>
+            <td><c:out value="${room.seaview}" /></td>
+            <td><c:out value="${room.breakfast}" /></td>
+            <td><c:out value="${room.pricePerNight}" /></td>
 
             <td>
 

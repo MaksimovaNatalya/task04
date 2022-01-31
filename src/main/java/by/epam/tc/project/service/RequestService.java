@@ -13,4 +13,6 @@ public interface RequestService {
     void approveRequest(int requestId) throws ServiceException;
 
     void declineRequest(int id) throws ServiceException;
+
+    void cancelBooking(int id) throws ServiceException;
 }

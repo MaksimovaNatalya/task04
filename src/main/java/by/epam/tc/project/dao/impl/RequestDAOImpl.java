@@ -22,7 +22,7 @@ public class RequestDAOImpl implements RequestDAO {
 
     private final String RETRIEVE_ALL_REQUESTS = "SELECT * FROM requests order by status DESC";
     private final String RETRIEVE_REQUESTS_BY_LOGIN = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
-    private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
+    private final String DELETE_REQUEST_BY_ID = "UPDATE requests SET status = ? WHERE id=?";
     private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_id, " +
             "rooms_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final String APPROVE_REQUEST = "UPDATE requests SET status = ? WHERE id = ?";
@@ -197,5 +197,28 @@ public class RequestDAOImpl implements RequestDAO {
         }
     }
 
+    @Override
+    public void cancelBooking(int id) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            ps=connection.prepareStatement(DELETE_REQUEST_BY_ID);
+            ps.setString(1, "cancelled");
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RequestDAOImpl.approveRequest:", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RequestDAOImpl.approveRequest:", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RequestDAOImpl.addRequest:", e);
+            }
+        }
+    }
 }
 

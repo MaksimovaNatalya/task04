@@ -8,8 +8,8 @@ public class Room implements Serializable {
     private Integer maxPersons;
     private String category;
     private Integer pricePerNight;
-    private String hasSeaView;
-    private String breakfastIncluded;
+    private String seaview;
+    private String breakfast;
     private String image;
 
     public Room () {
@@ -20,8 +20,8 @@ public class Room implements Serializable {
         this.maxPersons = max_persons;
         this.category = category;
         this.pricePerNight = price_per_night;
-        this.hasSeaView = has_sea_view;
-        this.breakfastIncluded = breakfast_included;
+        this.seaview = has_sea_view;
+        this.breakfast = breakfast_included;
         this.image = image;
     }
 
@@ -29,8 +29,8 @@ public class Room implements Serializable {
         this.maxPersons = max_persons;
         this.category = category;
         this.pricePerNight = price_per_night;
-        this.hasSeaView = has_sea_view;
-        this.breakfastIncluded = breakfast_included;
+        this.seaview = has_sea_view;
+        this.breakfast = breakfast_included;
         this.image = image;
     }
 
@@ -66,20 +66,20 @@ public class Room implements Serializable {
         this.pricePerNight = pricePerNight;
     }
 
-    public String getHasSeaView() {
-        return hasSeaView;
+    public String getSeaview() {
+        return seaview;
     }
 
-    public void setHasSeaView(String hasSeaView) {
-        this.hasSeaView = hasSeaView;
+    public void setSeaview(String seaview) {
+        this.seaview = seaview;
     }
 
-    public String getBreakfastIncluded() {
-        return breakfastIncluded;
+    public String getBreakfast() {
+        return breakfast;
     }
 
-    public void setBreakfastIncluded(String breakfastIncluded) {
-        this.breakfastIncluded = breakfastIncluded;
+    public void setBreakfast(String breakfast) {
+        this.breakfast = breakfast;
     }
 
     public String getImage() {
@@ -95,12 +95,12 @@ public class Room implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return id.equals(room.id) && Objects.equals(maxPersons, room.maxPersons) && Objects.equals(category, room.category) && Objects.equals(pricePerNight, room.pricePerNight) && Objects.equals(hasSeaView, room.hasSeaView) && Objects.equals(breakfastIncluded, room.breakfastIncluded) && Objects.equals(image, room.image);
+        return id.equals(room.id) && Objects.equals(maxPersons, room.maxPersons) && Objects.equals(category, room.category) && Objects.equals(pricePerNight, room.pricePerNight) && Objects.equals(seaview, room.seaview) && Objects.equals(breakfast, room.breakfast) && Objects.equals(image, room.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, maxPersons, category, pricePerNight, hasSeaView, breakfastIncluded, image);
+        return Objects.hash(id, maxPersons, category, pricePerNight, seaview, breakfast, image);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class Room implements Serializable {
                 ", max_persons=" + maxPersons +
                 ", category='" + category + '\'' +
                 ", price_per_night=" + pricePerNight +
-                ", has_sea_view='" + hasSeaView + '\'' +
-                ", breakfast_included='" + breakfastIncluded + '\'' +
+                ", has_sea_view='" + seaview + '\'' +
+                ", breakfast_included='" + breakfast + '\'' +
                 ", image='" + image + '\'' +"\n";
     }
 }

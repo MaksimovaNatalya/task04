@@ -63,4 +63,13 @@ public class RequestServiceImpl implements RequestService {
             throw new ServiceException();
         }
     }
+
+    @Override
+    public void cancelBooking(int id) throws ServiceException {
+        try {
+            requestDAO.cancelBooking(id);
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+    }
 }

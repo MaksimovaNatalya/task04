@@ -18,8 +18,8 @@ public class RoomBuilder {
             room.setMaxPersons(rs.getInt(TableAndColumnName.ROOM_MAX_PERSONS));
             room.setCategory(rs.getString(TableAndColumnName.ROOM_CATEGORY));
             room.setPricePerNight(rs.getInt(TableAndColumnName.ROOM_PRICE_PER_NIGHT));
-            room.setHasSeaView(rs.getString(TableAndColumnName.ROOM_HAS_SEA_VIEW));
-            room.setBreakfastIncluded(rs.getString(TableAndColumnName.ROOM_BREAKFAST_INCLUDED));
+            room.setSeaview(rs.getString(TableAndColumnName.ROOM_HAS_SEA_VIEW));
+            room.setBreakfast(rs.getString(TableAndColumnName.ROOM_BREAKFAST_INCLUDED));
             room.setImage(rs.getString(TableAndColumnName.ROOM_IMAGE));
 
         } catch (SQLException e) {
