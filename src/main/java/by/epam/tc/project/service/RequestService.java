@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface RequestService {
     List<Request> getAllRequests() throws ServiceException;
+
     List<Request> getRequestsByLogin(String login) throws ServiceException;
-    void addRequest (Request request) throws ServiceException;
+
+    void addRequest(Request request) throws ServiceException;
 
     void approveRequest(int requestId) throws ServiceException;
 

@@ -12,6 +12,7 @@ import java.util.List;
 public class RequestServiceImpl implements RequestService {
     private static final DAOProvider provider = DAOProvider.getInstance();
     private static final RequestDAO requestDAO = provider.getRequestDAO();
+
     @Override
     public List<Request> getAllRequests() throws ServiceException {
         List<Request> allRequests;
@@ -37,7 +38,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void addRequest(Request request) throws ServiceException{
+    public void addRequest(Request request) throws ServiceException {
         try {
 
             requestDAO.addRequest(request);

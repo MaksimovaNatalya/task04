@@ -11,7 +11,6 @@ public final class ServiceProvider {
 
     private final UserService userService = new UserServiceImpl();
     private final RoomService roomService = new RoomServiceImpl();
-    private final BookingService bookingService = new BookingServiceImpl();
     private final RequestService requestService = new RequestServiceImpl();
 
     public RequestService getRequestService() {
@@ -26,9 +25,6 @@ public final class ServiceProvider {
         return roomService;
     }
 
-    public BookingService getBookingService() {
-        return bookingService;
-    }
 
     private ServiceProvider() {
     }

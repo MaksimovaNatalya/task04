@@ -7,6 +7,7 @@ import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
 import by.epam.tc.project.service.validator.UserValidator;
+import by.epam.tc.project.service.validator.ValidatorException;
 import by.epam.tc.project.service.validator.ValidatorProvider;
 
 public class UserServiceImpl implements UserService {
@@ -18,9 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User authorize(String login, String password) throws ServiceException {
-        //1.. validation
 
-        //2. realizations
         User user;
         try {
 
@@ -37,14 +36,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(User user) throws ServiceException {
         try {
-     //       userValidator.checkRegistrationInfo(user);
+            userValidator.checkRegistrationInfo(user);
             userDAO.addUser(user);
-        } catch (DAOException e) {
-            e.printStackTrace();}
-//        } catch (ValidatorException e) {
-//            e.printStackTrace();
-//        }
+        } catch (DAOException | ValidatorException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public User getUser(String login) throws ServiceException {
@@ -59,8 +57,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public void delete(User user) throws ServiceException {
-
-    }
 }
