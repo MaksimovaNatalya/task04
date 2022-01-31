@@ -25,7 +25,7 @@ public class RequestDAOImpl implements RequestDAO {
 
     private final String RETRIEVE_REQUESTS_BY_LOGIN = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
-    private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_is, " +
+    private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_id, " +
             "rooms_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     @Override
@@ -96,9 +96,6 @@ public class RequestDAOImpl implements RequestDAO {
 
         try {
             connection = connectionPool.takeConnection();
-            if(true){
-                throw new RuntimeException("IN DAO REQUEST");
-            }
             ps = connection.prepareStatement(ADD_REQUEST);
             ps.setString(1, request.getCategory());
             ps.setInt(2, request.getMaxPersons());
@@ -118,7 +115,7 @@ public class RequestDAOImpl implements RequestDAO {
             try {
                     connectionPool.closeConnection(connection, ps);
             } catch (ConnectionPoolException e) {
-                e.printStackTrace();
+                throw new DAOException("ConnectionPoolException in RequestDAOImpl.addRequest:", e);
             }
         }
 

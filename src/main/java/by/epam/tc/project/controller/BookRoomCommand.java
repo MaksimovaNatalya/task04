@@ -40,9 +40,6 @@ public class BookRoomCommand implements Command {
             User user = USER_SERVICE.getUser(login);
             int roomId = (int) session.getAttribute("room.id");
             REQUEST_SERVICE.addRequest(new Request(category, maxPersons, startDate, endDate, status, user.getId(), roomId));
-            if (true) {
-                throw new RuntimeException("IN COMMAND");
-            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/requestConfirmation.jsp");
             dispatcher.forward(request, response);
         } catch (ServiceException e) {

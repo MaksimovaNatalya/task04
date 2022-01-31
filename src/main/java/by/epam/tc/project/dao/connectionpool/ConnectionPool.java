@@ -104,12 +104,14 @@ public class ConnectionPool {
     public void closeConnection(Connection con, Statement st) throws ConnectionPoolException {
         SQLException closureException = null;
         try {
-            st.close();
+            if(st!=null){
+            st.close();}
         } catch (SQLException e){
             closureException = e;
         }
-        try {
+        try { if(con!=null){
             con.close();
+        }
         } catch (SQLException e){
             closureException = e;
         }

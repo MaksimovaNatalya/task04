@@ -81,7 +81,6 @@ public class UserDAOImpl implements UserDAO {
             connection = connectionPool.takeConnection();
             ps = connection.prepareStatement(ADD_NEW_USER);
 
-
             ps.setString(1, user.getLogin());
 
             String salt = PASSWORD_SALT;
@@ -95,7 +94,6 @@ public class UserDAOImpl implements UserDAO {
             ps.setString(7, user.getPhone());
             ps.setInt(8, user.getRoleId());
             ps.executeUpdate();
-
 
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserDAOImpl.addUser(User user)", e);
