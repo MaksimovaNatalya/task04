@@ -21,4 +21,5 @@ public interface RequestDAO {
 
     void approveRequest(int requestId) throws DAOException;
 
+    void declineRequest(int id) throws DAOException;
 }

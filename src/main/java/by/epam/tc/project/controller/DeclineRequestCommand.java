@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class ApproveRequestCommand implements Command {
+public class DeclineRequestCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("approve"));
+        int id = Integer.parseInt(request.getParameter("decline"));
 
         try {
-            REQUEST_SERVICE.approveRequest(id);
+            REQUEST_SERVICE.declineRequest(id);
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
 
             if (allRequests != null) {

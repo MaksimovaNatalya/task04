@@ -209,8 +209,12 @@
                 <c:if test="${request.status eq 'in progress'}">
                     <form>
                         <input type="hidden" name="command" value="approveRequest">
-                        <button type="submit" id="Approve" name="Approve" value="${request.id}">Approve</button>
+                        <button type="submit" id="approve" name="approve" value="${request.id}">approve</button>
                 </form>
+                    <form>
+                        <input type="hidden" name="command" value="declineRequest">
+                        <button type="submit" id="decline" name="decline" value="${request.id}">decline</button>
+                    </form>
                 </c:if>
             </td>
         </tr>

@@ -54,4 +54,13 @@ public class RequestServiceImpl implements RequestService {
             throw new ServiceException();
         }
     }
+
+    @Override
+    public void declineRequest(int id) throws ServiceException {
+        try {
+            requestDAO.declineRequest(id);
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+    }
 }

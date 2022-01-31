@@ -11,4 +11,6 @@ public interface RequestService {
     void addRequest (Request request) throws ServiceException;
 
     void approveRequest(int requestId) throws ServiceException;
+
+    void declineRequest(int id) throws ServiceException;
 }

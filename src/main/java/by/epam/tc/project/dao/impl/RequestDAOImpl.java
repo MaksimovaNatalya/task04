@@ -26,6 +26,7 @@ public class RequestDAOImpl implements RequestDAO {
     private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_id, " +
             "rooms_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final String APPROVE_REQUEST = "UPDATE requests SET status = ? WHERE id = ?";
+    private final String DECLINE_REQUEST = "UPDATE requests SET status = ? WHERE id = ?";
 
     @Override
     public List<Request> retrieveRequestsByUserId(String login) throws DAOException {
@@ -157,6 +158,31 @@ public class RequestDAOImpl implements RequestDAO {
             ps=connection.prepareStatement(APPROVE_REQUEST);
             ps.setString(1, "approved");
             ps.setInt(2, requestId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RequestDAOImpl.approveRequest:", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RequestDAOImpl.approveRequest:", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RequestDAOImpl.addRequest:", e);
+            }
+        }
+    }
+
+    @Override
+    public void declineRequest(int id) throws DAOException {
+
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            ps=connection.prepareStatement(APPROVE_REQUEST);
+            ps.setString(1, "declined");
+            ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("SQLException in RequestDAOImpl.approveRequest:", e);

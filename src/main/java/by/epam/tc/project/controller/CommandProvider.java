@@ -21,6 +21,7 @@ public final class CommandProvider {
         commands.put("bookRoom", new BookRoomCommand());
         commands.put("showAllRequests", new ShowAllRequestsCommand());
         commands.put("approveRequest", new ApproveRequestCommand());
+        commands.put("declineRequest", new DeclineRequestCommand());
 
         commands.put("GO_TO_REGISTRATION_PAGE", new GoToRegistrationPageCommand());
         commands.put("GO_TO_AUTHORIZATION_PAGE", new GoToAuthorizationPageCommand());
