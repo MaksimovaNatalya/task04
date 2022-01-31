@@ -99,6 +99,7 @@
             border: 1px solid grey;
             padding: 10px 15px;
         }
+        .doNotShow{display:none;}
     </style>
 </head>
 <body>
@@ -126,8 +127,8 @@ AVAILABLE ROOMS
         <tr>
             <td><c:out value="${room.image}"  /></td>
             <td><c:out value="${room.category}"  /></td>
-            <td><c:out value="${room.maxPersons}" /></td>
             <td><c:out value="${room.pricePerNight}" /></td>
+            <td><c:out value="${room.maxPersons}" /></td>
 
             <td>
 

@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +27,13 @@ public class FindRoomCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Date startDate = (Date) session.getAttribute(Util.Utility.START_DATE);
-        Date endDate = (Date) session.getAttribute(Util.Utility.END_DATE);
-       // Date startDate = Date.valueOf(request.getParameter(Util.Utility.START_DATE));
-       // Date endDate = Date.valueOf(request.getParameter(Util.Utility.END_DATE));
-
-        int guestsNumber = Integer.parseInt(request.getParameter(Util.Utility.GUESTS_NUMBER));
-
-        List<Room> availableRooms;
+        DateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         try {
+            java.sql.Date startDate = (java.sql.Date) session.getAttribute("startDate");
+            java.sql.Date endDate = (java.sql.Date) session.getAttribute("endDate");
+            int guestsNumber = Integer.parseInt(request.getParameter(Util.Utility.GUESTS_NUMBER));
+
+            List<Room> availableRooms;
 
 
             availableRooms=ROOM_SERVICE.findAvailableRooms(startDate,endDate,guestsNumber);

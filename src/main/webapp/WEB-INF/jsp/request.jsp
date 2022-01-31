@@ -105,11 +105,14 @@
 <div><fieldset>
     <label for="startDate">Arrival date</label>
     <br/>
+
     <input type="date" id="startDate" name="startDate">
+
     <br>
     <label for="endDate">Departure date</label>
     <br/>
     <input type="date" id="endDate" name="endDate">
+
     <br>Number of guests<br>
     <select id="guestsNumber" name="guestsNumber">
         <br/>
