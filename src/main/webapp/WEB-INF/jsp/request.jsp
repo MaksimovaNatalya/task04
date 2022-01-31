@@ -106,11 +106,12 @@
     <label for="startDate">Arrival date</label>
     <br/>
 
+    <c:set var="startDate" value="startDate" scope="session" />
     <input type="date" id="startDate" name="startDate">
-
     <br>
     <label for="endDate">Departure date</label>
     <br/>
+    <c:set var="endDate" value="endDate" scope="session" />
     <input type="date" id="endDate" name="endDate">
 
     <br>Number of guests<br>

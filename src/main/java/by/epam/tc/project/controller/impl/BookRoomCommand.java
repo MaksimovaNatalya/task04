@@ -34,8 +34,8 @@ public class BookRoomCommand implements Command {
 
             String category = (String) session.getAttribute("room.category");
             int maxPersons = (int) session.getAttribute("room.maxPersons");
-            Date startDate = (Date) session.getAttribute("startDate");
-            Date endDate = (Date) session.getAttribute("endDate");
+            java.sql.Date startDate = (java.sql.Date) session.getAttribute("startDate");
+            java.sql.Date endDate = (java.sql.Date) session.getAttribute("endDate");
             String status = IN_PROGRESS;
             User user = USER_SERVICE.getUser(login);
             int roomId = (int) session.getAttribute("room.id");

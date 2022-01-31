@@ -27,10 +27,14 @@ public class FindRoomCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        DateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat simpleDateFormat=new SimpleDateFormat("yyyy-mm-dd");
         try {
-            java.sql.Date startDate = (java.sql.Date) session.getAttribute("startDate");
-            java.sql.Date endDate = (java.sql.Date) session.getAttribute("endDate");
+
+            Date startDate = Date.valueOf(request.getParameter("startDate"));
+            session.setAttribute("startDate", startDate);
+            Date endDate = Date.valueOf(request.getParameter("endDate"));
+            session.setAttribute("endDate", endDate);
+
             int guestsNumber = Integer.parseInt(request.getParameter(Util.Utility.GUESTS_NUMBER));
 
             List<Room> availableRooms;

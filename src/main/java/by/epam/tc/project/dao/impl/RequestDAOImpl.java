@@ -20,7 +20,7 @@ public class RequestDAOImpl implements RequestDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final RequestBuilder requestBuilder = new RequestBuilder();
 
-    private final String RETRIEVE_ALL_REQUESTS = "SELECT * FROM requests";
+    private final String RETRIEVE_ALL_REQUESTS = "SELECT * FROM requests order by status DESC";
     private final String RETRIEVE_REQUESTS_BY_LOGIN = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String DELETE_REQUEST_BY_ID = "SELECT * FROM requests JOIN users ON requests.users_id=users.id WHERE login=?";
     private final String ADD_REQUEST = "INSERT INTO requests (category, max_persons, start_date, end_date, status, users_id, " +
