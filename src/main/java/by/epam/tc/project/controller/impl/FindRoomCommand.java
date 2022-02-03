@@ -6,6 +6,8 @@ import by.epam.tc.project.entity.Room;
 import by.epam.tc.project.service.RoomService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +21,8 @@ import java.util.List;
 public class FindRoomCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RoomService ROOM_SERVICE = PROVIDER.getRoomService();
+    private final static Logger LOG = LogManager.getLogger(FindRoomCommand.class);
+
     private final String START_DATE = "startDate";
     private final String END_DATE = "endDate";
 
@@ -45,6 +49,7 @@ public class FindRoomCommand implements Command {
                 response.sendRedirect(Constant.Redirect.TO_REQUEST_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_AVAILABLE_ROOMS);
             }
         } catch (ServiceException e) {
+            LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }

@@ -1,5 +1,7 @@
 package by.epam.tc.project.controller.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import by.epam.tc.project.controller.Command;
 import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.dao.db.TableAndColumnName;
@@ -20,11 +22,14 @@ public class AuthorizationCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
 
+    private final static Logger LOG = LogManager.getLogger(AuthorizationCommand.class);
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         String login = request.getParameter(TableAndColumnName.LOGIN);
         String password = request.getParameter(TableAndColumnName.PASSWORD);
+
 
         try {
 
@@ -42,6 +47,7 @@ public class AuthorizationCommand implements Command {
                 response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.AUTHORIZATION_ERROR);
             }
         } catch (ServiceException e) {
+            LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }

@@ -8,6 +8,8 @@ import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
 import org.apache.commons.text.StringEscapeUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,8 @@ public class RegistrationCommand implements Command {
 
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
+    private final static Logger LOG = LogManager.getLogger(RegistrationCommand.class);
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +40,7 @@ public class RegistrationCommand implements Command {
             response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + Constant.Message.PARAM_MESSAGE +
                     Constant.Message.REGISTRATION_SUCCESS);
         } catch (ServiceException e) {
+            LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + login + "&name=" + name
                     + "&surname=" + surname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
                     + Constant.Message.PARAM_MESSAGE + Constant.Message.EXISTING_USER);

@@ -6,6 +6,8 @@ import by.epam.tc.project.entity.Room;
 import by.epam.tc.project.service.RoomService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +19,8 @@ import java.util.List;
 public class ShowRoomsCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RoomService ROOM_SERVICE = PROVIDER.getRoomService();
+    private final static Logger LOG = LogManager.getLogger(ShowRoomsCommand.class);
+
     private final String ALL_ROOMS = "allRooms";
 
     @Override
@@ -28,6 +32,7 @@ public class ShowRoomsCommand implements Command {
             RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ROOMS_PAGE);
             dispatcher.forward(request, response);
         } catch (ServiceException e) {
+            LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
 

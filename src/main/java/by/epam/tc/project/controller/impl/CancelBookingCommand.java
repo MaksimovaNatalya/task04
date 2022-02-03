@@ -6,6 +6,8 @@ import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +20,7 @@ import java.util.List;
 public class CancelBookingCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private final static Logger LOG = LogManager.getLogger(CancelBookingCommand.class);
     private final String LOGIN = "login";
     private final String CANCEL_BOOKING = "cancelBooking";
     private final String ALL_REQUESTS = "allRequests";
@@ -39,7 +42,8 @@ public class CancelBookingCommand implements Command {
 
             }
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOG.error(e);
+            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
 }

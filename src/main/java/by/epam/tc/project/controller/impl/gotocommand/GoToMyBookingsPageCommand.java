@@ -2,10 +2,13 @@ package by.epam.tc.project.controller.impl.gotocommand;
 
 import by.epam.tc.project.controller.Command;
 import by.epam.tc.project.controller.constant.Constant;
+import by.epam.tc.project.controller.impl.AuthorizationCommand;
 import by.epam.tc.project.entity.Request;
 import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +21,8 @@ import java.util.List;
 public class GoToMyBookingsPageCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
+    private final static Logger LOG = LogManager.getLogger(GoToMyBookingsPageCommand.class);
+
     private static String LOGIN = "login";
     private static String ALL_REQUESTS = "allRequests";
 
@@ -37,6 +42,7 @@ public class GoToMyBookingsPageCommand implements Command {
                 response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_REQUESTS);
             }
         } catch (ServiceException e) {
+            LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
 

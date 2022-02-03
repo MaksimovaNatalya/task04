@@ -1,8 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="menu.authorization"
+                 var="reg_button" />
         <style>
             body {
                 background: #B0E0E6;
@@ -30,12 +35,6 @@
             }
             .local{
                 float:right;
-            }
-            img{
-                width:100%;
-                height:110%;
-                position:relative;
-                z-index:1;
             }
 
             ul {
@@ -100,6 +99,7 @@
     </a>
 </div>
 <ul>
+
     <li class="local">
         <form>
             <input type="hidden" name="command" value="changeLanguage" >
@@ -112,7 +112,7 @@
 
     <li class="log-in">
         <c:if test="${empty sessionScope.login}" >
-            <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Sign in/Sign up</a>
+            <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">${reg_button}</a>
         </c:if>
         <c:if test="${not empty sessionScope.login}" >
             <a href="Controller?command=GO_TO_ACCOUNT_PAGE">My account</a>

@@ -1,9 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="by.epam.tc.project.controller.constant.*" %>
 <html>
 <head>
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="authorization.authorization" var="auth" />
+    <fmt:message bundle="${lang}" key="authorization.login" var="login" />
+    <fmt:message bundle="${lang}" key="authorization.login_message" var="login_mes" />
+    <fmt:message bundle="${lang}" key="authorization.password" var="passw" />
+    <fmt:message bundle="${lang}" key="authorization.password_message" var="passw_mes" />
+    <fmt:message bundle="${lang}" key="authorization.log_in_button" var="log_in" />
+    <fmt:message bundle="${lang}" key="authorization.not_registered" var="not_reg" />
+    <fmt:message bundle="${lang}" key="authorization.register" var="register" />
     <style>
         body {
             background: #B0E0E6;
@@ -173,20 +184,20 @@
          <c:out value="${param.message}" />
      </c:if>
      </font>
-<legend><h1>Authorization Form</h1></legend>
+<legend><h1>${auth}</h1></legend>
  <br/>
      <br/>
-<label for="login">Login</label>
+<label for="login">${login}</label>
  <br/>
-    <input type="text" id="login" name="login" placeholder="Your login..">
+    <input type="text" id="login" name="login" placeholder=${login_mes}>
  <br/>
-<label for="password">Password</label>
+<label for="password">${passw}</label>
  <br/>
-    <input type="password" id="password" name="password" placeholder="Your password..">
+    <input type="password" id="password" name="password" placeholder=${passw_mes}>
  <br/>
- <input type="submit" value="Log in" />
+ <input type="submit" value=${log_in} />
  <br/><br/>
-Not registered yet? <a href="Controller?command=GO_TO_REGISTRATION_PAGE">Register</a>
+${not_reg} <a href="Controller?command=GO_TO_REGISTRATION_PAGE">${register}</a>
    </fieldset>
 </div>
     <p><c:out value="${requestScope.mas}"/></p>

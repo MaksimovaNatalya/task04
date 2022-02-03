@@ -9,6 +9,8 @@ import by.epam.tc.project.service.RequestService;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +29,8 @@ public class BookRoomCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
+    private final static Logger LOG = LogManager.getLogger(BookRoomCommand.class);
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,6 +48,7 @@ public class BookRoomCommand implements Command {
             RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_REQUEST_CONFIRMATION_PAGE);
             dispatcher.forward(request, response);
         } catch (ServiceException e) {
+            LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
