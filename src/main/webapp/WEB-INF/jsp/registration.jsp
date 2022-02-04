@@ -1,7 +1,29 @@
-<%@ page import="by.epam.tc.project.controller.Greeting" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <meta charset="utf-8">
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="registration.registration" var="registration" />
+    <fmt:message bundle="${lang}" key="registration.login" var="login" />
+    <fmt:message bundle="${lang}" key="registration.login_message" var="login_mes" />
+    <fmt:message bundle="${lang}" key="registration.name" var="name" />
+    <fmt:message bundle="${lang}" key="registration.name_message" var="name_mes" />
+    <fmt:message bundle="${lang}" key="registration.surname" var="surname" />
+    <fmt:message bundle="${lang}" key="registration.surname_message" var="surname_mes" />
+    <fmt:message bundle="${lang}" key="registration.email" var="email" />
+    <fmt:message bundle="${lang}" key="registration.email_message" var="email_mes" />
+    <fmt:message bundle="${lang}" key="registration.phone" var="phone" />
+    <fmt:message bundle="${lang}" key="registration.phone_message" var="phone_mes" />
+    <fmt:message bundle="${lang}" key="registration.country" var="country" />
+    <fmt:message bundle="${lang}" key="registration.password" var="password" />
+    <fmt:message bundle="${lang}" key="registration.password_message" var="password_mes" />
+    <fmt:message bundle="${lang}" key="registration.confirm_password" var="password_confirm" />
+    <fmt:message bundle="${lang}" key="registration.confirm_password_message" var="password_confirm_mes" />
+    <fmt:message bundle="${lang}" key="registration.register_button" var="reg_butt" />
+    <fmt:message bundle="${lang}" key="registration.main_page" var="main_page" />
+
 </head>
 <body>
 
@@ -139,18 +161,16 @@
     }
 
     footer {
-        padding: 30px 0;
-        background: #3C3D41;
-        text-decoration-color: white;
+        padding: 3%;
+        background: #6495ED;
+        color: #f2f2f2;
     }
 
     span-name {
-        width: 33.3333333333%;
         float: left;
     }
 
     span-contacts {
-        width: 33.3333333333%;
         float: right;
     }
 
@@ -167,28 +187,28 @@
 
     <div>
         <fieldset>
-            <legend><h1>Registration Form</h1></legend>
+            <legend><h1>${registration}</h1></legend>
 
 
-            <label for="login">Login</label>
+            <label for="login">${login}</label>
             <br/>
-            <input type="text" id="login" name="login" placeholder="Your login..">
-            <label for="name">Name</label>
+            <input type="text" id="login" name="login" placeholder=${login_mes}>
+            <label for="name">${name}</label>
             <br/>
-            <input type="text" id="name" name="name" placeholder="Your name..">
+            <input type="text" id="name" name="name" placeholder=${name_mes}>
             <br/>
-            <label for="surname">Surname</label>
+            <label for="surname">${surname}</label>
             <br/>
-            <input type="text" id="surname" name="surname" placeholder="Your surname..">
+            <input type="text" id="surname" name="surname" placeholder=${surname_mes}>
             <br/>
-            <label for="email">E-mail</label>
+            <label for="email">${email}</label>
             <br/>
-            <input type="text" id="email" name="email" placeholder="Your e-mail..">
-            <label for="phone">Phone number</label>
+            <input type="text" id="email" name="email" placeholder=${email_mes}>
+            <label for="phone">${phone}</label>
             <br/>
-            <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+            <input type="text" id="phone" name="phone" placeholder=${phone_mes}>
             <br/>
-            <label for="country">Country</label>
+            <label for="country">${country}</label>
             <select id="country" name="country">
                 <br/>
                 <option value="AF">Afghanistan</option>
@@ -445,25 +465,26 @@
                 <option value="ZW">Zimbabwe</option>
             </select>
             <br/>
-            <label for="password">Password</label>
+            <label for="password">${password}</label>
             <br/>
-            <input type="password" id="password" name="password" placeholder="">
+            <input type="password" id="password" name="password" placeholder=${password_mes}>
             <br/>
-            <label for="password">Confirm password</label>
+            <label for="password">${password_confirm}</label>
             <br/>
-            <input type="password" id="passwordconf" name="password" placeholder="">
+            <input type="password" id="passwordconf" name="password" placeholder=${password_confirm_mes}>
             <br/>
             <input type="submit" value="Register"/>
             <br/>
-            <a href="Controller?command=GO_TO_INDEX_PAGE">Main page</a>
+            <a href="Controller?command=GO_TO_INDEX_PAGE">${main_page}</a>
         </fieldset>
     </div>
 
 </form>
 
 <footer>
-    <span-name>Grand Hotel © 2022</span-name>
-    <span-contacts>tel. +375(29)975-55-55, e-mail: grandhotel@gmail.com</span-contacts>
+    <span-name>Grand Hotel Project </br>
+    by Natalya Maksimova </span-name>
+    <span-contacts>tel. +375(29)621-46-97, e-mail: ps_nat98@mail.ru </span-contacts>
 </footer>
 
 </body>
