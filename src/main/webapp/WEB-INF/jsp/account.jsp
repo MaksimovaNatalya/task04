@@ -1,8 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="account.user_info" var="user_info" />
+    <fmt:message bundle="${lang}" key="account.my_bookings" var="my_bookings" />
+    <fmt:message bundle="${lang}" key="account.admin_greeting" var="admin_greet" />
+    <fmt:message bundle="${lang}" key="account.admin_look_up" var="look_up" />
+    <fmt:message bundle="${lang}" key="account.admin_all_requests" var="all_requests" />
 
     <style>
         body {
@@ -170,8 +178,8 @@ table{
 <jsp:include page="header.jsp" />
 <br/>
 <c:if test="${requestScope.user.roleId eq 2}" >
-<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
-<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
+<a href="Controller?command=GO_TO_ACCOUNT_PAGE">${user_info}</a> -
+<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">${my_bookings}</a>
 <input type="hidden" name="command" value="GO_TO_MY_BOOKINGS_PAGE">
 <br/>
 
@@ -201,14 +209,11 @@ table{
 </c:if>
 
 <c:if test="${requestScope.user.roleId eq 1}" >
-    <h1> Welcome, ADMIN! </h1>
+    <h1> ${admin_greet} </h1>
     <br/>
-    <h2> Here you can look up
-    <a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">all the requests</a>
+    <h2> ${look_up}
+    <a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">${all_requests}</a>
     </h2>
-
-
-
 </c:if>
 
 </body>

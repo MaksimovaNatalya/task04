@@ -1,9 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>My bookings</title>
+
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="account.user_info" var="user_info" />
+    <fmt:message bundle="${lang}" key="account.my_bookings" var="my_bookings" />
+    <fmt:message bundle="${lang}" key="mybookings.room_category" var="room_categ" />
+    <fmt:message bundle="${lang}" key="mybookings.maximum_person" var="max_persons" />
+    <fmt:message bundle="${lang}" key="mybookings.arr_date" var="arr_date" />
+    <fmt:message bundle="${lang}" key="mybookings.depart_date" var="depart_date" />
+    <fmt:message bundle="${lang}" key="mybookings.status" var="status" />
+    <fmt:message bundle="${lang}" key="mybookings.action" var="action" />
+    <fmt:message bundle="${lang}" key="mybookings.cancel" var="cancel" />
+
+
 
     <style>
         body {
@@ -185,8 +200,8 @@
 <body>
 <jsp:include page="header.jsp"/>
 <br/>
-<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
-<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">My Bookings</a>
+<a href="Controller?command=GO_TO_ACCOUNT_PAGE">${user_info}</a> -
+<a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE">${my_bookings}</a>
 <input type="hidden" name="command" value="GO_TO_MY_BOOKINGS_PAGE">
 <br/>
 
@@ -196,12 +211,12 @@
     <table>
         <tr class="doNotShow"><th>Id</th><td>${request.id}</td></tr>
         <tr>
-            <th>Room category</th>
-            <th>Maximum persons</th>
-            <th>Arrival date</th>
-            <th>Departure date</th>
-            <th>Status of the booking</th>
-            <th>Action</th>
+            <th>${room_categ}</th>
+            <th>${max_persons}</th>
+            <th>${arr_date}</th>
+            <th>${depart_date}</th>
+            <th>${status}</th>
+            <th>${action}</th>
         </tr>
         <tr>
             <c:forEach var="request" items="${requestScope.allRequests}">
@@ -215,7 +230,7 @@
                 <form>
                     <input type="hidden" name="command" value="cancelBooking">
                     <button type="submit" id="cancelBooking" name="cancelBooking" value="${request.id}">
-                        cancel booking</button>
+                        ${cancel}</button>
                 </form>
                 </c:if>
             </td>
