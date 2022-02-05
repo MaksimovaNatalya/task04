@@ -1,7 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <?xml version="1.0" encoding="UTF-8"?>
 <html>
-<head><title></title>
+<head><title>Booking</title>
+
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="request.greeting" var="greeting" />
+    <fmt:message bundle="${lang}" key="request.arr_date" var="arr_date" />
+    <fmt:message bundle="${lang}" key="request.depart_date" var="depart_date" />
+    <fmt:message bundle="${lang}" key="request.number_guests" var="guests_number" />
+    <fmt:message bundle="${lang}" key="request.find_room" var="find_room" />
+
     <style>
         body {
             background: #B0E0E6;
@@ -117,7 +127,7 @@
 <jsp:include page="header.jsp" />
 <br/>
 
-<h1><font color="#191970">Choose arrival date, departure date and number of guests </font></h1>
+<h1><font color="#191970">${greeting} </font></h1>
 
 
 
@@ -126,18 +136,18 @@
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="findRooms">
 <div><fieldset>
-    <label for="startDate">Arrival date</label>
+    <label for="startDate">${arr_date}</label>
     <br/>
 
     <c:set var="startDate" value="startDate" scope="session" />
     <input type="date" id="startDate" name="startDate">
     <br>
-    <label for="endDate">Departure date</label>
+    <label for="endDate">${depart_date}</label>
     <br/>
     <c:set var="endDate" value="endDate" scope="session" />
     <input type="date" id="endDate" name="endDate">
 
-    <br>Number of guests<br>
+    <br>${guests_number}<br>
     <select id="guestsNumber" name="guestsNumber">
         <br/>
         <option value="1">1</option>
@@ -148,7 +158,7 @@
     </select>
     <br/>
     <br/>
-    <input type="submit" value="Find room"/>
+    <input type="submit" value=${find_room}/>
 </fieldset>
 </div>
 </form>

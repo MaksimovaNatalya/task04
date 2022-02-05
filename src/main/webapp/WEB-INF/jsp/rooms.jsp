@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="rooms.image" var="image" />
+    <fmt:message bundle="${lang}" key="rooms.category" var="category" />
+    <fmt:message bundle="${lang}" key="rooms.price" var="price" />
+    <fmt:message bundle="${lang}" key="rooms.max_persons" var="max_persons" />
+
     <style>
         body {
             background: #B0E0E6;
@@ -124,10 +132,10 @@
 <br/>
         <table>
             <tr>
-                <th>Image</th>
-                <th>Category</th>
-                <th>Price per night</th>
-                <th>Maximum persons</th>
+                <th>${image}</th>
+                <th>${category}</th>
+                <th>${price}</th>
+                <th>${max_persons}</th>
             </tr>
             <tr>
                 <c:forEach var="room" items="${allRooms}">
