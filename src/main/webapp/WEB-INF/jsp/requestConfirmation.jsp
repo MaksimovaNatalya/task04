@@ -1,14 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MaxMoff
-  Date: 25.01.2022
-  Time: 13:34
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Request confirmation</title>
+    <fmt:setLocale value="${sessionScope.language}"/>
+    <fmt:setBundle basename="prop" var="lang"/>
+    <fmt:message bundle="${lang}" key="request_conf.message1" var="mes1"/>
+    <fmt:message bundle="${lang}" key="request_conf.message2" var="mes2"/>
+    <fmt:message bundle="${lang}" key="request_conf.message3" var="mes3"/>
+    <fmt:message bundle="${lang}" key="request_conf.return" var="returnToMain"/>
+    <fmt:message bundle="${lang}" key="request_conf.toAccount" var="toAccount"/>
+
     <style>
         body {
             background: #B0E0E6;
@@ -108,7 +111,8 @@
             padding: 12px 32px;
             font-size: 18pt;
         }
-        img{
+
+        img {
             width: 50%;
         }
     </style>
@@ -118,11 +122,15 @@
 <br/>
 <br/>
 <h1>
-    Thank you for your request! <br/>
-    The request is being processed. <br/>
-    You can find its status in your account. <br/>
+    ${mes1} <br/>
+    ${mes2} <br/>
+    ${mes3}
+        <a href="Controller?command=GO_TO_MY_BOOKINGS_PAGE"> ${toAccount}</a>
     <br/>
-    <a href="Controller?command=GO_TO_INDEX_PAGE">Return to the main page</a>
 </h1>
+    <a href="Controller?command=GO_TO_INDEX_PAGE"> ${returnToMain}</a>
+
+
+
 </body>
 </html>
