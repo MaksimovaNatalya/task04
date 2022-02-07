@@ -11,6 +11,13 @@
     <fmt:message bundle="${lang}" key="account.admin_greeting" var="admin_greet" />
     <fmt:message bundle="${lang}" key="account.admin_look_up" var="look_up" />
     <fmt:message bundle="${lang}" key="account.admin_all_requests" var="all_requests" />
+    <fmt:message bundle="${lang}" key="account.login" var="login" />
+    <fmt:message bundle="${lang}" key="account.name" var="name" />
+    <fmt:message bundle="${lang}" key="account.surname" var="surname" />
+    <fmt:message bundle="${lang}" key="account.email" var="email" />
+    <fmt:message bundle="${lang}" key="account.country" var="country" />
+    <fmt:message bundle="${lang}" key="account.phone" var="phone" />
+
 
     <style>
         body {
@@ -191,12 +198,12 @@ table{
     <table>
 
         <tr class="doNotShow"><th>Id</th><td>${requestScope.user.id}</td></tr>
-        <tr><th>Login:</th><td> <c:out value="${requestScope.user.login}"  /></td></tr>
-        <tr><th>Name:</th><td> <c:out value="${requestScope.user.name}"  /></td></tr>
-        <tr><th>Surname:</th><td> <c:out value="${requestScope.user.surname}"  /></td></tr>
-        <tr><th>E-mail:</th><td> <c:out value="${requestScope.user.email}"  /></td></tr>
-        <tr><th>Country:</th><td> <c:out value="${requestScope.user.country}"  /></td></tr>
-        <tr><th>Phone number:</th><td> <c:out value="${requestScope.user.phone}"  /></td></tr>
+        <tr><th>${login}</th><td> <c:out value="${requestScope.user.login}"  /></td></tr>
+        <tr><th>${name}</th><td> <c:out value="${requestScope.user.name}"  /></td></tr>
+        <tr><th>${surname}</th><td> <c:out value="${requestScope.user.surname}"  /></td></tr>
+        <tr><th>${email}</th><td> <c:out value="${requestScope.user.email}"  /></td></tr>
+        <tr><th>${country}</th><td> <c:out value="${requestScope.user.country}"  /></td></tr>
+        <tr><th>${phone}</th><td> <c:out value="${requestScope.user.phone}"  /></td></tr>
     </table>
 
 <br>

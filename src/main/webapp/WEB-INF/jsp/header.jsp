@@ -6,8 +6,17 @@
 <head>
     <fmt:setLocale value="${sessionScope.language}" />
     <fmt:setBundle basename="prop" var="lang" />
-    <fmt:message bundle="${lang}" key="menu.authorization"
-                 var="reg_button" />
+    <fmt:message bundle="${lang}" key="menu.about_us" var="about" />
+    <fmt:message bundle="${lang}" key="menu.info" var="info" />
+    <fmt:message bundle="${lang}" key="menu.contacts" var="contacts" />
+    <fmt:message bundle="${lang}" key="menu.rooms" var="rooms" />
+    <fmt:message bundle="${lang}" key="menu.book_room" var="book_room" />
+    <fmt:message bundle="${lang}" key="menu.authorization" var="authorization" />
+    <fmt:message bundle="${lang}" key="menu.my_account" var="my_account" />
+    <fmt:message bundle="${lang}" key="menu.log_out" var="log_out" />
+    <fmt:message bundle="${lang}" key="menu.en" var="en_button"/>
+    <fmt:message bundle="${lang}" key="menu.ru" var="ru_button"/>
+
         <style>
             body {
                 background: #B0E0E6;
@@ -94,46 +103,46 @@
 
 
 <div class="header-logo">
-    <a class="header-logo-link" href="Controller?command=GO_TO_INDEX_PAGE">
+    <a class="header-logo-link" href="Controller?command=GO_TO_MAIN_PAGE">
         <img class="header-logo-src" src="/hotel-logo.jpg"  alt="Logo" >
     </a>
 </div>
 <ul>
 
     <li class="local">
-        <form>
-            <input type="hidden" name="command" value="changeLanguage" >
-            <select name="language" onchange="submit()">
-                <option value="ru" ${requestScope.language == 'ru' ? 'selected' : ''}>RU</option>
-                <option value="en" ${requestScope.language == 'en' ? 'selected' : ''}>ENG</option>
-            </select>
+        <form action="Controller?command=changeLanguage" method="post">
+            <input type="hidden" name="language" value="en"/> <input type="submit" value="${en_button}">
+        </form>
+        <form action="Controller?command=changeLanguage" method="post">
+            <input type="hidden" name="language" value="ru"/> <input type="submit" value="${ru_button}"><br/>
         </form>
     </li>
 
+
     <li class="log-in">
         <c:if test="${empty sessionScope.login}" >
-            <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">${reg_button}</a>
+            <a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">${authorization}</a>
         </c:if>
         <c:if test="${not empty sessionScope.login}" >
-            <a href="Controller?command=GO_TO_ACCOUNT_PAGE">My account</a>
-                <a href="Controller?command=logOut">Log out</a>
+            <a href="Controller?command=GO_TO_ACCOUNT_PAGE">${my_account}</a>
+                <a href="Controller?command=logOut">${log_out}</a>
                 <input type="hidden" name="command" value="logOut" />
             </form>
         </c:if>
     </li>
 
     <li class="dropdown">
-        <a  href="javascript:void(0)" class="dropbtn">About us</a>
+        <a  href="javascript:void(0)" class="dropbtn">${about}</a>
         <div class="dropdown-content">
-            <a href="Controller?command=GO_TO_INFO_PAGE">Info</a>
-            <a href="Controller?command=GO_TO_CONTACTS_PAGE">Contacts</a>
+            <a href="Controller?command=GO_TO_INFO_PAGE">${info}</a>
+            <a href="Controller?command=GO_TO_CONTACTS_PAGE">${contacts}</a>
         </div>
-    <li><a href="Controller?command=showRooms">Rooms</a></li>
+    <li><a href="Controller?command=showRooms">${rooms}</a></li>
     <c:if test="${not empty sessionScope.login}" >
-        <li><a href="Controller?command=GO_TO_REQUEST_PAGE">Book a room</a></li>
+        <li><a href="Controller?command=GO_TO_REQUEST_PAGE">${book_room}</a></li>
     </c:if>
     <c:if test="${empty sessionScope.login}" >
-        <li><a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">Book a room</a></li>
+        <li><a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">${book_room}</a></li>
     </c:if>
 </ul>
 </body>

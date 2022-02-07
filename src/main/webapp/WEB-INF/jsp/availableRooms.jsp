@@ -123,14 +123,16 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
+h1{
+    text-align: center;
+}
     </style>
 </head>
 <body>
 <jsp:include page="header.jsp" />
 <br/>
 
-${message}
+<h1> ${message} </h1>
 
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="bookRoom">
@@ -161,7 +163,7 @@ ${message}
 
             <td>
 
-                <input type="submit" value=${book_button}/>
+                <input type="submit" value=${book_button}>
 
             </form>
             </td>

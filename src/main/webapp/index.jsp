@@ -2,12 +2,8 @@
 <html>
 <body>
 
-<c:redirect url="Controller?command=GO_TO_INDEX_PAGE"/>
+<c:redirect url="Controller?command=GO_TO_MAIN_PAGE"/>
 
-<%-- <%
-    response.sendRedirect("MyController?command=GO_TO_INDEX_PAGE");
-%>
---%>
 </body>
 </html>
 

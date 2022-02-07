@@ -33,6 +33,7 @@ public final class CommandProvider {
         commands.put("GO_TO_AVAILABLE_ROOMS_PAGE", new GoToAvailableRoomsPageCommand());
         commands.put("GO_TO_MY_BOOKINGS_PAGE", new GoToMyBookingsPageCommand());
         commands.put("GO_TO_ALL_REQUESTS_PAGE", new GoToAllRequestsPageCommand());
+        commands.put("GO_TO_ALL_REQUEST_CONFIRMATION_PAGE", new GoToRequestConfirmationPage());
     }
 
     public Command getCommand(String commandName) {

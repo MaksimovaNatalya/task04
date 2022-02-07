@@ -16,16 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.epam.tc.project.controller.constant.Constant.Utility.URL;
+
 public class ShowRoomsCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RoomService ROOM_SERVICE = PROVIDER.getRoomService();
     private final static Logger LOG = LogManager.getLogger(ShowRoomsCommand.class);
 
     private final String ALL_ROOMS = "allRooms";
+    private final String URL_NAME = "/task4/Controller?command=showRooms";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getSession(true).setAttribute(URL, URL_NAME);
         try {
             List<Room> allRooms = ROOM_SERVICE.showAllRooms();
             request.setAttribute(ALL_ROOMS, allRooms);

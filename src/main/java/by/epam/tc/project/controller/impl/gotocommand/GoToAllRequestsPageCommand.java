@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.epam.tc.project.controller.constant.Constant.Utility.URL;
+
 public class GoToAllRequestsPageCommand implements Command {
 
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
@@ -24,9 +26,12 @@ public class GoToAllRequestsPageCommand implements Command {
     private final static Logger LOG = LogManager.getLogger(GoToAllRequestsPageCommand.class);
 
     private static String ALL_REQUESTS = "allRequests";
+    private final String URL_NAME = "/task4/Controller?command=GO_TO_ALL_REQUESTS_PAGE";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession(true).setAttribute(URL, URL_NAME);
+
         try {
             List<Request> allRequests = REQUEST_SERVICE.getAllRequests();
 

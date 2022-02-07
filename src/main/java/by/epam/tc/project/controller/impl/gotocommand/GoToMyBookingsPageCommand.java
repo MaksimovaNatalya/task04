@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+import static by.epam.tc.project.controller.constant.Constant.Utility.URL;
+
 public class GoToMyBookingsPageCommand implements Command {
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final RequestService REQUEST_SERVICE = PROVIDER.getRequestService();
@@ -25,10 +27,12 @@ public class GoToMyBookingsPageCommand implements Command {
 
     private static String LOGIN = "login";
     private static String ALL_REQUESTS = "allRequests";
+    private final String URL_NAME = "/task4/Controller?command=GO_TO_MY_BOOKINGS_PAGE";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        request.getSession(true).setAttribute(URL, URL_NAME);
         String login = (String) session.getAttribute(LOGIN);
 
         try {
