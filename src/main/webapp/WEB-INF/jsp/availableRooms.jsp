@@ -1,8 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Available Rooms</title>
+    <fmt:setLocale value="${sessionScope.language}" />
+    <fmt:setBundle basename="prop" var="lang" />
+    <fmt:message bundle="${lang}" key="availableRooms.message" var="message" />
+    <fmt:message bundle="${lang}" key="availableRooms.image" var="image" />
+    <fmt:message bundle="${lang}" key="availableRooms.category" var="category" />
+    <fmt:message bundle="${lang}" key="availableRooms.max_persons" var="max_persons" />
+    <fmt:message bundle="${lang}" key="availableRooms.seaview" var="seaview" />
+    <fmt:message bundle="${lang}" key="availableRooms.breakfast" var="breakfast" />
+    <fmt:message bundle="${lang}" key="availableRooms.price" var="price" />
+    <fmt:message bundle="${lang}" key="availableRooms.book_buttom" var="book_button" />
+
     <style>
         body {
             background: #B0E0E6;
@@ -118,7 +130,8 @@
 <jsp:include page="header.jsp" />
 <br/>
 
-AVAILABLE ROOMS
+${message}
+
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="bookRoom">
 <c:forEach var="room" items="${availableRooms}">
@@ -129,12 +142,12 @@ AVAILABLE ROOMS
         <c:set var="room.maxPersons" value="${room.maxPersons}" scope="session" />
         <tr class="doNotShow"><th>Id</th><td>${room.id}</td></tr>
         <tr>
-            <th>Image</th>
-            <th>Category</th>
-            <th>Maximum persons</th>
-            <th>Seaview</th>
-            <th>Breakfast</th>
-            <th>Price per night</th>
+            <th>${image}</th>
+            <th>${category}</th>
+            <th>${max_persons}</th>
+            <th>${seaview}</th>
+            <th>${breakfast}</th>
+            <th>${price}</th>
             <th></th>
 
         </tr>
@@ -148,7 +161,7 @@ AVAILABLE ROOMS
 
             <td>
 
-                <input type="submit" value="Book"/>
+                <input type="submit" value=${book_button}/>
 
             </form>
             </td>
