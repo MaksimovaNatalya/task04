@@ -1,8 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>All Requests</title>
+
+    <fmt:setLocale value="${sessionScope.language}"/>
+    <fmt:setBundle basename="prop" var="lang"/>
+    <fmt:message bundle="${lang}" key="allrequests.user_info" var="user_info"/>
+    <fmt:message bundle="${lang}" key="allrequests.requests" var="requests"/>
+    <fmt:message bundle="${lang}" key="allrequests.category" var="category"/>
+    <fmt:message bundle="${lang}" key="allrequests.number" var="number"/>
+    <fmt:message bundle="${lang}" key="allrequests.max_persons" var="max_persons"/>
+    <fmt:message bundle="${lang}" key="allrequests.arr_date" var="arr_date"/>
+    <fmt:message bundle="${lang}" key="allrequests.dep_date" var="dep_date"/>
+    <fmt:message bundle="${lang}" key="allrequests.guest" var="guest"/>
+    <fmt:message bundle="${lang}" key="allrequests.status" var="status"/>
+    <fmt:message bundle="${lang}" key="allrequests.action" var="action"/>
+    <fmt:message bundle="${lang}" key="allrequests.approve" var="approve"/>
+    <fmt:message bundle="${lang}" key="allrequests.decline" var="decline"/>
+
+
     <style>
         body {
             background: #B0E0E6;
@@ -192,8 +210,8 @@
 <body>
 <jsp:include page="header.jsp"/>
 <br/>
-<a href="Controller?command=GO_TO_ACCOUNT_PAGE">User Info</a> -
-<a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">All requests</a>
+<a href="Controller?command=GO_TO_ACCOUNT_PAGE">${user_info}</a> -
+<a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">${requests}</a>
 <input type="hidden" name="command" value="showAllRequests">
 <br/>
 
@@ -204,14 +222,14 @@
 
         <tr>
             <th>№</th>
-            <th>Room category</th>
-            <th>Room number</th>
-            <th>Maximum persons</th>
-            <th>Arrival date</th>
-            <th>Departure date</th>
-            <th>Guest</th>
-            <th>Status of the booking</th>
-            <th>Action</th>
+            <th>${category}</th>
+            <th>${number}</th>
+            <th>${max_persons}</th>
+            <th>${arr_date}</th>
+            <th>${dep_date}</th>
+            <th>${guest}</th>
+            <th>${status}</th>
+            <th>${action}</th>
         </tr>
         <tr>
             <c:forEach var="request" items="${requestScope.allRequests}">
@@ -228,11 +246,11 @@
                 <c:if test="${request.status eq 'in progress'}">
                     <form>
                         <input type="hidden" name="command" value="approveRequest">
-                        <button type="submit" class="approve" id="approve" name="approve" value="${request.id}">approve</button>
+                        <button type="submit" class="approve" id="approve" name="approve" value="${request.id}">${approve}</button>
                 </form>
                     <form>
                         <input type="hidden" name="command" value="declineRequest">
-                        <button type="submit" class="decline" id="decline" name="decline" value="${request.id}">decline</button>
+                        <button type="submit" class="decline" id="decline" name="decline" value="${request.id}">${decline}</button>
                     </form>
                 </c:if>
             </td>
