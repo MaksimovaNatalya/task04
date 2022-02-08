@@ -8,19 +8,19 @@ I've done in my application:
  	7. User account
  	8. Change user info function
  	9. Page with all user's bookings with the possibility to cancel the booking (if it has not been processed by admin)
-  10. For admin - page with all the requests for rooms (with possible options either to approve or to decline a new request). The status of the request is also seen by user.
-  11. Log out function
-  12. Simple validation of parameters
-  13. Connection pool
-  14. CharSet Filter
-  15. SessionListener and RequestListener
-  16. Logging
-  17. JUnit, simple tests
+  	10. For admin - page with all the requests for rooms (with possible options either to approve or to decline a new request). The status of the request is also seen by user.
+	11. Log out function
+ 	12. Simple validation of parameters
+ 	13. Connection pool
+ 	14. CharSet Filter
+ 	15. SessionListener and RequestListener
+ 	16. Logging
+ 	17. JUnit, simple tests
 	
 I would also like to add:
 	1. Possibility to look up guest's info from the request by admin
 	2. Possibility to add guests to the black list
-  3. Possibility to filter available rooms by parameters
-  4. Possibility to change password 
+  	3. Possibility to filter available rooms by parameters
+  	4. Possibility to change password 
 	5. Full validation of parameters
 
