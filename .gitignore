@@ -1,6 +1,0 @@
-# Project exclude paths
-/target/
-.idea
-*.log
-*.zip
-*.iml
