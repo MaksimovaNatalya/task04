@@ -200,7 +200,7 @@ table{
     <br>
     <div>
         <fieldset>
-            <font color="red" size="3">
+            <font color="#2e8b57" size="3">
                 <c:if test="${param.message!=null}">
                     <c:out value="${param.message}" />
                 </c:if>

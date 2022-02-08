@@ -32,6 +32,7 @@ public class UserDAOImpl implements UserDAO {
     private final String RETRIEVE_USER_BY_LOGIN = "SELECT * FROM users WHERE login= ?";
     private final String UPDATE_USER = "UPDATE users SET login = ?, name = ?, surname = ?, email = ?, country = ?, " +
             "phone = ? WHERE login = ?";
+    private final String DELETE_USER = "DELETE FROM users WHERE login = ?";
 
     @Override
     public User authorize(String login, String password) throws DAOException {
@@ -135,6 +136,33 @@ public class UserDAOImpl implements UserDAO {
         }
 
     }
+
+    @Override
+    public void deleteUser(String login) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            ps = connection.prepareStatement(DELETE_USER);
+
+            ps.setString(1, login);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.deleteUser(String login)", e);
+            }
+        }
+    }
+
 
 
     @Override

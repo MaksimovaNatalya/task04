@@ -1,5 +1,6 @@
-package by.epam.tc.project.controller;
+package by.epam.tc.project.controller.impl.gotocommand;
 
+import by.epam.tc.project.controller.Command;
 import by.epam.tc.project.controller.constant.Constant;
 
 import javax.servlet.RequestDispatcher;
