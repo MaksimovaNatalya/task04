@@ -31,7 +31,13 @@ public class ShowRoomsCommand implements Command {
         request.getSession(true).setAttribute(URL, URL_NAME);
         try {
             List<Room> allRooms = ROOM_SERVICE.showAllRooms();
+            int luxPrice = ROOM_SERVICE.retrieveMinLuxPrice();
+            int standardPrice = ROOM_SERVICE.retrieveMinStandPrice();
+            int economyPrice = ROOM_SERVICE.retrieveMinEconPrice();
             request.setAttribute(ALL_ROOMS, allRooms);
+            request.setAttribute("luxPrice", luxPrice);
+            request.setAttribute("standardPrice", standardPrice);
+            request.setAttribute("economyPrice", economyPrice);
             RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ROOMS_PAGE);
             dispatcher.forward(request, response);
         } catch (ServiceException e) {

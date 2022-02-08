@@ -25,6 +25,9 @@ public class RoomDAOImpl implements RoomDAO {
             "AND (RE.start_date NOT between ? AND ?) " +
             "AND (RE.end_date NOT between ? AND ?)";
 
+    private final String RETRIEVE_MIN_LUX_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'lux'";
+    private final String RETRIEVE_MIN_STANDARD_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'standard'";
+    private final String RETRIEVE_MIN_ECONOMY_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'economy'";
 
     @Override
     public List<Room> retrieveAllRooms() throws DAOException {
@@ -137,5 +140,97 @@ public class RoomDAOImpl implements RoomDAO {
             }
         }
         return allRooms;
+    }
+
+    @Override
+    public int retrieveMinLuxPrice() throws DAOException {
+        int luxPrice;
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try { if(true) {
+            throw new RuntimeException();
+        }
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            String sqlQuery = String.format(RETRIEVE_MIN_LUX_PRICE);
+            rs = st.executeQuery(sqlQuery);
+            if(true) {
+                throw new RuntimeException(String.valueOf(rs));
+            }
+            luxPrice = Integer.parseInt(rs.toString());
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    connectionPool.closeConnection(connection, st, rs);
+                }
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+            }
+        }
+        return luxPrice;
+    }
+
+    @Override
+    public int retrieveMinStandPrice() throws DAOException {
+        int standardPrice;
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            String sqlQuery = String.format(RETRIEVE_MIN_STANDARD_PRICE);
+            rs = st.executeQuery(sqlQuery);
+            standardPrice = Integer.parseInt(rs.toString());
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    connectionPool.closeConnection(connection, st, rs);
+                }
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+            }
+        }
+        return standardPrice;
+    }
+
+    @Override
+    public int retrieveMinEconPrice() throws DAOException {
+        int economyPrice;
+        Connection connection = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            st = connection.createStatement();
+            String sqlQuery = String.format(RETRIEVE_MIN_ECONOMY_PRICE);
+            rs = st.executeQuery(sqlQuery);
+            economyPrice = Integer.parseInt(rs.toString());
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    connectionPool.closeConnection(connection, st, rs);
+                }
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
+            }
+        }
+        return economyPrice;
     }
 }

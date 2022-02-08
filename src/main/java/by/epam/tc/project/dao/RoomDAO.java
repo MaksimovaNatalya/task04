@@ -12,4 +12,10 @@ public interface RoomDAO {
     List<Room> retrieveAvailableRoomsForDate(java.sql.Date startDate, Date endDate, int maxPersons) throws DAOException;
 
     List<Room> retrieveAllRoomsThatHaveRequests () throws DAOException;
+
+    int retrieveMinLuxPrice() throws DAOException;
+
+    int retrieveMinStandPrice() throws DAOException;
+
+    int retrieveMinEconPrice() throws DAOException;
 }

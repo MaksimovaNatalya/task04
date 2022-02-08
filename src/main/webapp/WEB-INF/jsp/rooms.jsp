@@ -5,12 +5,12 @@
 
 <html>
 <head>
-    <fmt:setLocale value="${sessionScope.language}" />
-    <fmt:setBundle basename="prop" var="lang" />
-    <fmt:message bundle="${lang}" key="rooms.image" var="image" />
-    <fmt:message bundle="${lang}" key="rooms.category" var="category" />
-    <fmt:message bundle="${lang}" key="rooms.price" var="price" />
-    <fmt:message bundle="${lang}" key="rooms.max_persons" var="max_persons" />
+    <fmt:setLocale value="${sessionScope.language}"/>
+    <fmt:setBundle basename="prop" var="lang"/>
+    <fmt:message bundle="${lang}" key="rooms.image" var="image"/>
+    <fmt:message bundle="${lang}" key="rooms.category" var="category"/>
+    <fmt:message bundle="${lang}" key="rooms.price" var="price"/>
+    <fmt:message bundle="${lang}" key="rooms.max_persons" var="max_persons"/>
 
     <style>
         body {
@@ -113,45 +113,89 @@
 
 
         th, td {
-            text-align: left;
+            text-align: center;
             border: 1px solid grey;
             padding: 10px 15px;
         }
-        img{
-            position: relative;
+
+        img {
+            position: center;
+            width: 600px;
+            height: 375px;
+        }
+        h1{
+            text-align: center;
+            color: #191970;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #6495ED;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
-    <title></title>
+    <title>Rooms</title>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 
-<form action="Controller" method="post">
-    <input type="hidden" name="command" value="showRooms">
-<br/>
-<br/>
-        <table>
-            <tr>
-                <th>${image}</th>
-                <th>${category}</th>
-                <th>${price}</th>
-                <th>${max_persons}</th>
-            </tr>
-            <tr>
-                <c:forEach var="room" items="${allRooms}">
-                <td>
+<h1>Номера и цены</h1>
+    <br/>
+    <br/>
+    <form action="Controller" method="post">
+        <input type="hidden" name="command" value="GO_TO_REQUEST_PAGE">
+    <table>
+        <tr>
+            <td>
+                <img src="/lux.jpg" alt="room">
+                <img src="/lux2.jpg" alt="room">
+            </td>
+            <td>
+                LUX <br/>
+                from ${luxPrice}$/night <br/>
+                <br/>
+                    <input type="submit" value="book">
 
-                        <img src="${pageContext.request.contextPath}/lux.jpg" alt="" >
+            </td>
+        </tr>
+        <tr>
 
+            <td>
+                <img src="/standard1.jpg" alt="room">
+                <img src="/standard2.jpg" alt="room">
+            </td>
+            <td>
+                STANDARD <br/>
+                from ${standardPrice}$/night <br/>
+                <br/>
+                <input type="submit" value="book">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="/economy.jpg" alt="room">
+                <img src="/economy2.jpg" alt="room">
+            </td>
+            <td>
+                ECONOMY <br/>
+                from ${economyPrice}$/night<br/>
+                <br/>
+                <input type="submit" value="book">
+            </td>
+        </tr>
+    </table>
+    </form>
 
-                </td>
-                <td><c:out value="${room.category}"/></td>
-                <td><c:out value="${room.pricePerNight}"/></td>
-                <td><c:out value="${room.maxPersons}"/></td>
-            </tr>
-            </c:forEach>
-        </table>
+<c:if test="${requestScope.user.roleId eq 1}" >
 
-</form>
+    <h2>
+        <a href="Controller?command=GO_TO_ALL_REQUESTS_PAGE">Show all rooms</a>
+    </h2>
+</c:if>
+
 </body>
 </html>

@@ -121,6 +121,7 @@
         }
         h1{
             text-align: center;
+            color: #191970;
         }
     </style></head>
 <body>

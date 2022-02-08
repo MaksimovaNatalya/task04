@@ -35,4 +35,31 @@ public class RoomServiceImpl implements RoomService {
             throw new ServiceException();
         }
     }
+
+    @Override
+    public int retrieveMinEconPrice() throws ServiceException {
+        try {
+            return roomDAO.retrieveMinEconPrice();
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+    }
+
+    @Override
+    public int retrieveMinStandPrice() throws ServiceException {
+        try {
+            return roomDAO.retrieveMinStandPrice();
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+    }
+
+    @Override
+    public int retrieveMinLuxPrice() throws ServiceException {
+        try {
+            return roomDAO.retrieveMinLuxPrice();
+        } catch (DAOException e) {
+            throw new ServiceException();
+        }
+    }
 }

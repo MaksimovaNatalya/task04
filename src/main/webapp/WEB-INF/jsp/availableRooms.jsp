@@ -103,7 +103,7 @@
         }
         table {
             border: 3px solid grey;
-
+width: 100%;
         }
 
         th, td {
@@ -150,9 +150,7 @@ h1{
             <th>${seaview}</th>
             <th>${breakfast}</th>
             <th>${price}</th>
-            <th></th>
-
-        </tr>
+            </tr>
         <tr>
             <td><c:out value="${room.image}"  /></td>
             <td><c:out value="${room.category}"  /></td>
