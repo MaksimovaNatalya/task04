@@ -47,5 +47,6 @@ public final class Constant {
         public static final String EXISTING_USER = "User with such credentials already exists.";
         public static final String NO_REQUESTS = "You have no requests yet";
         public static final String NO_AVAILABLE_ROOMS = "No available rooms for these dates. Choose another date.";
+        public static final String AUTHORIZATION_OBLIGATORY = "To book a room you should be authorized in the system. Please, sign in.";
     }
 }

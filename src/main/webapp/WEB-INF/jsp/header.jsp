@@ -138,12 +138,8 @@
             <a href="Controller?command=GO_TO_CONTACTS_PAGE">${contacts}</a>
         </div>
     <li><a href="Controller?command=showRooms">${rooms}</a></li>
-    <c:if test="${not empty sessionScope.login}" >
-        <li><a href="Controller?command=GO_TO_REQUEST_PAGE">${book_room}</a></li>
-    </c:if>
-    <c:if test="${empty sessionScope.login}" >
-        <li><a href="Controller?command=GO_TO_AUTHORIZATION_PAGE">${book_room}</a></li>
-    </c:if>
+    <li><a href="Controller?command=GO_TO_REQUEST_PAGE">${book_room}</a></li>
+
 </ul>
 </body>
 </html>
