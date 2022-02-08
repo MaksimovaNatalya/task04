@@ -11,4 +11,6 @@ public interface UserService {
 
     User getUser(String login) throws ServiceException;
 
+    void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login) throws ServiceException;
 }
+

@@ -28,11 +28,10 @@ public class UserDAOImpl implements UserDAO {
             "phone, user_roles_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final String RETRIEVE_ALL_USERS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id";
-    private final String RETRIEVE_ALL_ADMINS = "SELECT * FROM users JOIN user_roles ON users.user_roles_id=user_roles.id " +
-            "WHERE user_roles.role=admin";
     private final String RETRIEVE_USER_BY_ID = "SELECT * FROM users WHERE id = %d;";
     private final String RETRIEVE_USER_BY_LOGIN = "SELECT * FROM users WHERE login= ?";
-    private final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
+    private final String UPDATE_USER = "UPDATE users SET login = ?, name = ?, surname = ?, email = ?, country = ?, " +
+            "phone = ? WHERE login = ?";
 
     @Override
     public User authorize(String login, String password) throws DAOException {
@@ -93,6 +92,36 @@ public class UserDAOImpl implements UserDAO {
             ps.setInt(8, user.getRoleId());
             ps.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new DAOException("SQLException in UserDAOImpl.addUser(User user)", e);
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, ps);
+            } catch (ConnectionPoolException e) {
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.addUser(User user)", e);
+            }
+        }
+
+    }
+
+    @Override
+    public void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login) throws DAOException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = connectionPool.takeConnection();
+            ps = connection.prepareStatement(UPDATE_USER);
+            ps.setString(1, newLogin);
+            ps.setString(2, name);
+            ps.setString(3, surname);
+            ps.setString(4, email);
+            ps.setString(5, country);
+            ps.setString(6, phone);
+            ps.setString(7, login);
+
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("SQLException in UserDAOImpl.addUser(User user)", e);
         } catch (ConnectionPoolException e) {

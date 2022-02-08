@@ -29,12 +29,19 @@ public class ChangeAccountInfoCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute(LOGIN);
-        User user;
+        String newlogin = request.getParameter("login");
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        String phone = request.getParameter("phone");
+       User user;
         try {
-            user = USER_SERVICE.getUser(login);
-            request.setAttribute(USER, user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher(CHANGE_ACCOUNT_INFO);
-            dispatcher.forward(request, response);
+
+           USER_SERVICE.updateUserInfo(newlogin, name, surname, email, country, phone, login);
+
+            response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.INFO_UPDATED);
+
         } catch (ServiceException e) {
             LOG.error(e);
             response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);

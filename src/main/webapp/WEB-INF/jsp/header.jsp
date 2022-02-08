@@ -97,6 +97,13 @@
             .dropdown:hover .dropdown-content {
                 display: block;
             }
+            input[type=submit].local {
+                background-color: #6495ED;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
         </style>
     </head>
 <body>
@@ -111,10 +118,10 @@
 
     <li class="local">
         <form action="Controller?command=changeLanguage" method="post">
-            <input type="hidden" name="language" value="en"/> <input type="submit" value="${en_button}">
+            <input type="hidden" name="language" value="en"/> <input type="submit" class="local" value="${en_button}">
         </form>
         <form action="Controller?command=changeLanguage" method="post">
-            <input type="hidden" name="language" value="ru"/> <input type="submit" value="${ru_button}"><br/>
+            <input type="hidden" name="language" value="ru"/> <input type="submit" class="local" value="${ru_button}"><br/>
         </form>
     </li>
 

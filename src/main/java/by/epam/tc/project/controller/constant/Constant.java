@@ -12,7 +12,7 @@ public final class Constant {
         public final static String TO_REQUEST_PAGE = "/WEB-INF/jsp/request.jsp";
         public final static String TO_REQUEST_CONFIRMATION_PAGE = "/WEB-INF/jsp/requestConfirmation.jsp";
         public final static String TO_ROOMS_PAGE = "/WEB-INF/jsp/rooms.jsp";
-        public final static String TO_WELCOME_PAGE = "/WEB-INF/jsp/welcomePage.jsp";
+        public final static String TO_ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
     }
 
     public final class Redirect {
@@ -48,5 +48,6 @@ public final class Constant {
         public static final String NO_REQUESTS = "You have no requests yet";
         public static final String NO_AVAILABLE_ROOMS = "No available rooms for these dates. Choose another date.";
         public static final String AUTHORIZATION_OBLIGATORY = "To book a room you should be authorized in the system. Please, sign in.";
+        public static final String INFO_UPDATED = "Your personal information has been successfully updated.";
     }
 }

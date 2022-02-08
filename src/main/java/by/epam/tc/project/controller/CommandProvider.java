@@ -34,6 +34,7 @@ public final class CommandProvider {
         commands.put("GO_TO_MY_BOOKINGS_PAGE", new GoToMyBookingsPageCommand());
         commands.put("GO_TO_ALL_REQUESTS_PAGE", new GoToAllRequestsPageCommand());
         commands.put("GO_TO_ALL_REQUEST_CONFIRMATION_PAGE", new GoToRequestConfirmationPage());
+        commands.put("GO_TO_ERROR_PAGE", new GoToErrorPage());
     }
 
     public Command getCommand(String commandName) {

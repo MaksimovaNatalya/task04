@@ -172,7 +172,8 @@
 
         table {
             border: 3px solid grey;
-
+background-color: #f2f2f2;
+            width: 100%;
         }
 
         .doNotShow {

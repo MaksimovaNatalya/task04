@@ -6,6 +6,7 @@
 
 </head>
 <body>
+
 <div class="b-wrapper p-404" style="background-image: url(//)"/>
 <h2>Something wrong..</h2>
 <br>

@@ -16,4 +16,7 @@ public interface UserDAO {
 
     void addUser(User user) throws DAOException;
 
+    void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login
+    ) throws DAOException;
 }
+
