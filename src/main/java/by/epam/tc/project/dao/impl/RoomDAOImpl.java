@@ -149,17 +149,13 @@ public class RoomDAOImpl implements RoomDAO {
         Statement st = null;
         ResultSet rs = null;
 
-        try { if(true) {
-            throw new RuntimeException();
-        }
+        try {
             connection = connectionPool.takeConnection();
             st = connection.createStatement();
             String sqlQuery = String.format(RETRIEVE_MIN_LUX_PRICE);
             rs = st.executeQuery(sqlQuery);
-            if(true) {
-                throw new RuntimeException(String.valueOf(rs));
-            }
-            luxPrice = Integer.parseInt(rs.toString());
+
+            luxPrice = rs.getInt("price_per_night");
         } catch (SQLException e) {
             throw new DAOException("SQLException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
         } catch (ConnectionPoolException e) {

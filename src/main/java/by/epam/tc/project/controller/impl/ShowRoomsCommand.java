@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.List;
 
 import static by.epam.tc.project.controller.constant.Constant.Utility.URL;
@@ -32,12 +33,12 @@ public class ShowRoomsCommand implements Command {
         try {
             List<Room> allRooms = ROOM_SERVICE.showAllRooms();
             int luxPrice = ROOM_SERVICE.retrieveMinLuxPrice();
-            int standardPrice = ROOM_SERVICE.retrieveMinStandPrice();
-            int economyPrice = ROOM_SERVICE.retrieveMinEconPrice();
+        //    int standardPrice = ROOM_SERVICE.retrieveMinStandPrice();
+          //  int economyPrice = ROOM_SERVICE.retrieveMinEconPrice();
             request.setAttribute(ALL_ROOMS, allRooms);
             request.setAttribute("luxPrice", luxPrice);
-            request.setAttribute("standardPrice", standardPrice);
-            request.setAttribute("economyPrice", economyPrice);
+            //request.setAttribute("standardPrice", standardPrice);
+            //request.setAttribute("economyPrice", economyPrice);
             RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_ROOMS_PAGE);
             dispatcher.forward(request, response);
         } catch (ServiceException e) {
