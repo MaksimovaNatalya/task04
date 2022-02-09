@@ -180,7 +180,7 @@
     <input type="hidden" name="command" value="logination">
     <div>
  <fieldset>
-     <font color="red" size="3">
+     <font color="red" size="5">
          <c:if test="${param.message!=null}">
          <c:out value="${param.message}" />
      </c:if>
