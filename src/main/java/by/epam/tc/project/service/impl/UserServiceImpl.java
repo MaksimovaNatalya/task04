@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
         try {
             userValidator.checkRegistrationInfo(user);
             userDAO.addUser(user);
-        } catch (DAOException | ValidatorException e) {
-            e.printStackTrace();
+        } catch (DAOException e) {
+            throw new ServiceException("Service exception in register(User user)", e);
         }
     }
 

@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
             try {
                 connectionPool.closeConnection(connection, ps, rs);
             } catch (ConnectionPoolException e) {
-                e.printStackTrace();
+                throw new DAOException("ConnectionPoolException in UserDAOImpl.authorize", e);
             }
 
         }

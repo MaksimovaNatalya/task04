@@ -40,20 +40,6 @@ public class UserDAOImplTest {
 
     }
 
-//    @Test(expected = DAOException.class)
-//    public void registrationTest() throws DAOException {
-//        user = new User();
-//        user.setLogin("natasha");
-//        user.setPassword("natasha");
-//        user.setName("natalya");
-//        user.setSurname("maksimova");
-//        user.setEmail("nata@mail.ru");
-//        user.setCountry("BY");
-//        user.setPhone("+375296214697");
-//        user.setRoleId(2);
-//        USER_DAO.addUser(user);
-//    }
-
     @Test
     public void addUserTest() {
         try {

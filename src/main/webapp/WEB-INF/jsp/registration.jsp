@@ -182,10 +182,7 @@
 
 </br>
 
-<font color="red" size="5"> <c:if test="${param.message!=null}">
-    <c:out value="${param.message}" />
-</c:if>
-</font>
+
 
 <form action="Controller" method="post">
 
@@ -194,7 +191,11 @@
     <div>
         <fieldset>
             <legend><h1>${registration}</h1></legend>
-
+            <font color="red" size="5"> <c:if test="${param.message!=null}">
+                <c:out value="${param.message}" />
+            </c:if>
+            </font>
+            <br/>
 
             <label for="login">${login}</label>
             <br/>
