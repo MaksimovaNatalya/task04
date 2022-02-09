@@ -156,7 +156,7 @@
             </td>
             <td>
                 LUX <br/>
-                from ${luxPrice}$/night <br/>
+                from 80$/night <br/>
                 <br/>
                     <input type="submit" value="book">
 
@@ -170,7 +170,7 @@
             </td>
             <td>
                 STANDARD <br/>
-                from ${standardPrice}$/night <br/>
+                from 40$/night <br/>
                 <br/>
                 <input type="submit" value="book">
             </td>
@@ -182,7 +182,7 @@
             </td>
             <td>
                 ECONOMY <br/>
-                from ${economyPrice}$/night<br/>
+                from 20$/night<br/>
                 <br/>
                 <input type="submit" value="book">
             </td>

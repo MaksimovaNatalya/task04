@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void register(User user) throws ServiceException {
+    public void register(User user) throws ServiceException, ValidatorException {
         try {
             userValidator.checkRegistrationInfo(user);
             userDAO.addUser(user);

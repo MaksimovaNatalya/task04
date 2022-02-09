@@ -117,20 +117,20 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(country, user.country) && Objects.equals(phone, user.phone) && roleId == user.roleId;
+        return Objects.equals(login, user.login) && Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) && Objects.equals(email, user.email) &&
+                Objects.equals(country, user.country) && Objects.equals(phone, user.phone) && roleId == user.roleId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, name, surname, email, country, phone, roleId);
+        return Objects.hash(login, name, surname, email, country, phone, roleId);
     }
 
     @Override
     public String toString() {
         return "User: " +
-                "id=" + id +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

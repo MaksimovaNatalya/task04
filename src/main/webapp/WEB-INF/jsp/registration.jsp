@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -180,6 +181,11 @@
 <jsp:include page="header.jsp" />
 
 </br>
+
+<font color="red" size="5"> <c:if test="${param.message!=null}">
+    <c:out value="${param.message}" />
+</c:if>
+</font>
 
 <form action="Controller" method="post">
 

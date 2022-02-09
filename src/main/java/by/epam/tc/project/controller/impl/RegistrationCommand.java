@@ -7,6 +7,7 @@ import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
+import by.epam.tc.project.service.validator.ValidatorException;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,11 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static by.epam.tc.project.controller.constant.Constant.Message.PARAM_MESSAGE;
+import static by.epam.tc.project.controller.constant.Constant.Utility.URL;
 
 public class RegistrationCommand implements Command {
 
@@ -37,13 +42,17 @@ public class RegistrationCommand implements Command {
 
         try {
             USER_SERVICE.register(new User(login, password, name, surname, eMail, country, telNumber, roleId));
-            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + Constant.Message.PARAM_MESSAGE +
+
+            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + PARAM_MESSAGE +
                     Constant.Message.REGISTRATION_SUCCESS);
-        } catch (ServiceException e) {
+        }
+        catch (ValidatorException e) {
             LOG.error(e);
-            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + "&login=" + login + "&name=" + name
-                    + "&surname=" + surname + "&email=" + eMail + "&country=" + country + "&telNumber" + telNumber
-                    + Constant.Message.PARAM_MESSAGE + Constant.Message.EXISTING_USER);
+            response.sendRedirect(Constant.Redirect.TO_REGISTRATION_PAGE + PARAM_MESSAGE + Constant.Message.INVALID_PARAMETERS);
+        }
+        catch (ServiceException e) {
+            LOG.error(e);
+            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + PARAM_MESSAGE + Constant.Message.EXISTING_USER);
 
         }
 

@@ -6,7 +6,7 @@ public class UserValidator {
     private static final String LOGIN_CHECK = "^[a-zA-Z0-9_-]{3,200}$";
     private static final String PASSWORD_CHECK = "^.{3,15}$";
     private static final String NAME_CHECK = "^[a-zA-Zа-яА-ЯёЁ-]{3,45}$";
-    private static final String COUNTRY_CHECK = "^[a-zA-Zа-яА-ЯёЁ-]{3,45}$";
+    private static final String COUNTRY_CHECK = "^[a-zA-Zа-яА-ЯёЁ-]{1,45}$";
     private static final String EMAIL_CHECK = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w]+$";
     private static final String TELNUMBER_CHECK = "^[0-9-+()]{5,20}$";
 

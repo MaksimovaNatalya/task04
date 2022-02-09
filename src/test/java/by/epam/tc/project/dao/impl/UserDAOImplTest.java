@@ -1,5 +1,6 @@
 package by.epam.tc.project.dao.impl;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import by.epam.tc.project.dao.DAOProvider;
@@ -11,14 +12,15 @@ import org.junit.*;
 
 public class UserDAOImplTest {
 
-    private static final DAOProvider DAO_PROVIDER = DAOProvider.getInstance();
-    private static final UserDAO USER_DAO = DAO_PROVIDER.getUserDAO();
+    private final static  DAOProvider DAO_PROVIDER = DAOProvider.getInstance();
+    private final static  UserDAO USER_DAO = DAO_PROVIDER.getUserDAO();
     private static User user;
 
     @BeforeClass
     public static void initUserTest() {
         user = new User();
-        user.setLogin("natasha");
+        user.setLogin("natasha1");
+        user.setPassword("natasha");
         user.setName("natalya");
         user.setSurname("maksimova");
         user.setEmail("nata@mail.ru");
@@ -38,17 +40,26 @@ public class UserDAOImplTest {
 
     }
 
-    @Test(expected = DAOException.class)
-    public void registrationTest() throws DAOException {
-       USER_DAO.addUser(user);
-    }
+//    @Test(expected = DAOException.class)
+//    public void registrationTest() throws DAOException {
+//        user = new User();
+//        user.setLogin("natasha");
+//        user.setPassword("natasha");
+//        user.setName("natalya");
+//        user.setSurname("maksimova");
+//        user.setEmail("nata@mail.ru");
+//        user.setCountry("BY");
+//        user.setPhone("+375296214697");
+//        user.setRoleId(2);
+//        USER_DAO.addUser(user);
+//    }
 
     @Test
     public void addUserTest() {
         try {
             USER_DAO.addUser(user);
             User userFromBase = USER_DAO.retrieveUserByLogin(user.getLogin());
-            assertTrue(user.equals(userFromBase));
+            assertEquals(user, userFromBase);
         } catch (DAOException e) {
             e.printStackTrace();
         }

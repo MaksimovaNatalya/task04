@@ -22,6 +22,7 @@ public final class Constant {
         public final static String LOG_OUT = "Controller?command=GO_TO_INDEX_PAGE&logOut=true";
         public final static String TO_REQUEST_PAGE = "Controller?command=GO_TO_REQUEST_PAGE";
         public final static String TO_INDEX_PAGE = "Controller?command=GO_TO_INDEX_PAGE";
+        public final static String TO_REGISTRATION_PAGE = "Controller?command=GO_TO_REGISTRATION_PAGE";
     }
 
     public final class Utility {
@@ -49,5 +50,6 @@ public final class Constant {
         public static final String NO_AVAILABLE_ROOMS = "No available rooms for these dates. Choose another date.";
         public static final String AUTHORIZATION_OBLIGATORY = "To book a room you should be authorized in the system. Please, sign in.";
         public static final String INFO_UPDATED = "Your personal information has been successfully updated.";
+        public static final String INVALID_PARAMETERS = "Invalid parameters!";
     }
 }
