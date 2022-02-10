@@ -138,6 +138,12 @@
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="findRooms">
 <div><fieldset>
+    <font color="red" size="5">
+        <c:if test="${param.message!=null}">
+            <c:out value="${param.message}" />
+        </c:if>
+    </font>
+    <br/>
     <label for="startDate">${arr_date}</label>
     <br/>
 

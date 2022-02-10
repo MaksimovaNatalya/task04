@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Bill implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private Integer totalAmount;
     private String status;

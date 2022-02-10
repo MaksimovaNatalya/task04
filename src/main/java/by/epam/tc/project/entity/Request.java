@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Request implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private String category;
     private Integer maxPersons;

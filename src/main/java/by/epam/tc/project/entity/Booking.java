@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Booking implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private String realStartDate;
     private String realEndDate;

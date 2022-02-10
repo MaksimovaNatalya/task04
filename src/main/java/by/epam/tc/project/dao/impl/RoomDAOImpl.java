@@ -16,14 +16,10 @@ public class RoomDAOImpl implements RoomDAO {
     RoomBuilder roomBuilder = new RoomBuilder();
 
     private final String RETRIEVE_ALL_ROOMS = "SELECT * FROM rooms";
-    private final String RETRIEVE_ROOM_BY_ID = "SELECT * FROM rooms WHERE id = %d";
-    private final String RETRIEVE_ROOM_BY_CATEGORY_AND_MAX_PERSONS = "SELECT * FROM rooms WHERE category = %s AND max-persons = %s";
-    private final String RETRIEVE_ROOMS_THAT_HAVE_REQUESTS = "SELECT * FROM rooms JOIN rooms_has_requests ON rooms.id=rooms_has_requests.rooms_id JOIN requests ON rooms_has_requests.requests_id=requests.id";
-    private final String RETRIEVE_AVAILABLE_ROOMS = "SELECT * FROM rooms RO " +
-            "JOIN requests RE ON RE.rooms_id = RO.id " +
-            "WHERE RO.max_persons>=? " +
+    private final String RETRIEVE_AVAILABLE_ROOMS = "SELECT RO.id FROM rooms RO	WHERE EXISTS " +
+            "(SELECT * FROM requests RE WHERE RE.rooms_id = RO.id AND  RO.max_persons>=? " +
             "AND (RE.start_date NOT between ? AND ?) " +
-            "AND (RE.end_date NOT between ? AND ?)";
+            "AND (RE.end_date NOT between ? AND ?))";
 
     private final String RETRIEVE_MIN_LUX_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'lux'";
     private final String RETRIEVE_MIN_STANDARD_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'standard'";
