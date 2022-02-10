@@ -46,9 +46,9 @@ public class UserValidator {
     }
 
     private void validate(String name, String surName, String eMail, String country, String telNumber) throws ValidatorException {
-        if (!name.matches(NAME_CHECK)) {
-            throw new ValidatorException("Invalid name!");
-        }
+//        if (!name.matches(NAME_CHECK)) {
+//            throw new ValidatorException("Invalid name!");
+//        }
 
         if (!surName.isEmpty()) {
             if (!surName.matches(NAME_CHECK)) {
