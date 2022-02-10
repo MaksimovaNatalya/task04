@@ -24,7 +24,6 @@ public interface RequestService {
     /**
      * Add a request into a database
      * @param request is a new request
-     * @throws ServiceException if there are no available rooms for these dates
      */
     void addRequest(Request request) throws ServiceException;
 
