@@ -163,45 +163,6 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-
-
-    @Override
-    public List<User> retrieveAllUsers() throws DAOException {
-        List<User> allUsers = new ArrayList<>();
-
-        Connection connection = null;
-        Statement st = null;
-        ResultSet rs = null;
-
-        try {
-            User user;
-            connection = connectionPool.takeConnection();
-            st = connection.createStatement();
-            rs = st.executeQuery(RETRIEVE_ALL_USERS);
-
-            while (rs.next()) {
-                user = userBuilder.buildUser(rs);
-                allUsers.add(user);
-
-            }
-
-
-        } catch (SQLException e) {
-            throw new DAOException("SQLException in UserDAOImpl.retrieveAllUsers()", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
-        } finally {
-            try {
-                connectionPool.closeConnection(connection, st, rs);
-
-            } catch (ConnectionPoolException e) {
-                throw new DAOException("ConnectionPoolException in UserDAOImpl.retrieveAllUsers()", e);
-            }
-        }
-        return allUsers;
-    }
-
-
     @Override
     public User retrieveUserById(Integer id) throws DAOException {
         User user;

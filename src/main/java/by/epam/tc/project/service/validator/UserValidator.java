@@ -27,6 +27,25 @@ public class UserValidator {
             throw new ValidatorException("Invalid password!");
         }
 
+        validate(name, surName, eMail, country, telNumber);
+
+    }
+
+    public void checkRegistrationInfo(String newLogin, String name, String surname, String email, String country,
+                                      String phone, String login) throws ValidatorException {
+
+        if (!newLogin.matches(LOGIN_CHECK)) {
+            throw new ValidatorException("Invalid login!");
+        }
+
+        if (!login.matches(LOGIN_CHECK)) {
+            throw new ValidatorException("Invalid login!");
+        }
+
+        validate(name, surname, email, country, phone);
+    }
+
+    private void validate(String name, String surName, String eMail, String country, String telNumber) throws ValidatorException {
         if (!name.matches(NAME_CHECK)) {
             throw new ValidatorException("Invalid name!");
         }
@@ -54,6 +73,7 @@ public class UserValidator {
                 throw new ValidatorException("Invalid telNumber!");
             }
         }
-
     }
+
+
 }

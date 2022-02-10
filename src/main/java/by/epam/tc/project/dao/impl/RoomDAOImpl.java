@@ -109,40 +109,6 @@ public class RoomDAOImpl implements RoomDAO {
 
 
     @Override
-    public List<Room> retrieveAllRoomsThatHaveRequests() throws DAOException {
-
-        List<Room> allRooms = new ArrayList<>();
-        Connection connection = null;
-        Statement st = null;
-        ResultSet rs = null;
-
-        try {
-            Room room;
-            connection = connectionPool.takeConnection();
-            st = connection.createStatement();
-            String sqlQuery = String.format(RETRIEVE_ROOMS_THAT_HAVE_REQUESTS);
-            rs = st.executeQuery(sqlQuery);
-            while (rs.next()) {
-                room = roomBuilder.buildRoom(rs);
-                allRooms.add(room);
-            }
-        } catch (SQLException e) {
-            throw new DAOException("SQLException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
-        } catch (ConnectionPoolException e) {
-            throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
-        } finally {
-            try {
-                if (rs != null) {
-                    connectionPool.closeConnection(connection, st, rs);
-                }
-            } catch (ConnectionPoolException e) {
-                throw new DAOException("ConnectionPoolException in RoomDAOImpl.retrieveAllRoomsThatHaveRequests()", e);
-            }
-        }
-        return allRooms;
-    }
-
-    @Override
     public int retrieveMinLuxPrice() throws DAOException {
         int luxPrice;
         Connection connection = null;

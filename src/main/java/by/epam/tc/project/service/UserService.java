@@ -41,6 +41,6 @@ public interface UserService {
      * @param login is a (previous) login of a user from the database
      * @throws ValidatorException if entered parameters are not valid
      */
-    void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login) throws ServiceException;
+    void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login) throws ServiceException, ValidatorException;
 }
 

@@ -58,8 +58,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login) throws ServiceException {
+    public void updateUserInfo(String newLogin, String name, String surname, String email, String country, String phone, String login) throws ServiceException, ValidatorException {
         try {
+            userValidator.checkRegistrationInfo(newLogin, name, surname, email, country, phone, login);
             userDAO.updateUserInfo(newLogin, name, surname, email, country, phone, login);
         } catch (DAOException e) {
             throw new ServiceException("Service exception in UserService.updateUserInfo", e);

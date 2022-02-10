@@ -5,6 +5,7 @@ import by.epam.tc.project.controller.constant.Constant;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
+import by.epam.tc.project.service.validator.ValidatorException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static by.epam.tc.project.controller.constant.Constant.Message.PARAM_MESSAGE;
 
 public class ChangeAccountInfoCommand implements Command {
     private final static String CHANGE_ACCOUNT_INFO = "/WEB-INF/jsp/account.jsp";
@@ -40,7 +43,10 @@ public class ChangeAccountInfoCommand implements Command {
 
         } catch (ServiceException e) {
             LOG.error(e);
-            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
+            response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + PARAM_MESSAGE + Constant.Message.EXISTING_USER);
+        } catch (ValidatorException e) {
+            LOG.error(e);
+            response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + PARAM_MESSAGE + Constant.Message.INVALID_PARAMETERS);
         }
 
     }
