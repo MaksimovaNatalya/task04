@@ -19,7 +19,7 @@ public final class Constant {
         public final static String TO_ERROR_PAGE = "Controller?command=GO_TO_ERROR_PAGE";
         public final static String TO_AUTHORIZATION_PAGE = "Controller?command=GO_TO_AUTHORIZATION_PAGE";
         public final static String TO_ACCOUNT_PAGE = "Controller?command=GO_TO_ACCOUNT_PAGE";
-        public final static String LOG_OUT = "Controller?command=GO_TO_INDEX_PAGE&logOut=true";
+        public final static String LOG_OUT = "Controller?command=GO_TO_MAIN_PAGE&logOut=true";
         public final static String TO_REQUEST_PAGE = "Controller?command=GO_TO_REQUEST_PAGE";
         public final static String TO_INDEX_PAGE = "Controller?command=GO_TO_INDEX_PAGE";
         public final static String TO_REGISTRATION_PAGE = "Controller?command=GO_TO_REGISTRATION_PAGE";

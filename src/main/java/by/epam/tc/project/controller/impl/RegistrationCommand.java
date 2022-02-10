@@ -52,7 +52,7 @@ public class RegistrationCommand implements Command {
         }
         catch (ServiceException e) {
             LOG.error(e);
-            response.sendRedirect(Constant.Redirect.TO_AUTHORIZATION_PAGE + PARAM_MESSAGE + Constant.Message.EXISTING_USER);
+            response.sendRedirect(Constant.Redirect.TO_REGISTRATION_PAGE + PARAM_MESSAGE + Constant.Message.EXISTING_USER);
 
         }
 

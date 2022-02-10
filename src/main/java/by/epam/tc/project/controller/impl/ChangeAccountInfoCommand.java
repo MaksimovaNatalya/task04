@@ -2,14 +2,12 @@ package by.epam.tc.project.controller.impl;
 
 import by.epam.tc.project.controller.Command;
 import by.epam.tc.project.controller.constant.Constant;
-import by.epam.tc.project.entity.User;
 import by.epam.tc.project.service.ServiceProvider;
 import by.epam.tc.project.service.UserService;
 import by.epam.tc.project.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +17,6 @@ import java.io.IOException;
 public class ChangeAccountInfoCommand implements Command {
     private final static String CHANGE_ACCOUNT_INFO = "/WEB-INF/jsp/account.jsp";
     private final String LOGIN = "login";
-    private final String USER = "user";
     private static final ServiceProvider PROVIDER = ServiceProvider.getInstance();
     private static final UserService USER_SERVICE = PROVIDER.getUserService();
     private final static Logger LOG = LogManager.getLogger(ChangeAccountInfoCommand.class);
@@ -35,11 +32,10 @@ public class ChangeAccountInfoCommand implements Command {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         String phone = request.getParameter("phone");
-       User user;
+
         try {
 
-           USER_SERVICE.updateUserInfo(newlogin, name, surname, email, country, phone, login);
-
+            USER_SERVICE.updateUserInfo(newlogin, name, surname, email, country, phone, login);
             response.sendRedirect(Constant.Redirect.TO_ACCOUNT_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.INFO_UPDATED);
 
         } catch (ServiceException e) {
