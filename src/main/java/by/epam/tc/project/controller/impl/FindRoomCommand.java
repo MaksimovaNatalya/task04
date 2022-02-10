@@ -41,15 +41,19 @@ public class FindRoomCommand implements Command {
             List<Room> availableRooms;
 
             availableRooms = ROOM_SERVICE.findAvailableRooms(startDate, endDate, guestsNumber);
-            if (availableRooms.size() > 0) {
+           if (availableRooms.size() > 0) {
+
                 request.setAttribute(Constant.Utility.AVAILABLE_ROOMS, availableRooms);
                 RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.Forward.TO_AVAILABLE_ROOMS_PAGE);
                 dispatcher.forward(request, response);
-            }
+            } else if (availableRooms.size() == 0){
+               response.sendRedirect(Constant.Redirect.TO_REQUEST_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_AVAILABLE_ROOMS);
+
+           }
 
         } catch (ServiceException e) {
             LOG.error(e);
-            response.sendRedirect(Constant.Redirect.TO_REQUEST_PAGE + Constant.Message.PARAM_MESSAGE + Constant.Message.NO_AVAILABLE_ROOMS);
+            response.sendRedirect(Constant.Redirect.TO_ERROR_PAGE);
         }
     }
 }

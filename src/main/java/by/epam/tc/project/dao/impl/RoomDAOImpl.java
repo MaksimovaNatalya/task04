@@ -16,10 +16,10 @@ public class RoomDAOImpl implements RoomDAO {
     RoomBuilder roomBuilder = new RoomBuilder();
 
     private final String RETRIEVE_ALL_ROOMS = "SELECT * FROM rooms";
-    private final String RETRIEVE_AVAILABLE_ROOMS = "SELECT RO.id FROM rooms RO	WHERE EXISTS " +
-            "(SELECT * FROM requests RE WHERE RE.rooms_id = RO.id AND  RO.max_persons>=? " +
-            "AND (RE.start_date NOT between ? AND ?) " +
-            "AND (RE.end_date NOT between ? AND ?))";
+    private final String RETRIEVE_AVAILABLE_ROOMS = "SELECT * FROM rooms RO	WHERE NOT EXISTS " +
+            "(SELECT * FROM requests RE WHERE RE.rooms_id = RO.id AND RO.max_persons>= ? " +
+            "AND (RE.start_date between ? AND ?) " +
+            "AND (RE.end_date between ? AND ?))";
 
     private final String RETRIEVE_MIN_LUX_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'lux'";
     private final String RETRIEVE_MIN_STANDARD_PRICE = "SELECT MIN(price_per_night) FROM rooms WHERE category = 'standard'";
@@ -79,12 +79,12 @@ public class RoomDAOImpl implements RoomDAO {
             ps.setDate(5, endDate);
 
             rs = ps.executeQuery();
-
             while (rs.next()) {
 
                 room = roomBuilder.buildRoom(rs);
 
                 availableRooms.add(room);
+
             }
 
         } catch (SQLException e) {
